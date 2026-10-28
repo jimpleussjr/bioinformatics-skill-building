@@ -1,0 +1,611 @@
+[
+  {
+    "objectID": "lessons/15-anomaly-detection.html",
+    "href": "lessons/15-anomaly-detection.html",
+    "title": "Lesson 15: Anomaly Detection - Isolation Forest",
+    "section": "",
+    "text": "Anomalies in health data can indicate fraud, rare diseases, sensor errors, or outbreaks. Unsupervised anomaly detection flags unusual cases without labels, useful when labeled anomalies are scarce."
+  },
+  {
+    "objectID": "lessons/15-anomaly-detection.html#introduction-to-the-domain",
+    "href": "lessons/15-anomaly-detection.html#introduction-to-the-domain",
+    "title": "Lesson 15: Anomaly Detection - Isolation Forest",
+    "section": "",
+    "text": "Anomalies in health data can indicate fraud, rare diseases, sensor errors, or outbreaks. Unsupervised anomaly detection flags unusual cases without labels, useful when labeled anomalies are scarce."
+  },
+  {
+    "objectID": "lessons/15-anomaly-detection.html#research-question",
+    "href": "lessons/15-anomaly-detection.html#research-question",
+    "title": "Lesson 15: Anomaly Detection - Isolation Forest",
+    "section": "Research Question",
+    "text": "Research Question\nCan we detect anomalous patients/records in a health dataset, and do flagged cases make clinical sense?"
+  },
+  {
+    "objectID": "lessons/15-anomaly-detection.html#open-source-dataset",
+    "href": "lessons/15-anomaly-detection.html#open-source-dataset",
+    "title": "Lesson 15: Anomaly Detection - Isolation Forest",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nCredit Card Fraud (proxy) or a clinical vitals dataset.\n\nLink: https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud (proxy for anomaly detection)\nBetter clinical: https://physionet.org/ (ICU vitals) or UCI Heart Disease.\nSize: varies.\nOutcome: anomaly flag (often unavailable -&gt; unsupervised).\nNotes: extreme imbalance; evaluate with precision@k."
+  },
+  {
+    "objectID": "lessons/15-anomaly-detection.html#practical-exercise",
+    "href": "lessons/15-anomaly-detection.html#practical-exercise",
+    "title": "Lesson 15: Anomaly Detection - Isolation Forest",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nIsolation Forest (scikit-learn) plus Local Outlier Factor; compare flagged cases.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.ensemble import IsolationForest\nfrom sklearn.preprocessing import StandardScaler\n\ndf = pd.read_csv(\"vitals.csv\")\nX = StandardScaler().fit_transform(df.select_dtypes(include=\"number\"))\niso = IsolationForest(contamination=0.01, random_state=42)\ndf[\"anomaly\"] = iso.fit_predict(X)  # -1 = anomaly\nprint(df[\"anomaly\"].value_counts())\nprint(df[df[\"anomaly\"] == -1].head())\n\n\nSuggested AI prompts\n\n“How does Isolation Forest work intuitively?”\n“How do I choose the contamination parameter?”\n“How do I evaluate an unsupervised anomaly detector without labels?”\n\n\n\nExtensions\n\nCompare with LOF and One-Class SVM.\nInspect top anomalies clinically.\nVary contamination and see stability."
+  },
+  {
+    "objectID": "lessons/13-obesity-ordinal.html",
+    "href": "lessons/13-obesity-ordinal.html",
+    "title": "Lesson 13: Obesity - Ordinal and Multinomial Regression",
+    "section": "",
+    "text": "Obesity is classified into ordered categories (normal, overweight, obese I/II/III). When the outcome is ordinal, ordinal regression respects the ordering and is more efficient than treating categories as nominal."
+  },
+  {
+    "objectID": "lessons/13-obesity-ordinal.html#introduction-to-the-domain",
+    "href": "lessons/13-obesity-ordinal.html#introduction-to-the-domain",
+    "title": "Lesson 13: Obesity - Ordinal and Multinomial Regression",
+    "section": "",
+    "text": "Obesity is classified into ordered categories (normal, overweight, obese I/II/III). When the outcome is ordinal, ordinal regression respects the ordering and is more efficient than treating categories as nominal."
+  },
+  {
+    "objectID": "lessons/13-obesity-ordinal.html#research-question",
+    "href": "lessons/13-obesity-ordinal.html#research-question",
+    "title": "Lesson 13: Obesity - Ordinal and Multinomial Regression",
+    "section": "Research Question",
+    "text": "Research Question\nWhat factors predict obesity level, and does ordinal regression outperform multinomial?"
+  },
+  {
+    "objectID": "lessons/13-obesity-ordinal.html#open-source-dataset",
+    "href": "lessons/13-obesity-ordinal.html#open-source-dataset",
+    "title": "Lesson 13: Obesity - Ordinal and Multinomial Regression",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nObesity (or Estimation of Obesity Levels) dataset (UCI).\n\nLink: https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition\nSize: ~2,100 rows.\nOutcome: obesity level (ordered).\nPredictors: age, gender, height, weight, eating habits, activity.\nNotes: derived from synthetic + real data."
+  },
+  {
+    "objectID": "lessons/13-obesity-ordinal.html#practical-exercise",
+    "href": "lessons/13-obesity-ordinal.html#practical-exercise",
+    "title": "Lesson 13: Obesity - Ordinal and Multinomial Regression",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nOrdinal logistic regression (mord / statsmodels) vs. multinomial logistic regression.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import cross_val_score\nfrom sklearn.preprocessing import StandardScaler\n\ndf = pd.read_csv(\"obesity.csv\")\nX = pd.get_dummies(df.drop(columns=[\"NObeyesdad\"]), drop_first=True)\ny = df[\"NObeyesdad\"]\nXs = StandardScaler().fit_transform(X)\nmulti = LogisticRegression(multi_class=\"multinomial\", max_iter=1000)\nprint(\"Multinomial CV acc:\", cross_val_score(multi, Xs, y, cv=5).mean())\n\n\nSuggested AI prompts\n\n“What is the proportional odds assumption in ordinal regression?”\n“When should I use multinomial instead of ordinal?”\n“How do I evaluate an ordinal classifier beyond accuracy?”\n\n\n\nExtensions\n\nFit an ordinal model (mord.LogisticIT) and compare.\nCollapse rare top categories and re-evaluate.\nExamine coefficient stability across thresholds."
+  },
+  {
+    "objectID": "lessons/11-causal-inference-nhanes.html",
+    "href": "lessons/11-causal-inference-nhanes.html",
+    "title": "Lesson 11: Causal Inference - Propensity Scores (NHANES)",
+    "section": "",
+    "text": "Observational health studies are plagued by confounding. Causal inference methods (propensity scores, matching, weighting) aim to estimate treatment effects as if from a randomized trial. NHANES provides rich, nationally representative health data."
+  },
+  {
+    "objectID": "lessons/11-causal-inference-nhanes.html#introduction-to-the-domain",
+    "href": "lessons/11-causal-inference-nhanes.html#introduction-to-the-domain",
+    "title": "Lesson 11: Causal Inference - Propensity Scores (NHANES)",
+    "section": "",
+    "text": "Observational health studies are plagued by confounding. Causal inference methods (propensity scores, matching, weighting) aim to estimate treatment effects as if from a randomized trial. NHANES provides rich, nationally representative health data."
+  },
+  {
+    "objectID": "lessons/11-causal-inference-nhanes.html#research-question",
+    "href": "lessons/11-causal-inference-nhanes.html#research-question",
+    "title": "Lesson 11: Causal Inference - Propensity Scores (NHANES)",
+    "section": "Research Question",
+    "text": "Research Question\nDoes smoking causally affect a biomarker (e.g., CRP / blood pressure), after adjusting for confounders?"
+  },
+  {
+    "objectID": "lessons/11-causal-inference-nhanes.html#open-source-dataset",
+    "href": "lessons/11-causal-inference-nhanes.html#open-source-dataset",
+    "title": "Lesson 11: Causal Inference - Propensity Scores (NHANES)",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nNHANES (National Health and Nutrition Examination Survey).\n\nLink: https://www.cdc.gov/nchs/nhanes/\nSize: thousands per cycle; combine cycles.\nVariables: smoking status, demographics, BMI, biomarkers.\nNotes: survey weights; handle complex design for population inference."
+  },
+  {
+    "objectID": "lessons/11-causal-inference-nhanes.html#practical-exercise",
+    "href": "lessons/11-causal-inference-nhanes.html#practical-exercise",
+    "title": "Lesson 11: Causal Inference - Propensity Scores (NHANES)",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nPropensity score matching / IPW using logistic regression for the propensity model.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.neighbors import NearestNeighbors\nimport numpy as np\n\ndf = pd.read_csv(\"nhanes.csv\")  # columns: smoke (0/1), age, sex, bmi, sbp, ...\nconf = [\"age\", \"sex\", \"bmi\"]\nps_model = LogisticRegression().fit(df[conf], df[\"smoke\"])\ndf[\"ps\"] = ps_model.predict_proba(df[conf])[:, 1]\n# Nearest-neighbor matching on logit(ps)\nlogit = np.log(df[\"ps\"]/(1-df[\"ps\"]))\n# ... match treated to control\nprint(df.groupby(\"smoke\")[\"sbp\"].mean())\n\n\nSuggested AI prompts\n\n“What is a propensity score and what does it balance?”\n“How do I check covariate balance after matching?”\n“What assumptions (positivity, no unmeasured confounding) are required?”\n\n\n\nExtensions\n\nUse inverse probability weighting (IPW) and compare.\nEstimate the average treatment effect on the treated (ATT).\nAdd survey weights for population representativeness."
+  },
+  {
+    "objectID": "lessons/09-survival-cox.html",
+    "href": "lessons/09-survival-cox.html",
+    "title": "Lesson 9: Cancer Survival - Cox Proportional Hazards",
+    "section": "",
+    "text": "Survival analysis models time-to-event outcomes (death, relapse) while handling censoring (patients lost to follow-up). The Cox proportional hazards model is the standard, relating covariates to hazard without assuming a baseline distribution."
+  },
+  {
+    "objectID": "lessons/09-survival-cox.html#introduction-to-the-domain",
+    "href": "lessons/09-survival-cox.html#introduction-to-the-domain",
+    "title": "Lesson 9: Cancer Survival - Cox Proportional Hazards",
+    "section": "",
+    "text": "Survival analysis models time-to-event outcomes (death, relapse) while handling censoring (patients lost to follow-up). The Cox proportional hazards model is the standard, relating covariates to hazard without assuming a baseline distribution."
+  },
+  {
+    "objectID": "lessons/09-survival-cox.html#research-question",
+    "href": "lessons/09-survival-cox.html#research-question",
+    "title": "Lesson 9: Cancer Survival - Cox Proportional Hazards",
+    "section": "Research Question",
+    "text": "Research Question\nWhich factors affect survival time in cancer patients, and how do we handle censored observations?"
+  },
+  {
+    "objectID": "lessons/09-survival-cox.html#open-source-dataset",
+    "href": "lessons/09-survival-cox.html#open-source-dataset",
+    "title": "Lesson 9: Cancer Survival - Cox Proportional Hazards",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nMETABRIC (breast cancer) or SEER sample.\n\nLink: https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric\nSize: ~2,000 patients.\nOutcome: overall survival time + event indicator.\nPredictors: age, tumor size, grade, ER/PR/HER2 status, treatment.\nNotes: censoring ~40%; check proportional hazards assumption."
+  },
+  {
+    "objectID": "lessons/09-survival-cox.html#practical-exercise",
+    "href": "lessons/09-survival-cox.html#practical-exercise",
+    "title": "Lesson 9: Cancer Survival - Cox Proportional Hazards",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nCox PH (lifelines CoxPHFitter); evaluate with concordance index.\n\n\nStarter code\nimport pandas as pd\nfrom lifelines import CoxPHFitter\n\ndf = pd.read_csv(\"metabric.csv\")\ncols = [\"age_at_diagnosis\", \"tumor_size\", \"neoplasm_histologic_grade\",\n        \"overall_survival_months\", \"overall_survival\"]\ndf = df[cols].dropna()\ncph = CoxPHFitter()\ncph.fit(df, duration_col=\"overall_survival_months\", event_col=\"overall_survival\")\nprint(cph.summary)\nprint(\"C-index:\", cph.concordance_index_)\n\n\nSuggested AI prompts\n\n“What is censoring and why does standard regression fail?”\n“Explain the proportional hazards assumption and how to test it.”\n“How do I interpret a hazard ratio clinically?”\n\n\n\nExtensions\n\nPlot Kaplan-Meier curves by risk group.\nTry a random survival forest.\nCheck for time-varying effects."
+  },
+  {
+    "objectID": "lessons/07-genomics-clustering.html",
+    "href": "lessons/07-genomics-clustering.html",
+    "title": "Lesson 7: Genomics - PCA and Clustering",
+    "section": "",
+    "text": "Genomics produces thousands of features (genes) per sample. Unsupervised methods reduce dimensionality and reveal structure: cancer subtypes, cell types, population stratification. PCA and clustering are the workhorses."
+  },
+  {
+    "objectID": "lessons/07-genomics-clustering.html#introduction-to-the-domain",
+    "href": "lessons/07-genomics-clustering.html#introduction-to-the-domain",
+    "title": "Lesson 7: Genomics - PCA and Clustering",
+    "section": "",
+    "text": "Genomics produces thousands of features (genes) per sample. Unsupervised methods reduce dimensionality and reveal structure: cancer subtypes, cell types, population stratification. PCA and clustering are the workhorses."
+  },
+  {
+    "objectID": "lessons/07-genomics-clustering.html#research-question",
+    "href": "lessons/07-genomics-clustering.html#research-question",
+    "title": "Lesson 7: Genomics - PCA and Clustering",
+    "section": "Research Question",
+    "text": "Research Question\nCan gene-expression profiles separate cancer subtypes without labels, and do clusters align with known biology?"
+  },
+  {
+    "objectID": "lessons/07-genomics-clustering.html#open-source-dataset",
+    "href": "lessons/07-genomics-clustering.html#open-source-dataset",
+    "title": "Lesson 7: Genomics - PCA and Clustering",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nTCGA gene expression (via Kaggle or UCSC Xena).\n\nLink: https://www.kaggle.com/datasets/crawford/gene-expression (or https://xenabrowser.net/)\nSize: hundreds of samples, thousands of genes.\nOutcome: cancer type / subtype (for validation only).\nNotes: high-dimensional; standardize; consider variance filtering."
+  },
+  {
+    "objectID": "lessons/07-genomics-clustering.html#practical-exercise",
+    "href": "lessons/07-genomics-clustering.html#practical-exercise",
+    "title": "Lesson 7: Genomics - PCA and Clustering",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nPCA for dimensionality reduction + KMeans / hierarchical clustering; evaluate with silhouette and adjusted Rand index.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.decomposition import PCA\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.cluster import KMeans\nfrom sklearn.metrics import adjusted_rand_score\n\ndf = pd.read_csv(\"gene_expression.csv\")\nX = df.drop(columns=[\"label\"])\ny = df[\"label\"]\nXs = StandardScaler().fit_transform(X)\nZ = PCA(n_components=2).fit_transform(Xs)\nkm = KMeans(n_clusters=4, random_state=42, n_init=10).fit(Z)\nprint(\"ARI:\", adjusted_rand_score(y, km.labels_))\n\n\nSuggested AI prompts\n\n“Why standardize before PCA on gene expression?”\n“How many principal components should I keep, and how do I decide?”\n“When should I use hierarchical clustering instead of KMeans?”\n\n\n\nExtensions\n\nPlot PC1 vs PC2 colored by true label.\nTry UMAP and compare with PCA.\nFilter to top-variance genes and re-cluster."
+  },
+  {
+    "objectID": "lessons/05-mental-health-naive-bayes.html",
+    "href": "lessons/05-mental-health-naive-bayes.html",
+    "title": "Lesson 5: Mental Health Text - Naive Bayes and NLP",
+    "section": "",
+    "text": "Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification."
+  },
+  {
+    "objectID": "lessons/05-mental-health-naive-bayes.html#introduction-to-the-domain",
+    "href": "lessons/05-mental-health-naive-bayes.html#introduction-to-the-domain",
+    "title": "Lesson 5: Mental Health Text - Naive Bayes and NLP",
+    "section": "",
+    "text": "Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification."
+  },
+  {
+    "objectID": "lessons/05-mental-health-naive-bayes.html#research-question",
+    "href": "lessons/05-mental-health-naive-bayes.html#research-question",
+    "title": "Lesson 5: Mental Health Text - Naive Bayes and NLP",
+    "section": "Research Question",
+    "text": "Research Question\nCan short text posts be classified into mental-health categories, and how far does a simple Naive Bayes model go?"
+  },
+  {
+    "objectID": "lessons/05-mental-health-naive-bayes.html#open-source-dataset",
+    "href": "lessons/05-mental-health-naive-bayes.html#open-source-dataset",
+    "title": "Lesson 5: Mental Health Text - Naive Bayes and NLP",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nReddit Mental Health (or CLPsych shared tasks).\n\nLink: https://zenodo.org/records/3941387 (Reddit mental health dataset) or CLPsych datasets.\nSize: varies; tens of thousands of posts.\nOutcome: condition label (e.g., depression, anxiety, none).\nNotes: anonymized; handle with care; not for clinical use."
+  },
+  {
+    "objectID": "lessons/05-mental-health-naive-bayes.html#practical-exercise",
+    "href": "lessons/05-mental-health-naive-bayes.html#practical-exercise",
+    "title": "Lesson 5: Mental Health Text - Naive Bayes and NLP",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nMultinomial Naive Bayes with TF-IDF features (scikit-learn).\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.naive_bayes import MultinomialNB\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import classification_report\n\ndf = pd.read_csv(\"mental_health_posts.csv\")  # columns: text, label\nXtr, Xte, ytr, yte = train_test_split(df[\"text\"], df[\"label\"],\n                                       test_size=0.2, stratify=df[\"label\"], random_state=42)\npipe = Pipeline([(\"tfidf\", TfidfVectorizer(stop_words=\"english\", max_features=5000)),\n                 (\"nb\", MultinomialNB())])\npipe.fit(Xtr, ytr)\nprint(classification_report(yte, pipe.predict(Xte)))\n\n\nSuggested AI prompts\n\n“Why is Naive Bayes ‘naive’, and why does it still work for text?”\n“How do I inspect which words drive each class prediction?”\n“What are the ethical risks of classifying mental health from social media?”\n\n\n\nExtensions\n\nTry logistic regression with TF-IDF and compare.\nAdd bigrams and tune min_df.\nExamine errors: which posts are hardest?"
+  },
+  {
+    "objectID": "lessons/03-breast-cancer-svm.html",
+    "href": "lessons/03-breast-cancer-svm.html",
+    "title": "Lesson 3: Breast Cancer Classification - Support Vector Machines",
+    "section": "",
+    "text": "Breast cancer is among the most common cancers in women. Early detection via imaging and pathology dramatically improves outcomes. The Wisconsin Breast Cancer dataset contains features computed from digitized images of fine-needle aspirates, making it a clean testbed for classification algorithms."
+  },
+  {
+    "objectID": "lessons/03-breast-cancer-svm.html#introduction-to-the-domain",
+    "href": "lessons/03-breast-cancer-svm.html#introduction-to-the-domain",
+    "title": "Lesson 3: Breast Cancer Classification - Support Vector Machines",
+    "section": "",
+    "text": "Breast cancer is among the most common cancers in women. Early detection via imaging and pathology dramatically improves outcomes. The Wisconsin Breast Cancer dataset contains features computed from digitized images of fine-needle aspirates, making it a clean testbed for classification algorithms."
+  },
+  {
+    "objectID": "lessons/03-breast-cancer-svm.html#research-question",
+    "href": "lessons/03-breast-cancer-svm.html#research-question",
+    "title": "Lesson 3: Breast Cancer Classification - Support Vector Machines",
+    "section": "Research Question",
+    "text": "Research Question\nCan cell-nucleus measurements distinguish malignant from benign tumors, and how does an SVM compare to simpler models?"
+  },
+  {
+    "objectID": "lessons/03-breast-cancer-svm.html#open-source-dataset",
+    "href": "lessons/03-breast-cancer-svm.html#open-source-dataset",
+    "title": "Lesson 3: Breast Cancer Classification - Support Vector Machines",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nWisconsin Breast Cancer (Diagnostic) (UCI / scikit-learn built-in).\n\nLink: https://archive.ics.uci.edu/dataset/17/breast+cancer+wisconsin+diagnostic\nAlso: sklearn.datasets.load_breast_cancer().\nSize: 569 rows, 30 features.\nOutcome: diagnosis (M/B).\nNotes: features are means, standard errors, and “worst” values of 10 nucleus characteristics."
+  },
+  {
+    "objectID": "lessons/03-breast-cancer-svm.html#practical-exercise",
+    "href": "lessons/03-breast-cancer-svm.html#practical-exercise",
+    "title": "Lesson 3: Breast Cancer Classification - Support Vector Machines",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nSupport Vector Machine with RBF kernel, plus linear SVM and logistic regression for comparison; scaling is critical.\n\n\nStarter code\nfrom sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.svm import SVC\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import classification_report, roc_auc_score\n\ndata = load_breast_cancer()\nXtr, Xte, ytr, yte = train_test_split(data.data, data.target, test_size=0.25,\n                                       stratify=data.target, random_state=42)\npipe = Pipeline([(\"scaler\", StandardScaler()), (\"svm\", SVC(kernel=\"rbf\", probability=True))])\npipe.fit(Xtr, ytr)\nproba = pipe.predict_proba(Xte)[:, 1]\nprint(\"AUC:\", roc_auc_score(yte, proba))\nprint(classification_report(yte, pipe.predict(Xte)))\n\n\nSuggested AI prompts\n\n“Why must features be standardized before an SVM? What happens if I skip it?”\n“What do the support vectors represent intuitively?”\n“How do I tune C and gamma, and what does each control?”\n\n\n\nExtensions\n\nGrid-search C and gamma; plot the validation curve.\nCompare RBF vs. linear kernel; when is linear enough?\nInspect misclassified cases and their feature values."
+  },
+  {
+    "objectID": "lessons/01-cardiovascular-logistic.html",
+    "href": "lessons/01-cardiovascular-logistic.html",
+    "title": "Lesson 1: Cardiovascular Disease Risk - Logistic Regression",
+    "section": "",
+    "text": "Cardiovascular disease (CVD) is the leading cause of death worldwide. Risk factors such as age, blood pressure, cholesterol, smoking, and diabetes are well established, and clinicians routinely combine them into risk scores (e.g., the Framingham Risk Score). Machine learning can reproduce and extend these scores, but interpretability matters: a model that a physician cannot explain will not be adopted."
+  },
+  {
+    "objectID": "lessons/01-cardiovascular-logistic.html#introduction-to-the-domain",
+    "href": "lessons/01-cardiovascular-logistic.html#introduction-to-the-domain",
+    "title": "Lesson 1: Cardiovascular Disease Risk - Logistic Regression",
+    "section": "",
+    "text": "Cardiovascular disease (CVD) is the leading cause of death worldwide. Risk factors such as age, blood pressure, cholesterol, smoking, and diabetes are well established, and clinicians routinely combine them into risk scores (e.g., the Framingham Risk Score). Machine learning can reproduce and extend these scores, but interpretability matters: a model that a physician cannot explain will not be adopted."
+  },
+  {
+    "objectID": "lessons/01-cardiovascular-logistic.html#research-question",
+    "href": "lessons/01-cardiovascular-logistic.html#research-question",
+    "title": "Lesson 1: Cardiovascular Disease Risk - Logistic Regression",
+    "section": "Research Question",
+    "text": "Research Question\nCan routine clinical measurements predict a patient’s 10-year risk of coronary heart disease (CHD), and which factors dominate that risk?"
+  },
+  {
+    "objectID": "lessons/01-cardiovascular-logistic.html#open-source-dataset",
+    "href": "lessons/01-cardiovascular-logistic.html#open-source-dataset",
+    "title": "Lesson 1: Cardiovascular Disease Risk - Logistic Regression",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nFramingham Heart Study dataset (Kaggle mirror of the classic teaching dataset).\n\nLink: https://www.kaggle.com/datasets/aasheesh200/framingham-heart-study-dataset\nSize: ~4,240 rows, 15 columns.\nOutcome: TenYearCHD (binary).\nPredictors: age, sex, education, smoking status, cigs/day, BP meds, prevalent stroke, hypertension, diabetes, total cholesterol, BMI, heart rate, glucose.\nNotes: missing values (~6%); class imbalance (~15% positive). A good dataset for practicing imputation and threshold selection."
+  },
+  {
+    "objectID": "lessons/01-cardiovascular-logistic.html#practical-exercise",
+    "href": "lessons/01-cardiovascular-logistic.html#practical-exercise",
+    "title": "Lesson 1: Cardiovascular Disease Risk - Logistic Regression",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nLogistic regression (scikit-learn LogisticRegression, statsmodels Logit). Start simple, then add interactions.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import roc_auc_score, classification_report\nfrom sklearn.impute import SimpleImputer\n\ndf = pd.read_csv(\"framingham.csv\")\nX = df.drop(columns=[\"TenYearCHD\"])\ny = df[\"TenYearCHD\"]\nX = SimpleImputer(strategy=\"median\").fit_transform(X)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)\n\nmodel = LogisticRegression(max_iter=1000, class_weight=\"balanced\")\nmodel.fit(Xtr, ytr)\nproba = model.predict_proba(Xte)[:, 1]\nprint(\"AUC:\", roc_auc_score(yte, proba))\nprint(classification_report(yte, (proba &gt; 0.5).astype(int)))\n\n\nSuggested AI prompts\n\n“Explain the odds ratio for each coefficient in this logistic regression in plain clinical language.”\n“How should I choose a decision threshold when false negatives (missed CHD) are costlier than false positives?”\n“Compare class_weight=‘balanced’ vs. adjusting the threshold; which is more defensible clinically?”\n\n\n\nExtensions\n\nAdd an interaction term (age x smoking) and test significance.\nPlot a calibration curve; does the model over/under-predict?\nCompare with a random forest; where do they disagree?"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this course",
+    "section": "",
+    "text": "Students and early-career researchers in health, biology, and data science who want hands-on practice connecting clinical and public-health questions to statistical and machine-learning methods."
+  },
+  {
+    "objectID": "about.html#who-this-is-for",
+    "href": "about.html#who-this-is-for",
+    "title": "About this course",
+    "section": "",
+    "text": "Students and early-career researchers in health, biology, and data science who want hands-on practice connecting clinical and public-health questions to statistical and machine-learning methods."
+  },
+  {
+    "objectID": "about.html#what-you-will-learn",
+    "href": "about.html#what-you-will-learn",
+    "title": "About this course",
+    "section": "What you will learn",
+    "text": "What you will learn\n\nHow to frame a health research question in a way a model can answer.\nHow to find, inspect, and responsibly use open health datasets.\nHow to fit, evaluate, and interpret a range of models: regression, trees, boosting, SVMs, clustering, survival, time series, NLP, deep learning, and anomaly detection.\nHow to use AI assistants to explain code, suggest diagnostics, and explore alternatives — while keeping yourself in charge of the analysis."
+  },
+  {
+    "objectID": "about.html#how-the-lessons-are-structured",
+    "href": "about.html#how-the-lessons-are-structured",
+    "title": "About this course",
+    "section": "How the lessons are structured",
+    "text": "How the lessons are structured\nEach lesson has four parts:\n\nIntroduction to the Domain — background and why the problem matters.\nResearch Question — a precise, testable question.\nOpen-Source Dataset — a public data source with discussion and a link.\nPractical Exercise — the model/framework to explore, starter code, AI prompts, and extension ideas."
+  },
+  {
+    "objectID": "about.html#a-note-on-responsible-ml-in-health",
+    "href": "about.html#a-note-on-responsible-ml-in-health",
+    "title": "About this course",
+    "section": "A note on responsible ML in health",
+    "text": "A note on responsible ML in health\nThese exercises are educational. Health models can harm real people if misused. Always:\n\nValidate on held-out and, ideally, external data.\nExamine performance across subgroups (fairness).\nInvolve clinicians and domain experts.\nNever deploy a model for patient care without proper regulatory and ethical review."
+  },
+  {
+    "objectID": "about.html#author",
+    "href": "about.html#author",
+    "title": "About this course",
+    "section": "Author",
+    "text": "Author\nJames Pleuss — West Point."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "",
+    "text": "This site hosts a self-paced series of 15 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise.\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas."
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "",
+    "text": "This site hosts a self-paced series of 15 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise.\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas."
+  },
+  {
+    "objectID": "index.html#how-to-use-this-course",
+    "href": "index.html#how-to-use-this-course",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "How to use this course",
+    "text": "How to use this course\n\nWork the lessons in order the first time through; later you can jump to a domain or model of interest.\nEach exercise is designed to be completed in a Jupyter notebook or RStudio session; starter code is provided.\nUse the suggested AI prompts to have a language model explain, debug, or extend your analysis — treat the AI as a tutor, not an oracle.\nDatasets are linked, not vendored: download them yourself so you control versioning."
+  },
+  {
+    "objectID": "index.html#lessons",
+    "href": "index.html#lessons",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "Lessons",
+    "text": "Lessons\n\n\n\n#\nHealth Domain\nModel / Framework\n\n\n\n\n1\nCardiovascular disease risk\nLogistic Regression\n\n\n2\nDiabetes prediction\nRandom Forest\n\n\n3\nBreast cancer classification\nSupport Vector Machines\n\n\n4\nHospital readmission\nGradient Boosting (XGBoost)\n\n\n5\nMental health (text)\nNaive Bayes / NLP\n\n\n6\nCOVID-19\nTime-Series Forecasting\n\n\n7\nGenomics\nPCA & Clustering\n\n\n8\nMedical imaging\nConvolutional Neural Networks\n\n\n9\nCancer survival\nCox Proportional Hazards\n\n\n10\nDrug discovery\nRandom Forest on Molecules\n\n\n11\nCausal inference (NHANES)\nPropensity Scores\n\n\n12\nHealthcare costs\nGeneralized Linear Models\n\n\n13\nObesity\nOrdinal / Multinomial Regression\n\n\n14\nClinical notes (EHR)\nTransformers / BERT\n\n\n15\nAnomaly detection\nIsolation Forest"
+  },
+  {
+    "objectID": "index.html#prerequisites",
+    "href": "index.html#prerequisites",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "Prerequisites",
+    "text": "Prerequisites\n\nBasic Python (pandas, numpy, scikit-learn) or R.\nA GitHub account if you want to fork and track your own progress.\nCuriosity about health data and responsible ML."
+  },
+  {
+    "objectID": "index.html#responsible-use",
+    "href": "index.html#responsible-use",
+    "title": "Health Domains & Machine Learning: A Skill-Building Course",
+    "section": "Responsible use",
+    "text": "Responsible use\nHealth data carries real-world consequences. Models built in these exercises are educational and must not be used for clinical decision-making. Always validate on independent data, examine fairness across subgroups, and involve domain experts."
+  },
+  {
+    "objectID": "lessons/02-diabetes-random-forest.html",
+    "href": "lessons/02-diabetes-random-forest.html",
+    "title": "Lesson 2: Diabetes Prediction - Random Forest",
+    "section": "",
+    "text": "Type 2 diabetes is a chronic metabolic disease whose incidence is rising globally. Early identification of at-risk individuals enables lifestyle intervention. The classic Pima Indians Diabetes dataset is small but ideal for learning tree-based methods and feature importance."
+  },
+  {
+    "objectID": "lessons/02-diabetes-random-forest.html#introduction-to-the-domain",
+    "href": "lessons/02-diabetes-random-forest.html#introduction-to-the-domain",
+    "title": "Lesson 2: Diabetes Prediction - Random Forest",
+    "section": "",
+    "text": "Type 2 diabetes is a chronic metabolic disease whose incidence is rising globally. Early identification of at-risk individuals enables lifestyle intervention. The classic Pima Indians Diabetes dataset is small but ideal for learning tree-based methods and feature importance."
+  },
+  {
+    "objectID": "lessons/02-diabetes-random-forest.html#research-question",
+    "href": "lessons/02-diabetes-random-forest.html#research-question",
+    "title": "Lesson 2: Diabetes Prediction - Random Forest",
+    "section": "Research Question",
+    "text": "Research Question\nWhich clinical measurements best predict diabetes onset, and can a random forest outperform a single decision tree while remaining interpretable?"
+  },
+  {
+    "objectID": "lessons/02-diabetes-random-forest.html#open-source-dataset",
+    "href": "lessons/02-diabetes-random-forest.html#open-source-dataset",
+    "title": "Lesson 2: Diabetes Prediction - Random Forest",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nPima Indians Diabetes Database (UCI / Kaggle).\n\nLink: https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database\nSize: 768 rows, 8 features + outcome.\nFeatures: pregnancies, glucose, blood pressure, skin thickness, insulin, BMI, diabetes pedigree function, age.\nOutcome: Outcome (0/1).\nNotes: zeros encode missing values in several columns; handle before modeling."
+  },
+  {
+    "objectID": "lessons/02-diabetes-random-forest.html#practical-exercise",
+    "href": "lessons/02-diabetes-random-forest.html#practical-exercise",
+    "title": "Lesson 2: Diabetes Prediction - Random Forest",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nRandom Forest classifier (scikit-learn RandomForestClassifier), plus a single decision tree for comparison and SHAP for interpretation.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.tree import DecisionTreeClassifier\nfrom sklearn.model_selection import cross_val_score\nfrom sklearn.impute import SimpleImputer\n\ndf = pd.read_csv(\"diabetes.csv\")\ncols = [\"Glucose\", \"BloodPressure\", \"SkinThickness\", \"Insulin\", \"BMI\"]\ndf[cols] = df[cols].replace(0, pd.NA)\nX = df.drop(columns=[\"Outcome\"]); y = df[\"Outcome\"]\nX = SimpleImputer(strategy=\"median\").fit_transform(X)\n\nrf = RandomForestClassifier(n_estimators=300, random_state=42)\ndt = DecisionTreeClassifier(max_depth=4, random_state=42)\nprint(\"RF CV AUC:\", cross_val_score(rf, X, y, cv=5, scoring=\"roc_auc\").mean())\nprint(\"DT CV AUC:\", cross_val_score(dt, X, y, cv=5, scoring=\"roc_auc\").mean())\n\n\nSuggested AI prompts\n\n“Explain the difference between Gini importance and permutation importance; which should I trust here?”\n“How do I read a SHAP summary plot for this random forest?”\n“Why might glucose dominate, and what does that imply for screening?”\n\n\n\nExtensions\n\nTune max_depth and min_samples_leaf with a grid search.\nAdd SHAP values and check for interactions (glucose x BMI).\nTry class balancing and report sensitivity at 90% specificity."
+  },
+  {
+    "objectID": "lessons/04-readmission-xgboost.html",
+    "href": "lessons/04-readmission-xgboost.html",
+    "title": "Lesson 4: Hospital Readmission - Gradient Boosting (XGBoost)",
+    "section": "",
+    "text": "Unplanned hospital readmissions are costly and often preventable. Predicting which patients will return within 30 days lets hospitals target discharge planning and follow-up. The data is messy: mixed types, missingness, and rare outcomes."
+  },
+  {
+    "objectID": "lessons/04-readmission-xgboost.html#introduction-to-the-domain",
+    "href": "lessons/04-readmission-xgboost.html#introduction-to-the-domain",
+    "title": "Lesson 4: Hospital Readmission - Gradient Boosting (XGBoost)",
+    "section": "",
+    "text": "Unplanned hospital readmissions are costly and often preventable. Predicting which patients will return within 30 days lets hospitals target discharge planning and follow-up. The data is messy: mixed types, missingness, and rare outcomes."
+  },
+  {
+    "objectID": "lessons/04-readmission-xgboost.html#research-question",
+    "href": "lessons/04-readmission-xgboost.html#research-question",
+    "title": "Lesson 4: Hospital Readmission - Gradient Boosting (XGBoost)",
+    "section": "Research Question",
+    "text": "Research Question\nCan we predict 30-day readmission from administrative and clinical data, and does gradient boosting beat logistic regression?"
+  },
+  {
+    "objectID": "lessons/04-readmission-xgboost.html#open-source-dataset",
+    "href": "lessons/04-readmission-xgboost.html#open-source-dataset",
+    "title": "Lesson 4: Hospital Readmission - Gradient Boosting (XGBoost)",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nDiabetes 130-US Hospitals (1999-2008) (UCI).\n\nLink: https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008\nSize: ~100k encounters.\nOutcome: readmitted (&lt;30 days vs. not).\nPredictors: demographics, diagnoses (ICD-9), medications, lab results, length of stay.\nNotes: de-identified; multi-level (patient/encounter)."
+  },
+  {
+    "objectID": "lessons/04-readmission-xgboost.html#practical-exercise",
+    "href": "lessons/04-readmission-xgboost.html#practical-exercise",
+    "title": "Lesson 4: Hospital Readmission - Gradient Boosting (XGBoost)",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nXGBoost (xgboost.XGBClassifier) with careful handling of categoricals and imbalance.\n\n\nStarter code\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import OrdinalEncoder\nfrom xgboost import XGBClassifier\nfrom sklearn.metrics import roc_auc_score\n\ndf = pd.read_csv(\"diabetic_data.csv\")\ny = (df[\"readmitted\"] == \"&lt;30\").astype(int)\nX = df.drop(columns=[\"readmitted\", \"encounter_id\", \"patient_nbr\"])\ncat = X.select_dtypes(include=\"object\").columns\nX[cat] = OrdinalEncoder(handle_unknown=\"use_encoded_value\", unknown_value=-1).fit_transform(X[cat])\nX = X.fillna(-1)\nXtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)\n\nmodel = XGBClassifier(n_estimators=400, max_depth=5, learning_rate=0.05,\n                      scale_pos_weight=(ytr==0).sum()/(ytr==1).sum(), eval_metric=\"auc\")\nmodel.fit(Xtr, ytr)\nprint(\"AUC:\", roc_auc_score(yte, model.predict_proba(Xte)[:, 1]))\n\n\nSuggested AI prompts\n\n“How do I handle high-cardinality diagnosis codes in XGBoost?”\n“Explain scale_pos_weight vs. threshold tuning for imbalanced readmission.”\n“What leakage risks exist in hospital readmission data?”\n\n\n\nExtensions\n\nAdd SHAP and identify top drivers of readmission.\nGroup K-fold by patient to avoid leakage.\nCompare with a simple logistic regression baseline."
+  },
+  {
+    "objectID": "lessons/06-covid-timeseries.html",
+    "href": "lessons/06-covid-timeseries.html",
+    "title": "Lesson 6: COVID-19 - Time-Series Forecasting",
+    "section": "",
+    "text": "Pandemics unfold over time, and forecasting cases, hospitalizations, and deaths informs policy. Time-series methods capture trend, seasonality, and shocks, but COVID-19 broke many assumptions (structural breaks, reporting delays)."
+  },
+  {
+    "objectID": "lessons/06-covid-timeseries.html#introduction-to-the-domain",
+    "href": "lessons/06-covid-timeseries.html#introduction-to-the-domain",
+    "title": "Lesson 6: COVID-19 - Time-Series Forecasting",
+    "section": "",
+    "text": "Pandemics unfold over time, and forecasting cases, hospitalizations, and deaths informs policy. Time-series methods capture trend, seasonality, and shocks, but COVID-19 broke many assumptions (structural breaks, reporting delays)."
+  },
+  {
+    "objectID": "lessons/06-covid-timeseries.html#research-question",
+    "href": "lessons/06-covid-timeseries.html#research-question",
+    "title": "Lesson 6: COVID-19 - Time-Series Forecasting",
+    "section": "Research Question",
+    "text": "Research Question\nCan we forecast COVID-19 cases for a region, and how do classical (ARIMA) and modern (Prophet) methods compare?"
+  },
+  {
+    "objectID": "lessons/06-covid-timeseries.html#open-source-dataset",
+    "href": "lessons/06-covid-timeseries.html#open-source-dataset",
+    "title": "Lesson 6: COVID-19 - Time-Series Forecasting",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nOur World in Data COVID-19 dataset.\n\nLink: https://github.com/owid/covid-19-data\nDaily CSV: https://covid.ourworldindata.org/data/owid-covid-data.csv\nSize: country-day rows since 2020.\nVariables: new cases, deaths, tests, vaccinations, hospitalizations.\nNotes: reporting delays and definition changes; smooth/aggregate."
+  },
+  {
+    "objectID": "lessons/06-covid-timeseries.html#practical-exercise",
+    "href": "lessons/06-covid-timeseries.html#practical-exercise",
+    "title": "Lesson 6: COVID-19 - Time-Series Forecasting",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nARIMA (statsmodels) and Prophet; also try simple baselines.\n\n\nStarter code\nimport pandas as pd\nfrom statsmodels.tsa.arima.model import ARIMA\n\ndf = pd.read_csv(\"owid-covid-data.csv\")\nsub = df[df[\"location\"] == \"United States\"][[\"date\", \"new_cases_smoothed\"]].dropna()\nsub[\"date\"] = pd.to_datetime(sub[\"date\"])\nsub = sub.set_index(\"date\").asfreq(\"D\")\ny = sub[\"new_cases_smoothed\"]\ntrain, test = y.iloc[:-30], y.iloc[-30:]\nmodel = ARIMA(train, order=(2, 1, 2)).fit()\nfc = model.forecast(steps=30)\nprint(fc.head())\n\n\nSuggested AI prompts\n\n“How do I choose ARIMA (p,d,q) orders? Explain ACF/PACF.”\n“What is Prophet’s changepoint prior scale and how does it affect forecasts?”\n“Why might a naive baseline beat a complex model during a pandemic?”\n\n\n\nExtensions\n\nAdd Prophet with holidays and compare MAPE.\nForecast hospitalizations instead of cases.\nCompute prediction intervals and check coverage."
+  },
+  {
+    "objectID": "lessons/08-medical-imaging-cnn.html",
+    "href": "lessons/08-medical-imaging-cnn.html",
+    "title": "Lesson 8: Medical Imaging - Convolutional Neural Networks",
+    "section": "",
+    "text": "Medical imaging (X-rays, CT, MRI) is a leading application of deep learning. CNNs can detect pneumonia, fractures, and tumors, but require large datasets, careful validation, and attention to bias and shortcut learning."
+  },
+  {
+    "objectID": "lessons/08-medical-imaging-cnn.html#introduction-to-the-domain",
+    "href": "lessons/08-medical-imaging-cnn.html#introduction-to-the-domain",
+    "title": "Lesson 8: Medical Imaging - Convolutional Neural Networks",
+    "section": "",
+    "text": "Medical imaging (X-rays, CT, MRI) is a leading application of deep learning. CNNs can detect pneumonia, fractures, and tumors, but require large datasets, careful validation, and attention to bias and shortcut learning."
+  },
+  {
+    "objectID": "lessons/08-medical-imaging-cnn.html#research-question",
+    "href": "lessons/08-medical-imaging-cnn.html#research-question",
+    "title": "Lesson 8: Medical Imaging - Convolutional Neural Networks",
+    "section": "Research Question",
+    "text": "Research Question\nCan a CNN classify chest X-rays as normal vs. pneumonia, and what are the pitfalls?"
+  },
+  {
+    "objectID": "lessons/08-medical-imaging-cnn.html#open-source-dataset",
+    "href": "lessons/08-medical-imaging-cnn.html#open-source-dataset",
+    "title": "Lesson 8: Medical Imaging - Convolutional Neural Networks",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nNIH ChestX-ray14 / Kaggle Chest X-Ray Images (Pneumonia).\n\nLink: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia\nSize: ~5,800 images.\nOutcome: NORMAL / PNEUMONIA.\nNotes: class imbalance; potential site/label bias; use patient-level splits."
+  },
+  {
+    "objectID": "lessons/08-medical-imaging-cnn.html#practical-exercise",
+    "href": "lessons/08-medical-imaging-cnn.html#practical-exercise",
+    "title": "Lesson 8: Medical Imaging - Convolutional Neural Networks",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nTransfer learning with a pretrained ResNet (torchvision), fine-tuned on chest X-rays.\n\n\nStarter code\nimport torch\nfrom torchvision import models, transforms\nfrom torchvision.datasets import ImageFolder\nfrom torch.utils.data import DataLoader\n\ntfm = transforms.Compose([transforms.Resize((224, 224)),\n                          transforms.ToTensor(),\n                          transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])\ntrain = ImageFolder(\"chest_xray/train\", transform=tfm)\nloader = DataLoader(train, batch_size=32, shuffle=True)\nmodel = models.resnet18(weights=\"IMAGENET1K_V1\")\nmodel.fc = torch.nn.Linear(model.fc.in_features, 2)\nprint(\"ready\")\n\n\nSuggested AI prompts\n\n“Explain transfer learning: why start from ImageNet for medical images?”\n“How do I avoid data leakage from patient-level duplicates?”\n“What is ‘shortcut learning’ in medical imaging and how do I detect it?”\n\n\n\nExtensions\n\nAdd Grad-CAM to visualize attention.\nEvaluate by subgroup (age, sex) if available.\nCompare with a simple baseline (image mean intensity)."
+  },
+  {
+    "objectID": "lessons/10-drug-discovery-rf.html",
+    "href": "lessons/10-drug-discovery-rf.html",
+    "title": "Lesson 10: Drug Discovery - Random Forest on Molecules",
+    "section": "",
+    "text": "Drug discovery screens thousands of compounds for activity. Molecular descriptors (physicochemical properties) can predict toxicity or activity, accelerating prioritization. Tree-based models handle mixed, high-dimensional descriptors well."
+  },
+  {
+    "objectID": "lessons/10-drug-discovery-rf.html#introduction-to-the-domain",
+    "href": "lessons/10-drug-discovery-rf.html#introduction-to-the-domain",
+    "title": "Lesson 10: Drug Discovery - Random Forest on Molecules",
+    "section": "",
+    "text": "Drug discovery screens thousands of compounds for activity. Molecular descriptors (physicochemical properties) can predict toxicity or activity, accelerating prioritization. Tree-based models handle mixed, high-dimensional descriptors well."
+  },
+  {
+    "objectID": "lessons/10-drug-discovery-rf.html#research-question",
+    "href": "lessons/10-drug-discovery-rf.html#research-question",
+    "title": "Lesson 10: Drug Discovery - Random Forest on Molecules",
+    "section": "Research Question",
+    "text": "Research Question\nCan molecular descriptors predict compound toxicity (Tox21), and which properties matter most?"
+  },
+  {
+    "objectID": "lessons/10-drug-discovery-rf.html#open-source-dataset",
+    "href": "lessons/10-drug-discovery-rf.html#open-source-dataset",
+    "title": "Lesson 10: Drug Discovery - Random Forest on Molecules",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nTox21 / MoleculeNet.\n\nLink: https://moleculenet.org/datasets-1 (Tox21)\nAlso: https://github.com/deepchem/deepchem\nSize: ~8k compounds, 12 toxicity endpoints.\nOutcome: binary toxicity per endpoint.\nNotes: SMILES strings; need featurization (RDKit)."
+  },
+  {
+    "objectID": "lessons/10-drug-discovery-rf.html#practical-exercise",
+    "href": "lessons/10-drug-discovery-rf.html#practical-exercise",
+    "title": "Lesson 10: Drug Discovery - Random Forest on Molecules",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nRandom Forest on RDKit descriptors (or Morgan fingerprints).\n\n\nStarter code\nimport pandas as pd\nfrom rdkit import Chem\nfrom rdkit.Chem import Descriptors\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_val_score\n\ndf = pd.read_csv(\"tox21.csv\")\ndef feats(smi):\n    m = Chem.MolFromSmiles(smi)\n    return [Descriptors.MolWt(m), Descriptors.MolLogP(m), Descriptors.TPSA(m)]\nX = df[\"smiles\"].apply(feats).tolist()\ny = df[\"NR-AR\"]\nrf = RandomForestClassifier(n_estimators=300, random_state=42)\nprint(\"CV AUC:\", cross_val_score(rf, X, y, cv=5, scoring=\"roc_auc\").mean())\n\n\nSuggested AI prompts\n\n“What are Morgan fingerprints vs. physicochemical descriptors?”\n“How do I avoid data leakage across similar molecules (scaffold split)?”\n“Why is AUC-PR more informative than AUC-ROC for rare toxicity?”\n\n\n\nExtensions\n\nUse scaffold splitting for honest evaluation.\nTry gradient boosting and compare.\nVisualize important descriptors."
+  },
+  {
+    "objectID": "lessons/12-healthcare-costs-glm.html",
+    "href": "lessons/12-healthcare-costs-glm.html",
+    "title": "Lesson 12: Healthcare Costs - Generalized Linear Models",
+    "section": "",
+    "text": "Healthcare spending is right-skewed and heteroscedastic: a few patients dominate costs. Generalized linear models (GLMs) with appropriate families (Gamma, Tweedie) and link functions model such outcomes better than ordinary least squares."
+  },
+  {
+    "objectID": "lessons/12-healthcare-costs-glm.html#introduction-to-the-domain",
+    "href": "lessons/12-healthcare-costs-glm.html#introduction-to-the-domain",
+    "title": "Lesson 12: Healthcare Costs - Generalized Linear Models",
+    "section": "",
+    "text": "Healthcare spending is right-skewed and heteroscedastic: a few patients dominate costs. Generalized linear models (GLMs) with appropriate families (Gamma, Tweedie) and link functions model such outcomes better than ordinary least squares."
+  },
+  {
+    "objectID": "lessons/12-healthcare-costs-glm.html#research-question",
+    "href": "lessons/12-healthcare-costs-glm.html#research-question",
+    "title": "Lesson 12: Healthcare Costs - Generalized Linear Models",
+    "section": "Research Question",
+    "text": "Research Question\nWhat drives individual medical charges, and which GLM family fits cost data best?"
+  },
+  {
+    "objectID": "lessons/12-healthcare-costs-glm.html#open-source-dataset",
+    "href": "lessons/12-healthcare-costs-glm.html#open-source-dataset",
+    "title": "Lesson 12: Healthcare Costs - Generalized Linear Models",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nMedical Cost Personal dataset.\n\nLink: https://www.kaggle.com/datasets/mirichoi0218/insurance\nSize: 1,338 rows.\nOutcome: charges.\nPredictors: age, sex, BMI, children, smoker, region.\nNotes: strong smoker effect; right skew."
+  },
+  {
+    "objectID": "lessons/12-healthcare-costs-glm.html#practical-exercise",
+    "href": "lessons/12-healthcare-costs-glm.html#practical-exercise",
+    "title": "Lesson 12: Healthcare Costs - Generalized Linear Models",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nGLM with Gamma family and log link (statsmodels), plus OLS and Tweedie for comparison.\n\n\nStarter code\nimport pandas as pd\nimport statsmodels.api as sm\nimport statsmodels.formula.api as smf\n\ndf = pd.read_csv(\"insurance.csv\")\ndf = pd.get_dummies(df, columns=[\"sex\", \"smoker\", \"region\"], drop_first=True)\nX = sm.add_constant(df.drop(columns=[\"charges\"]))\ny = df[\"charges\"]\nglm = sm.GLM(y, X, family=sm.families.Gamma(link=sm.families.links.Log())).fit()\nprint(glm.summary())\nprint(\"AIC:\", glm.aic)\n\n\nSuggested AI prompts\n\n“Why is OLS inappropriate for cost data? Explain skewness and heteroscedasticity.”\n“What does the Gamma family assume, and when is Tweedie better?”\n“How do I interpret coefficients with a log link (multiplicative effects)?”\n\n\n\nExtensions\n\nCompare AIC across families.\nAdd an interaction (smoker x BMI).\nPredict and plot residuals vs. fitted."
+  },
+  {
+    "objectID": "lessons/14-ehr-nlp-transformers.html",
+    "href": "lessons/14-ehr-nlp-transformers.html",
+    "title": "Lesson 14: Clinical Notes (EHR) - Transformers / BERT",
+    "section": "",
+    "text": "Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter."
+  },
+  {
+    "objectID": "lessons/14-ehr-nlp-transformers.html#introduction-to-the-domain",
+    "href": "lessons/14-ehr-nlp-transformers.html#introduction-to-the-domain",
+    "title": "Lesson 14: Clinical Notes (EHR) - Transformers / BERT",
+    "section": "",
+    "text": "Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter."
+  },
+  {
+    "objectID": "lessons/14-ehr-nlp-transformers.html#research-question",
+    "href": "lessons/14-ehr-nlp-transformers.html#research-question",
+    "title": "Lesson 14: Clinical Notes (EHR) - Transformers / BERT",
+    "section": "Research Question",
+    "text": "Research Question\nCan a transformer model classify or extract information from clinical notes, and what are the privacy implications?"
+  },
+  {
+    "objectID": "lessons/14-ehr-nlp-transformers.html#open-source-dataset",
+    "href": "lessons/14-ehr-nlp-transformers.html#open-source-dataset",
+    "title": "Lesson 14: Clinical Notes (EHR) - Transformers / BERT",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nMIMIC-III / MIMIC-IV (requires credentialed access) or i2b2 challenges.\n\nLink: https://physionet.org/content/mimiciii/1.4/ (credentialed)\nAlternative (open): https://huggingface.co/datasets (search clinical notes)\nSize: large.\nOutcome: ICD codes, mortality, phenotypes.\nNotes: de-identified but re-identification risk; data use agreements."
+  },
+  {
+    "objectID": "lessons/14-ehr-nlp-transformers.html#practical-exercise",
+    "href": "lessons/14-ehr-nlp-transformers.html#practical-exercise",
+    "title": "Lesson 14: Clinical Notes (EHR) - Transformers / BERT",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nFine-tune a pretrained clinical BERT (e.g., emilyalsentzer/Bio_ClinicalBERT) with Hugging Face Transformers.\n\n\nStarter code\nfrom transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments\nfrom datasets import load_dataset\n\nmodel_name = \"emilyalsentzer/Bio_ClinicalBERT\"\ntok = AutoTokenizer.from_pretrained(model_name)\nmodel = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2)\nprint(\"loaded\", model_name)\n# ds = load_dataset(\"your_clinical_dataset\")\n# tokenize, train with Trainer(...)\n\n\nSuggested AI prompts\n\n“Why use a clinical BERT instead of general BERT?”\n“How do I handle long clinical notes (token limits)?”\n“What are the privacy risks of fine-tuning on clinical text?”\n\n\n\nExtensions\n\nTry zero-shot classification with a general LLM.\nCompare with TF-IDF + logistic regression baseline.\nEvaluate calibration and subgroup fairness."
+  }
+]

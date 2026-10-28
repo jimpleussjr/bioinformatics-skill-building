@@ -1,2 +1,6 @@
 _site/
 .quarto/
+.github/
+
+/.quarto/
+**/*.quarto_ipynb
