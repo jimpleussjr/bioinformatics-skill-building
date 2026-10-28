@@ -226,12 +226,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a></li>
+  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a>
+  <ul class="collapse">
+  <li><a href="#research-background" id="toc-research-background" class="nav-link" data-scroll-target="#research-background">Research background</a></li>
+  </ul></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
   <li><a href="#open-source-dataset" id="toc-open-source-dataset" class="nav-link" data-scroll-target="#open-source-dataset">Open-Source Dataset</a></li>
   <li><a href="#practical-exercise" id="toc-practical-exercise" class="nav-link" data-scroll-target="#practical-exercise">Practical Exercise</a>
   <ul class="collapse">
   <li><a href="#model-to-explore" id="toc-model-to-explore" class="nav-link" data-scroll-target="#model-to-explore">Model to explore</a></li>
+  <li><a href="#ai-prompts-to-learn-this-model" id="toc-ai-prompts-to-learn-this-model" class="nav-link" data-scroll-target="#ai-prompts-to-learn-this-model">AI prompts to learn this model</a></li>
   <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   <li><a href="#lines-to-wrestle-with-think" id="toc-lines-to-wrestle-with-think" class="nav-link" data-scroll-target="#lines-to-wrestle-with-think">Lines to wrestle with (THINK)</a></li>
   <li><a href="#suggested-ai-prompts" id="toc-suggested-ai-prompts" class="nav-link" data-scroll-target="#suggested-ai-prompts">Suggested AI prompts</a></li>
@@ -266,6 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction-to-the-domain" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-the-domain">Introduction to the Domain</h2>
 <p>Birth weight is a key indicator of newborn health; low birth weight is linked to infant mortality and developmental problems. Maternal factors (age, weight, smoking, hypertension, etc.) are associated with birth weight. Linear regression gives an interpretable baseline: each coefficient estimates the change in expected birth weight per unit change in a predictor.</p>
+<section id="research-background" class="level3">
+<h3 class="anchored" data-anchor-id="research-background">Research background</h3>
+<p>Predicting birth weight from maternal characteristics is a classic problem in perinatal epidemiology. Kramer (1987) synthesized decades of work showing that maternal nutrition, smoking, and hypertension are among the strongest determinants of low birth weight. Wilcox (2001) reminds us that birth weight is a proxy, not a cause—models should be interpreted carefully and not over-interpreted as causal. For an accessible overview, see Wilcox, <em>On the importance—and the unimportance—of birthweight</em>, International Journal of Epidemiology (2001).</p>
+<p><strong>Citations:</strong> - Kramer MS. Determinants of low birth weight: methodological assessment and meta-analysis. <em>Bulletin of the World Health Organization</em> (1987). - Wilcox AJ. On the importance—and the unimportance—of birthweight. <em>International Journal of Epidemiology</em> (2001).</p>
+</section>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
@@ -287,6 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-to-explore" class="level3">
 <h3 class="anchored" data-anchor-id="model-to-explore">Model to explore</h3>
 <p>Simple and multiple linear regression (statsmodels <code>OLS</code> / scikit-learn <code>LinearRegression</code>). Focus on interpretation, not just prediction.</p>
+</section>
+<section id="ai-prompts-to-learn-this-model" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prompts-to-learn-this-model">AI prompts to learn this model</h3>
+<ul>
+<li>“Explain simple linear regression to an undergraduate: what is it minimizing, and what does the slope mean?”</li>
+<li>“What are the four assumptions of OLS, and how do I check each one with plots?”</li>
+</ul>
 </section>
 <section id="starter-code" class="level3">
 <h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
@@ -330,7 +346,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Produce and submit:</p>
 <ol type="1">
 <li><strong>A table of coefficients</strong> with 95% confidence intervals and p-values (from <code>model.summary()</code> or <code>model.conf_int()</code>).</li>
 <li><strong>A residual plot</strong> (residuals vs.&nbsp;fitted) and a Q-Q plot of residuals.</li>
@@ -808,72 +823,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Birth weight is a key indicator of newborn health; low birth weight is linked to infant mortality and developmental problems. Maternal factors (age, weight, smoking, hypertension, etc.) are associated with birth weight. Linear regression gives an interpretable baseline: each coefficient estimates the change in expected birth weight per unit change in a predictor.</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research background</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Which maternal factors predict infant birth weight, and how do we interpret the coefficients and model fit?</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Predicting birth weight from maternal characteristics is a classic problem in perinatal epidemiology. Kramer (1987) synthesized decades of work showing that maternal nutrition, smoking, and hypertension are among the strongest determinants of low birth weight. Wilcox (2001) reminds us that birth weight is a proxy, not a cause—models should be interpreted carefully and not over-interpreted as causal. For an accessible overview, see Wilcox, *On the importance—and the unimportance—of birthweight*, International Journal of Epidemiology (2001).</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>**Low Birth Weight (birthwt) dataset** (MASS / Kaggle).</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Citations:**</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kramer MS. Determinants of low birth weight: methodological assessment and meta-analysis. *Bulletin of the World Health Organization* (1987).</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Wilcox AJ. On the importance—and the unimportance—of birthweight. *International Journal of Epidemiology* (2001).</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://www.kaggle.com/datasets/abhishek14398/low-birth-weight (or <span class="in">`MASS::birthwt`</span> in R)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: ~189 rows.</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: <span class="in">`bwt`</span> (birth weight in grams).</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: mother's age, weight, race, smoking, hypertension, uterine irritability, physician visits, etc.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: small sample; check for outliers and skew.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Which maternal factors predict infant birth weight, and how do we interpret the coefficients and model fit?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Low Birth Weight (birthwt) dataset** (MASS / Kaggle).</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Simple and multiple linear regression (statsmodels <span class="in">`OLS`</span> / scikit-learn <span class="in">`LinearRegression`</span>). Focus on interpretation, not just prediction.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://www.kaggle.com/datasets/abhishek14398/low-birth-weight (or <span class="in">`MASS::birthwt`</span> in R)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: ~189 rows.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: <span class="in">`bwt`</span> (birth weight in grams).</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: mother's age, weight, race, smoking, hypertension, uterine irritability, physician visits, etc.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: small sample; check for outliers and skew.</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"birthwt.csv"</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why drop only the outcome (and ID columns) and not other columns?</span></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"bwt"</span>, <span class="st">"id"</span>])</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"bwt"</span>]</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why add a constant? What happens if you forget it?</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why use statsmodels OLS here instead of sklearn LinearRegression?</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(  <span class="co"># THINK: what assumptions does OLS require?y, X).fit()</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.summary())</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>```</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="co">### Lines to wrestle with (THINK)</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>Simple and multiple linear regression (statsmodels <span class="in">`OLS`</span> / scikit-learn <span class="in">`LinearRegression`</span>). Focus on interpretation, not just prediction.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI prompts to learn this model</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain simple linear regression to an undergraduate: what is it minimizing, and what does the slope mean?"</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What are the four assumptions of OLS, and how do I check each one with plots?"</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
 <span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `X <span class="op">=</span> df.drop(...)` — which columns are legitimate predictors vs. leakage<span class="op">/</span>ID?</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `sm.add_constant(X)` — what <span class="kw">is</span> the intercept doing, <span class="kw">and</span> how does its meaning change <span class="cf">with</span> standardization?</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `sm.OLS(  <span class="co"># THINK: what assumptions does OLS require?y, X)` — OLS assumes linearity, independence, homoscedasticity, normality of residuals. Which of these can you check from `model.summary()`?</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co">### Suggested AI prompts</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"Explain the coefficient for `smoke` in plain language, including units."</span></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"What does R-squared vs. adjusted R-squared tell me here?"</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"Which OLS assumptions are most likely violated in this data, and how would I check?"</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="co">### Extensions</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Standardize predictors <span class="kw">and</span> re<span class="op">-</span>fit<span class="op">;</span> how do coefficients change?</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Add an interaction (age x smoking) <span class="kw">and</span> test significance.</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Plot residuals vs. fitted to check homoscedasticity.</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="co">## Deliverables</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>Produce <span class="kw">and</span> submit:</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="op">**</span>A table of coefficients<span class="op">**</span> <span class="cf">with</span> <span class="dv">95</span><span class="op">%</span> confidence intervals <span class="kw">and</span> p<span class="op">-</span>values (<span class="im">from</span> `model.summary()` <span class="kw">or</span> `model.conf_int()`).</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> <span class="op">**</span>A residual plot<span class="op">**</span> (residuals vs. fitted) <span class="kw">and</span> a Q<span class="op">-</span>Q plot of residuals.</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> <span class="op">**</span>Written answers<span class="op">**</span> (<span class="dv">3</span><span class="op">-</span><span class="dv">5</span> sentences each):</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> What does the coefficient of the strongest predictor mean <span class="kw">in</span> clinical terms?</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> State the four OLS assumptions <span class="kw">and</span> which <span class="kw">is</span> most concerning <span class="cf">for</span> this dataset.</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> Why might a linear model be a poor choice <span class="cf">for</span> predicting birth weight, <span class="kw">and</span> what would you <span class="cf">try</span> <span class="bu">next</span>?</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> How would you guard against overfitting <span class="cf">with</span> only <span class="op">~</span><span class="dv">189</span> rows?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"birthwt.csv"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why drop only the outcome (and ID columns) and not other columns?</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"bwt"</span>, <span class="st">"id"</span>])</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"bwt"</span>]</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why add a constant? What happens if you forget it?</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(X)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co"># THINK: why use statsmodels OLS here instead of sklearn LinearRegression?</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(  <span class="co"># THINK: what assumptions does OLS require?y, X).fit()</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.summary())</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>```</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="co">### Lines to wrestle with (THINK)</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `X <span class="op">=</span> df.drop(...)` — which columns are legitimate predictors vs. leakage<span class="op">/</span>ID?</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `sm.add_constant(X)` — what <span class="kw">is</span> the intercept doing, <span class="kw">and</span> how does its meaning change <span class="cf">with</span> standardization?</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> `sm.OLS(  <span class="co"># THINK: what assumptions does OLS require?y, X)` — OLS assumes linearity, independence, homoscedasticity, normality of residuals. Which of these can you check from `model.summary()`?</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co">### Suggested AI prompts</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"Explain the coefficient for `smoke` in plain language, including units."</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"What does R-squared vs. adjusted R-squared tell me here?"</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> <span class="st">"Which OLS assumptions are most likely violated in this data, and how would I check?"</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="co">### Extensions</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Standardize predictors <span class="kw">and</span> re<span class="op">-</span>fit<span class="op">;</span> how do coefficients change?</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Add an interaction (age x smoking) <span class="kw">and</span> test significance.</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="op">-</span> Plot residuals vs. fitted to check homoscedasticity.</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="co">## Deliverables</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fl">1.</span> <span class="op">**</span>A table of coefficients<span class="op">**</span> <span class="cf">with</span> <span class="dv">95</span><span class="op">%</span> confidence intervals <span class="kw">and</span> p<span class="op">-</span>values (<span class="im">from</span> `model.summary()` <span class="kw">or</span> `model.conf_int()`).</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="fl">2.</span> <span class="op">**</span>A residual plot<span class="op">**</span> (residuals vs. fitted) <span class="kw">and</span> a Q<span class="op">-</span>Q plot of residuals.</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fl">3.</span> <span class="op">**</span>Written answers<span class="op">**</span> (<span class="dv">3</span><span class="op">-</span><span class="dv">5</span> sentences each):</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> What does the coefficient of the strongest predictor mean <span class="kw">in</span> clinical terms?</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> State the four OLS assumptions <span class="kw">and</span> which <span class="kw">is</span> most concerning <span class="cf">for</span> this dataset.</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> Why might a linear model be a poor choice <span class="cf">for</span> predicting birth weight, <span class="kw">and</span> what would you <span class="cf">try</span> <span class="bu">next</span>?</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>   <span class="op">-</span> How would you guard against overfitting <span class="cf">with</span> only <span class="op">~</span><span class="dv">189</span> rows?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

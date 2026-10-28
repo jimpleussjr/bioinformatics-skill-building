@@ -6,6 +6,14 @@ title: "Lesson 2: Train/Test Splitting and Honest Evaluation"
 
 A model that memorizes the data it was trained on is useless in practice. Train/test splitting is the simplest way to estimate how a model will perform on new patients. Done wrong (leakage, imbalance, no stratification), it gives misleading optimism. This lesson is methodological but uses a health dataset.
 
+### Research background
+
+How we evaluate a model matters as much as the model itself. Kohavi (1995) compared cross-validation and bootstrap for accuracy estimation and showed that stratified 10-fold CV is a strong default. Raschka (2018) provides an accessible modern treatment of model evaluation, including leakage and nested CV. The lesson here is methodological: an honest split is the foundation of trustworthy ML in health.
+
+**Citations:**
+- Kohavi R. A study of cross-validation and bootstrap for accuracy estimation and model selection. *IJCAI* (1995).
+- Raschka S. Model evaluation, model selection, and algorithm selection in machine learning. *arXiv* (2018).
+
 ## Research Question
 
 How do we split data so that our evaluation reflects real-world performance, and what goes wrong when we do it carelessly?
@@ -24,6 +32,11 @@ How do we split data so that our evaluation reflects real-world performance, and
 ### Model to explore
 
 A simple logistic regression used as a vehicle to study splitting strategies (random split, stratified split, cross-validation).
+
+### AI prompts to learn this model
+
+- "Explain the difference between training error and test error, and why we need a held-out set."
+- "What is data leakage? Give a concrete health-data example and how to prevent it."
 
 ### Starter code
 
@@ -65,8 +78,6 @@ print("CV AUC:", cross_val_score(model, X, y, cv=cv, scoring="roc_auc").mean())
 - Use a pipeline to prevent leakage properly.
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A comparison table** of AUC for: (a) random split, (b) stratified split, (c) 5-fold CV (mean ± std).
 2. **A short experiment** showing leakage: scale before vs. after split; report AUC difference.

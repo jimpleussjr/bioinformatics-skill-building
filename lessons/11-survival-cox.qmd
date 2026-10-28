@@ -6,6 +6,14 @@ title: "Lesson 11: Cancer Survival - Cox Proportional Hazards"
 
 Survival analysis models time-to-event outcomes (death, relapse) while handling censoring (patients lost to follow-up). The Cox proportional hazards model is the standard, relating covariates to hazard without assuming a baseline distribution.
 
+### Research background
+
+Survival analysis is essential in cancer research. Cox (1972) introduced the proportional hazards model, which relates covariates to the hazard without assuming a baseline distribution. Bradburn et al. (2003) provide an accessible tutorial on survival analysis for clinical researchers. These are standard, readable references.
+
+**Citations:**
+- Cox DR. Regression models and life-tables. *Journal of the Royal Statistical Society, Series B* (1972).
+- Bradburn MJ et al. Survival analysis part II: multivariate data analysis. *British Journal of Cancer* (2003).
+
 ## Research Question
 
 Which factors affect survival time in cancer patients, and how do we handle censored observations?
@@ -25,6 +33,11 @@ Which factors affect survival time in cancer patients, and how do we handle cens
 ### Model to explore
 
 Cox PH (lifelines `CoxPHFitter`); evaluate with concordance index.
+
+### AI prompts to learn this model
+
+- "Explain survival analysis and censoring to an undergraduate."
+- "What is the Cox proportional hazards model, and what is a hazard ratio?"
 
 ### Starter code
 
@@ -64,8 +77,6 @@ Before running the starter code, write a one-sentence justification for each:
 - What is the proportional hazards assumption?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A table of hazard ratios** with 95% CIs.
 2. **Kaplan-Meier curves** by a key risk group.

@@ -6,6 +6,14 @@ title: "Lesson 13: Causal Inference - Propensity Scores (NHANES)"
 
 Observational health studies are plagued by confounding. Causal inference methods (propensity scores, matching, weighting) aim to estimate treatment effects as if from a randomized trial. NHANES provides rich, nationally representative health data.
 
+### Research background
+
+Observational studies dominate health research, but confounding threatens causal claims. Rosenbaum and Rubin (1983) introduced the propensity score as a way to balance confounders, and Austin (2011) provides an accessible introduction to propensity-score methods for applied researchers. NHANES is a widely used, nationally representative data source for such analyses.
+
+**Citations:**
+- Rosenbaum PR, Rubin DB. The central role of the propensity score in observational studies for causal effects. *Biometrika* (1983).
+- Austin PC. An introduction to propensity score methods for reducing the effects of confounding in observational studies. *Multivariate Behavioral Research* (2011).
+
 ## Research Question
 
 Does smoking causally affect a biomarker (e.g., CRP / blood pressure), after adjusting for confounders?
@@ -24,6 +32,11 @@ Does smoking causally affect a biomarker (e.g., CRP / blood pressure), after adj
 ### Model to explore
 
 Propensity score matching / IPW using logistic regression for the propensity model.
+
+### AI prompts to learn this model
+
+- "Explain propensity scores and how they balance confounders in observational studies."
+- "What are the key assumptions for causal inference (positivity, no unmeasured confounding)?"
 
 ### Starter code
 
@@ -65,8 +78,6 @@ Before running the starter code, write a one-sentence justification for each:
 - What does ATT vs. ATE mean here?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A covariate-balance table** (standardized mean differences) before/after matching.
 2. **An estimate of the ATT** with a confidence interval.

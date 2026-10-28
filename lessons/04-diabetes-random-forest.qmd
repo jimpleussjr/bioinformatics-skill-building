@@ -6,6 +6,14 @@ title: "Lesson 4: Diabetes Prediction - Random Forest"
 
 Type 2 diabetes is a chronic metabolic disease whose incidence is rising globally. Early identification of at-risk individuals enables lifestyle intervention. The classic Pima Indians Diabetes dataset is small but ideal for learning tree-based methods and feature importance.
 
+### Research background
+
+The Pima Indians Diabetes dataset comes from a study by Smith et al. (1988), who used an early learning algorithm to forecast diabetes onset. Random forests were introduced by Breiman (2001) as an ensemble of decision trees that reduces variance while keeping interpretability via feature importance. These two papers—one clinical, one methodological—are both readable introductions.
+
+**Citations:**
+- Smith JW et al. Using the ADAP learning algorithm to forecast the onset of diabetes mellitus. *Proceedings of the Symposium on Computer Applications and Medical Care* (1988).
+- Breiman L. Random Forests. *Machine Learning* (2001).
+
 ## Research Question
 
 Which clinical measurements best predict diabetes onset, and can a random forest outperform a single decision tree while remaining interpretable?
@@ -25,6 +33,11 @@ Which clinical measurements best predict diabetes onset, and can a random forest
 ### Model to explore
 
 Random Forest classifier (scikit-learn `RandomForestClassifier`), plus a single decision tree for comparison and SHAP for interpretation.
+
+### AI prompts to learn this model
+
+- "Explain how a random forest builds trees and aggregates predictions."
+- "What is feature importance, and why might Gini importance be misleading?"
 
 ### Starter code
 
@@ -69,8 +82,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why compare RF to a single shallow tree?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A feature-importance plot** (permutation importance, not just Gini).
 2. **A SHAP summary plot** for the top 5 features.

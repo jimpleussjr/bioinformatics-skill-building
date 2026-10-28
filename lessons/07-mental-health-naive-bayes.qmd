@@ -6,6 +6,14 @@ title: "Lesson 7: Mental Health Text - Naive Bayes and NLP"
 
 Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification.
 
+### Research background
+
+Language is a window into mental health. De Choudhury et al. (2013) showed that social media language can predict depression, sparking a large literature on digital mental health. Naive Bayes, despite its strong independence assumptions, remains a fast and interpretable baseline for text classification (Pang & Lee 2008). These works are accessible and highlight both promise and ethical pitfalls.
+
+**Citations:**
+- De Choudhury M et al. Predicting depression via social media. *ICWSM* (2013).
+- Pang B, Lee L. Opinion mining and sentiment analysis. *Foundations and Trends in Information Retrieval* (2008).
+
 ## Research Question
 
 Can short text posts be classified into mental-health categories, and how far does a simple Naive Bayes model go?
@@ -24,6 +32,11 @@ Can short text posts be classified into mental-health categories, and how far do
 ### Model to explore
 
 Multinomial Naive Bayes with TF-IDF features (scikit-learn).
+
+### AI prompts to learn this model
+
+- "Explain Naive Bayes text classification and why the 'naive' independence assumption is violated but still works."
+- "How do TF-IDF features work, and why log probabilities?"
 
 ### Starter code
 
@@ -66,8 +79,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why a Pipeline rather than separate fit/transform?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A table of the top 15 words** per class by log-probability.
 2. **A confusion matrix** and per-class F1 scores.

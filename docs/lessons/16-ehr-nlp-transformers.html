@@ -226,12 +226,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a></li>
+  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a>
+  <ul class="collapse">
+  <li><a href="#research-background" id="toc-research-background" class="nav-link" data-scroll-target="#research-background">Research background</a></li>
+  </ul></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
   <li><a href="#open-source-dataset" id="toc-open-source-dataset" class="nav-link" data-scroll-target="#open-source-dataset">Open-Source Dataset</a></li>
   <li><a href="#practical-exercise" id="toc-practical-exercise" class="nav-link" data-scroll-target="#practical-exercise">Practical Exercise</a>
   <ul class="collapse">
   <li><a href="#model-to-explore" id="toc-model-to-explore" class="nav-link" data-scroll-target="#model-to-explore">Model to explore</a></li>
+  <li><a href="#ai-prompts-to-learn-this-model" id="toc-ai-prompts-to-learn-this-model" class="nav-link" data-scroll-target="#ai-prompts-to-learn-this-model">AI prompts to learn this model</a></li>
   <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   <li><a href="#suggested-ai-prompts" id="toc-suggested-ai-prompts" class="nav-link" data-scroll-target="#suggested-ai-prompts">Suggested AI prompts</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
@@ -266,6 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction-to-the-domain" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-the-domain">Introduction to the Domain</h2>
 <p>Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter.</p>
+<section id="research-background" class="level3">
+<h3 class="anchored" data-anchor-id="research-background">Research background</h3>
+<p>Clinical notes contain rich information not captured in structured data. Alsentzer et al.&nbsp;(2019) released clinical BERT embeddings trained on MIMIC notes, and Devlin et al.&nbsp;(2019) introduced BERT. These works show how transfer learning can unlock clinical text, while raising privacy and fairness concerns.</p>
+<p><strong>Citations:</strong> - Alsentzer E et al.&nbsp;Publicly available clinical BERT embeddings. <em>ClinicalNLP Workshop</em> (2019). - Devlin J et al.&nbsp;BERT: Pre-training of deep bidirectional transformers for language understanding. <em>NAACL</em> (2019).</p>
+</section>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
@@ -287,6 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-to-explore" class="level3">
 <h3 class="anchored" data-anchor-id="model-to-explore">Model to explore</h3>
 <p>Fine-tune a pretrained clinical BERT (e.g., <code>emilyalsentzer/Bio_ClinicalBERT</code>) with Hugging Face Transformers.</p>
+</section>
+<section id="ai-prompts-to-learn-this-model" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prompts-to-learn-this-model">AI prompts to learn this model</h3>
+<ul>
+<li>“Explain transformers and self-attention to an undergraduate.”</li>
+<li>“What is BERT, and why fine-tune a pretrained model for clinical text?”</li>
+</ul>
 </section>
 <section id="starter-code" class="level3">
 <h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
@@ -329,7 +345,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Produce and submit:</p>
 <ol type="1">
 <li><strong>A performance table</strong> (F1/AUC) for BERT vs.&nbsp;TF-IDF + logistic regression baseline.</li>
 <li><strong>An attention/SHAP visualization</strong> for 2-3 example notes.</li>
@@ -807,72 +822,83 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter.</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research background</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Can a transformer model classify or extract information from clinical notes, and what are the privacy implications?</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Clinical notes contain rich information not captured in structured data. Alsentzer et al. (2019) released clinical BERT embeddings trained on MIMIC notes, and Devlin et al. (2019) introduced BERT. These works show how transfer learning can unlock clinical text, while raising privacy and fairness concerns.</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>**MIMIC-III / MIMIC-IV (requires credentialed access) or i2b2 challenges.**</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Citations:**</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Alsentzer E et al. Publicly available clinical BERT embeddings. *ClinicalNLP Workshop* (2019).</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Devlin J et al. BERT: Pre-training of deep bidirectional transformers for language understanding. *NAACL* (2019).</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://physionet.org/content/mimiciii/1.4/ (credentialed)</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Alternative (open): https://huggingface.co/datasets (search clinical notes)</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: large.</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: ICD codes, mortality, phenotypes.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: de-identified but re-identification risk; data use agreements.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Can a transformer model classify or extract information from clinical notes, and what are the privacy implications?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**MIMIC-III / MIMIC-IV (requires credentialed access) or i2b2 challenges.**</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>Fine-tune a pretrained clinical BERT (e.g., <span class="in">`emilyalsentzer/Bio_ClinicalBERT`</span>) with Hugging Face Transformers.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://physionet.org/content/mimiciii/1.4/ (credentialed)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Alternative (open): https://huggingface.co/datasets (search clinical notes)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: large.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: ICD codes, mortality, phenotypes.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: de-identified but re-identification risk; data use agreements.</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>model_name <span class="op">=</span> <span class="st">"emilyalsentzer/Bio_ClinicalBERT"</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForSequenceClassification.from_pretrained(model_name, num_labels<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loaded"</span>, model_name)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="co"># ds = load_dataset("your_clinical_dataset")</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenize, train with Trainer(...)</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why use a clinical BERT instead of general BERT?"</span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I handle long clinical notes (token limits)?"</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What are the privacy risks of fine-tuning on clinical text?"</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try zero-shot classification with a general LLM.</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare with TF-IDF + logistic regression baseline.</span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Evaluate calibration and subgroup fairness.</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`Bio_ClinicalBERT`</span> over general BERT?</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How will you handle notes longer than the token limit?</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`num_labels=2`</span>?</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What privacy constraints apply to MIMIC?</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>Fine-tune a pretrained clinical BERT (e.g., <span class="in">`emilyalsentzer/Bio_ClinicalBERT`</span>) with Hugging Face Transformers.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI prompts to learn this model</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain transformers and self-attention to an undergraduate."</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What is BERT, and why fine-tune a pretrained model for clinical text?"</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>model_name <span class="op">=</span> <span class="st">"emilyalsentzer/Bio_ClinicalBERT"</span></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>tok <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForSequenceClassification.from_pretrained(model_name, num_labels<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"loaded"</span>, model_name)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co"># ds = load_dataset("your_clinical_dataset")</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co"># tokenize, train with Trainer(...)</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why use a clinical BERT instead of general BERT?"</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I handle long clinical notes (token limits)?"</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What are the privacy risks of fine-tuning on clinical text?"</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
 <span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>Produce and submit:</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try zero-shot classification with a general LLM.</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare with TF-IDF + logistic regression baseline.</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Evaluate calibration and subgroup fairness.</span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A performance table** (F1/AUC) for BERT vs. TF-IDF + logistic regression baseline.</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**An attention/SHAP visualization** for 2-3 example notes.</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why use a clinical BERT instead of general BERT?</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you handle long notes exceeding token limits?</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the privacy risks of fine-tuning on clinical text?</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How would you audit fairness across patient subgroups?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`Bio_ClinicalBERT`</span> over general BERT?</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How will you handle notes longer than the token limit?</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`num_labels=2`</span>?</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>What privacy constraints apply to MIMIC?</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A performance table** (F1/AUC) for BERT vs. TF-IDF + logistic regression baseline.</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**An attention/SHAP visualization** for 2-3 example notes.</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why use a clinical BERT instead of general BERT?</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you handle long notes exceeding token limits?</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the privacy risks of fine-tuning on clinical text?</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How would you audit fairness across patient subgroups?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

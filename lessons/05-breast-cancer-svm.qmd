@@ -6,6 +6,14 @@ title: "Lesson 5: Breast Cancer Classification - Support Vector Machines"
 
 Breast cancer is among the most common cancers in women. Early detection via imaging and pathology dramatically improves outcomes. The Wisconsin Breast Cancer dataset contains features computed from digitized images of fine-needle aspirates, making it a clean testbed for classification algorithms.
 
+### Research background
+
+The Wisconsin Breast Cancer (Diagnostic) dataset was created by Street et al. (1993) from digitized fine-needle aspirate images, showing that nuclear features can distinguish malignant from benign tumors. Support vector machines were introduced by Cortes and Vapnik (1995) as a margin-maximizing classifier. Together these works illustrate how a carefully engineered feature set plus a principled classifier can achieve strong diagnostic performance.
+
+**Citations:**
+- Street WN, Wolberg WH, Mangasarian OL. Nuclear feature extraction for breast tumor diagnosis. *IS&T/SPIE* (1993).
+- Cortes C, Vapnik V. Support-vector networks. *Machine Learning* (1995).
+
 ## Research Question
 
 Can cell-nucleus measurements distinguish malignant from benign tumors, and how does an SVM compare to simpler models?
@@ -25,6 +33,11 @@ Can cell-nucleus measurements distinguish malignant from benign tumors, and how 
 ### Model to explore
 
 Support Vector Machine with RBF kernel, plus linear SVM and logistic regression for comparison; scaling is critical.
+
+### AI prompts to learn this model
+
+- "Explain support vector machines and the maximum-margin idea to an undergraduate."
+- "What is the kernel trick, and when should I use RBF vs. linear?"
 
 ### Starter code
 
@@ -68,8 +81,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why stratify the split?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A validation curve** over C and gamma.
 2. **A confusion matrix** at the chosen threshold.

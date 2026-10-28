@@ -226,12 +226,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a></li>
+  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a>
+  <ul class="collapse">
+  <li><a href="#research-background" id="toc-research-background" class="nav-link" data-scroll-target="#research-background">Research background</a></li>
+  </ul></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
   <li><a href="#open-source-dataset" id="toc-open-source-dataset" class="nav-link" data-scroll-target="#open-source-dataset">Open-Source Dataset</a></li>
   <li><a href="#practical-exercise" id="toc-practical-exercise" class="nav-link" data-scroll-target="#practical-exercise">Practical Exercise</a>
   <ul class="collapse">
   <li><a href="#model-to-explore" id="toc-model-to-explore" class="nav-link" data-scroll-target="#model-to-explore">Model to explore</a></li>
+  <li><a href="#ai-prompts-to-learn-this-model" id="toc-ai-prompts-to-learn-this-model" class="nav-link" data-scroll-target="#ai-prompts-to-learn-this-model">AI prompts to learn this model</a></li>
   <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   <li><a href="#suggested-ai-prompts" id="toc-suggested-ai-prompts" class="nav-link" data-scroll-target="#suggested-ai-prompts">Suggested AI prompts</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
@@ -266,6 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction-to-the-domain" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-the-domain">Introduction to the Domain</h2>
 <p>Unplanned hospital readmissions are costly and often preventable. Predicting which patients will return within 30 days lets hospitals target discharge planning and follow-up. The data is messy: mixed types, missingness, and rare outcomes.</p>
+<section id="research-background" class="level3">
+<h3 class="anchored" data-anchor-id="research-background">Research background</h3>
+<p>Hospital readmissions are a major quality and cost issue. Kansagara et al.&nbsp;(2011) systematically reviewed readmission risk models and found most had modest discrimination, highlighting the difficulty of the problem. Gradient boosting (Friedman 2001) and its efficient implementation XGBoost (Chen &amp; Guestrin 2016) became standard tools for tabular clinical data. Read these for a realistic sense of both the clinical challenge and the method.</p>
+<p><strong>Citations:</strong> - Kansagara D et al.&nbsp;Risk prediction models for hospital readmission. <em>JAMA</em> (2011). - Chen T, Guestrin C. XGBoost: A Scalable Tree Boosting System. <em>KDD</em> (2016).</p>
+</section>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
@@ -287,6 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-to-explore" class="level3">
 <h3 class="anchored" data-anchor-id="model-to-explore">Model to explore</h3>
 <p>XGBoost (<code>xgboost.XGBClassifier</code>) with careful handling of categoricals and imbalance.</p>
+</section>
+<section id="ai-prompts-to-learn-this-model" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prompts-to-learn-this-model">AI prompts to learn this model</h3>
+<ul>
+<li>“Explain gradient boosting: how does each new tree correct the previous ones?”</li>
+<li>“What hyperparameters matter most in XGBoost, and what does each control?”</li>
+</ul>
 </section>
 <section id="starter-code" class="level3">
 <h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
@@ -338,7 +354,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Produce and submit:</p>
 <ol type="1">
 <li><strong>A SHAP summary plot</strong> of top drivers of readmission.</li>
 <li><strong>A grouped (by patient) cross-validation</strong> result vs.&nbsp;naive split.</li>
@@ -816,81 +831,92 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Unplanned hospital readmissions are costly and often preventable. Predicting which patients will return within 30 days lets hospitals target discharge planning and follow-up. The data is messy: mixed types, missingness, and rare outcomes.</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research background</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Can we predict 30-day readmission from administrative and clinical data, and does gradient boosting beat logistic regression?</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Hospital readmissions are a major quality and cost issue. Kansagara et al. (2011) systematically reviewed readmission risk models and found most had modest discrimination, highlighting the difficulty of the problem. Gradient boosting (Friedman 2001) and its efficient implementation XGBoost (Chen &amp; Guestrin 2016) became standard tools for tabular clinical data. Read these for a realistic sense of both the clinical challenge and the method.</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>**Diabetes 130-US Hospitals (1999-2008)** (UCI).</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Citations:**</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Kansagara D et al. Risk prediction models for hospital readmission. *JAMA* (2011).</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Chen T, Guestrin C. XGBoost: A Scalable Tree Boosting System. *KDD* (2016).</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: ~100k encounters.</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: readmitted (&lt;30 days vs. not).</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: demographics, diagnoses (ICD-9), medications, lab results, length of stay.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: de-identified; multi-level (patient/encounter).</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Can we predict 30-day readmission from administrative and clinical data, and does gradient boosting beat logistic regression?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Diabetes 130-US Hospitals (1999-2008)** (UCI).</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>XGBoost (<span class="in">`xgboost.XGBClassifier`</span>) with careful handling of categoricals and imbalance.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://archive.ics.uci.edu/dataset/296/diabetes+130-us+hospitals+for+years+1999-2008</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: ~100k encounters.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: readmitted (&lt;30 days vs. not).</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: demographics, diagnoses (ICD-9), medications, lab results, length of stay.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: de-identified; multi-level (patient/encounter).</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OrdinalEncoder</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"diabetic_data.csv"</span>)</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (df[<span class="st">"readmitted"</span>] <span class="op">==</span> <span class="st">"&lt;30"</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"readmitted"</span>, <span class="st">"encounter_id"</span>, <span class="st">"patient_nbr"</span>])</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>cat <span class="op">=</span> X.select_dtypes(include<span class="op">=</span><span class="st">"object"</span>).columns</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>X[cat] <span class="op">=</span> OrdinalEncoder(handle_unknown<span class="op">=</span><span class="st">"use_encoded_value"</span>, unknown_value<span class="op">=-</span><span class="dv">1</span>).fit_transform(X[cat])</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.fillna(<span class="op">-</span><span class="dv">1</span>)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>Xtr, Xte, ytr, yte <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> XGBClassifier(n_estimators<span class="op">=</span><span class="dv">400</span>, max_depth<span class="op">=</span><span class="dv">5</span>, learning_rate<span class="op">=</span><span class="fl">0.05</span>,</span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>                      scale_pos_weight<span class="op">=</span>(ytr<span class="op">==</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span>(ytr<span class="op">==</span><span class="dv">1</span>).<span class="bu">sum</span>(), eval_metric<span class="op">=</span><span class="st">"auc"</span>)</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>model.fit(Xtr, ytr)</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AUC:"</span>, roc_auc_score(yte, model.predict_proba(Xte)[:, <span class="dv">1</span>]))</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I handle high-cardinality diagnosis codes in XGBoost?"</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain scale_pos_weight vs. threshold tuning for imbalanced readmission."</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What leakage risks exist in hospital readmission data?"</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add SHAP and identify top drivers of readmission.</span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Group K-fold by patient to avoid leakage.</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare with a simple logistic regression baseline.</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why ordinal-encode categoricals instead of one-hot?</span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`unknown_value=-1`</span> for unseen categories?</span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`scale_pos_weight`</span> instead of resampling?</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why group folds by patient to avoid leakage?</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>XGBoost (<span class="in">`xgboost.XGBClassifier`</span>) with careful handling of categoricals and imbalance.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI prompts to learn this model</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain gradient boosting: how does each new tree correct the previous ones?"</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What hyperparameters matter most in XGBoost, and what does each control?"</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OrdinalEncoder</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> xgboost <span class="im">import</span> XGBClassifier</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_auc_score</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"diabetic_data.csv"</span>)</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> (df[<span class="st">"readmitted"</span>] <span class="op">==</span> <span class="st">"&lt;30"</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">"readmitted"</span>, <span class="st">"encounter_id"</span>, <span class="st">"patient_nbr"</span>])</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>cat <span class="op">=</span> X.select_dtypes(include<span class="op">=</span><span class="st">"object"</span>).columns</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>X[cat] <span class="op">=</span> OrdinalEncoder(handle_unknown<span class="op">=</span><span class="st">"use_encoded_value"</span>, unknown_value<span class="op">=-</span><span class="dv">1</span>).fit_transform(X[cat])</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> X.fillna(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>Xtr, Xte, ytr, yte <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, stratify<span class="op">=</span>y, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> XGBClassifier(n_estimators<span class="op">=</span><span class="dv">400</span>, max_depth<span class="op">=</span><span class="dv">5</span>, learning_rate<span class="op">=</span><span class="fl">0.05</span>,</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>                      scale_pos_weight<span class="op">=</span>(ytr<span class="op">==</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span>(ytr<span class="op">==</span><span class="dv">1</span>).<span class="bu">sum</span>(), eval_metric<span class="op">=</span><span class="st">"auc"</span>)</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>model.fit(Xtr, ytr)</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AUC:"</span>, roc_auc_score(yte, model.predict_proba(Xte)[:, <span class="dv">1</span>]))</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I handle high-cardinality diagnosis codes in XGBoost?"</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain scale_pos_weight vs. threshold tuning for imbalanced readmission."</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What leakage risks exist in hospital readmission data?"</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
 <span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>Produce and submit:</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add SHAP and identify top drivers of readmission.</span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Group K-fold by patient to avoid leakage.</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare with a simple logistic regression baseline.</span>
 <span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A SHAP summary plot** of top drivers of readmission.</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A grouped (by patient) cross-validation** result vs. naive split.</span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What is leakage in readmission prediction, and how did you prevent it?</span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you handle class imbalance here, and why?</span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why might XGBoost outperform logistic regression on this data?</span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the ethical risks of flagging patients as high-readmission-risk?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why ordinal-encode categoricals instead of one-hot?</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`unknown_value=-1`</span> for unseen categories?</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`scale_pos_weight`</span> instead of resampling?</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why group folds by patient to avoid leakage?</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A SHAP summary plot** of top drivers of readmission.</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A grouped (by patient) cross-validation** result vs. naive split.</span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What is leakage in readmission prediction, and how did you prevent it?</span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you handle class imbalance here, and why?</span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why might XGBoost outperform logistic regression on this data?</span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the ethical risks of flagging patients as high-readmission-risk?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

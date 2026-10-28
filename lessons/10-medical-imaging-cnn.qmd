@@ -6,6 +6,14 @@ title: "Lesson 10: Medical Imaging - Convolutional Neural Networks"
 
 Medical imaging (X-rays, CT, MRI) is a leading application of deep learning. CNNs can detect pneumonia, fractures, and tumors, but require large datasets, careful validation, and attention to bias and shortcut learning.
 
+### Research background
+
+Deep learning transformed medical imaging. Esteva et al. (2017) showed CNNs can match dermatologists in skin-cancer classification, and Rajpurkar et al. (2017) demonstrated radiologist-level pneumonia detection on chest X-rays (CheXNet). Both papers are widely read and include accessible discussions of data, bias, and clinical integration.
+
+**Citations:**
+- Esteva A et al. Dermatologist-level classification of skin cancer with deep neural networks. *Nature* (2017).
+- Rajpurkar P et al. CheXNet: Radiologist-level pneumonia detection on chest X-rays with deep learning. *arXiv* (2017).
+
 ## Research Question
 
 Can a CNN classify chest X-rays as normal vs. pneumonia, and what are the pitfalls?
@@ -24,6 +32,11 @@ Can a CNN classify chest X-rays as normal vs. pneumonia, and what are the pitfal
 ### Model to explore
 
 Transfer learning with a pretrained ResNet (torchvision), fine-tuned on chest X-rays.
+
+### AI prompts to learn this model
+
+- "Explain convolutional neural networks and what convolution filters learn."
+- "What is transfer learning, and why start from ImageNet for medical images?"
 
 ### Starter code
 
@@ -65,8 +78,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Are train/val/test splits at the patient level?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A Grad-CAM visualization** for at least 3 test images.
 2. **A test-set confusion matrix** and AUC.

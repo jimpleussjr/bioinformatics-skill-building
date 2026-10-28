@@ -6,6 +6,14 @@ title: "Lesson 3: Cardiovascular Disease Risk - Logistic Regression"
 
 Cardiovascular disease (CVD) is the leading cause of death worldwide. Risk factors such as age, blood pressure, cholesterol, smoking, and diabetes are well established, and clinicians routinely combine them into risk scores (e.g., the Framingham Risk Score). Machine learning can reproduce and extend these scores, but interpretability matters: a model that a physician cannot explain will not be adopted.
 
+### Research background
+
+The Framingham Heart Study, begun in 1948, established the major cardiovascular risk factors (age, blood pressure, cholesterol, smoking, diabetes) that clinicians still use. Wilson et al. (1998) turned these into the familiar risk-factor categories, and D'Agostino et al. (2008) produced the general CVD risk profile used in primary care. These papers are approachable and show how simple logistic models can guide clinical decisions.
+
+**Citations:**
+- Wilson PWF et al. Prediction of coronary heart disease using risk factor categories. *Circulation* (1998).
+- D'Agostino RB et al. General cardiovascular risk profile for use in primary care. *Circulation* (2008).
+
 ## Research Question
 
 Can routine clinical measurements predict a patient's 10-year risk of coronary heart disease (CHD), and which factors dominate that risk?
@@ -25,6 +33,11 @@ Can routine clinical measurements predict a patient's 10-year risk of coronary h
 ### Model to explore
 
 Logistic regression (scikit-learn `LogisticRegression`, statsmodels `Logit`). Start simple, then add interactions.
+
+### AI prompts to learn this model
+
+- "Explain logistic regression to an undergraduate: how does it differ from linear regression, and what is the logit?"
+- "What do the coefficients mean as odds ratios, and how do I compute them?"
 
 ### Starter code
 
@@ -70,8 +83,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why stratify in `train_test_split`?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A table of odds ratios** with 95% CIs for each predictor.
 2. **An ROC curve** and a **calibration plot**.

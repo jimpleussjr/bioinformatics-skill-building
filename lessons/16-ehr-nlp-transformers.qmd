@@ -6,6 +6,14 @@ title: "Lesson 16: Clinical Notes (EHR) - Transformers / BERT"
 
 Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter.
 
+### Research background
+
+Clinical notes contain rich information not captured in structured data. Alsentzer et al. (2019) released clinical BERT embeddings trained on MIMIC notes, and Devlin et al. (2019) introduced BERT. These works show how transfer learning can unlock clinical text, while raising privacy and fairness concerns.
+
+**Citations:**
+- Alsentzer E et al. Publicly available clinical BERT embeddings. *ClinicalNLP Workshop* (2019).
+- Devlin J et al. BERT: Pre-training of deep bidirectional transformers for language understanding. *NAACL* (2019).
+
 ## Research Question
 
 Can a transformer model classify or extract information from clinical notes, and what are the privacy implications?
@@ -25,6 +33,11 @@ Can a transformer model classify or extract information from clinical notes, and
 ### Model to explore
 
 Fine-tune a pretrained clinical BERT (e.g., `emilyalsentzer/Bio_ClinicalBERT`) with Hugging Face Transformers.
+
+### AI prompts to learn this model
+
+- "Explain transformers and self-attention to an undergraduate."
+- "What is BERT, and why fine-tune a pretrained model for clinical text?"
 
 ### Starter code
 
@@ -62,8 +75,6 @@ Before running the starter code, write a one-sentence justification for each:
 - What privacy constraints apply to MIMIC?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A performance table** (F1/AUC) for BERT vs. TF-IDF + logistic regression baseline.
 2. **An attention/SHAP visualization** for 2-3 example notes.

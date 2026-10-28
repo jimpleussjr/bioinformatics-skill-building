@@ -226,12 +226,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a></li>
+  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a>
+  <ul class="collapse">
+  <li><a href="#research-background" id="toc-research-background" class="nav-link" data-scroll-target="#research-background">Research background</a></li>
+  </ul></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
   <li><a href="#open-source-dataset" id="toc-open-source-dataset" class="nav-link" data-scroll-target="#open-source-dataset">Open-Source Dataset</a></li>
   <li><a href="#practical-exercise" id="toc-practical-exercise" class="nav-link" data-scroll-target="#practical-exercise">Practical Exercise</a>
   <ul class="collapse">
   <li><a href="#model-to-explore" id="toc-model-to-explore" class="nav-link" data-scroll-target="#model-to-explore">Model to explore</a></li>
+  <li><a href="#ai-prompts-to-learn-this-model" id="toc-ai-prompts-to-learn-this-model" class="nav-link" data-scroll-target="#ai-prompts-to-learn-this-model">AI prompts to learn this model</a></li>
   <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   <li><a href="#suggested-ai-prompts" id="toc-suggested-ai-prompts" class="nav-link" data-scroll-target="#suggested-ai-prompts">Suggested AI prompts</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
@@ -266,6 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction-to-the-domain" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-the-domain">Introduction to the Domain</h2>
 <p>Healthcare spending is right-skewed and heteroscedastic: a few patients dominate costs. Generalized linear models (GLMs) with appropriate families (Gamma, Tweedie) and link functions model such outcomes better than ordinary least squares.</p>
+<section id="research-background" class="level3">
+<h3 class="anchored" data-anchor-id="research-background">Research background</h3>
+<p>Healthcare spending is right-skewed and heteroscedastic, making ordinary least squares a poor fit. Manning and Mullahy (2001) compare estimators for log-models of medical expenditures, and Diehr et al.&nbsp;(1999) review methods for analyzing healthcare utilization and cost. These papers motivate GLMs with Gamma or Tweedie families.</p>
+<p><strong>Citations:</strong> - Manning WG, Mullahy J. Estimating log models: to transform or not to transform? <em>Journal of Health Economics</em> (2001). - Diehr P et al.&nbsp;Methods for analyzing health care utilization and costs. <em>Annual Review of Public Health</em> (1999).</p>
+</section>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
@@ -287,6 +296,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-to-explore" class="level3">
 <h3 class="anchored" data-anchor-id="model-to-explore">Model to explore</h3>
 <p>GLM with Gamma family and log link (statsmodels), plus OLS and Tweedie for comparison.</p>
+</section>
+<section id="ai-prompts-to-learn-this-model" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prompts-to-learn-this-model">AI prompts to learn this model</h3>
+<ul>
+<li>“Explain generalized linear models: families and link functions.”</li>
+<li>“Why use Gamma with a log link for skewed cost data instead of OLS?”</li>
+</ul>
 </section>
 <section id="starter-code" class="level3">
 <h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
@@ -331,7 +347,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Produce and submit:</p>
 <ol type="1">
 <li><strong>An AIC comparison table</strong> across OLS, Gamma, and Tweedie.</li>
 <li><strong>A residuals-vs-fitted plot</strong> for the chosen model.</li>
@@ -809,74 +824,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Healthcare spending is right-skewed and heteroscedastic: a few patients dominate costs. Generalized linear models (GLMs) with appropriate families (Gamma, Tweedie) and link functions model such outcomes better than ordinary least squares.</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research background</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>What drives individual medical charges, and which GLM family fits cost data best?</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Healthcare spending is right-skewed and heteroscedastic, making ordinary least squares a poor fit. Manning and Mullahy (2001) compare estimators for log-models of medical expenditures, and Diehr et al. (1999) review methods for analyzing healthcare utilization and cost. These papers motivate GLMs with Gamma or Tweedie families.</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>**Medical Cost Personal dataset.**</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Citations:**</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Manning WG, Mullahy J. Estimating log models: to transform or not to transform? *Journal of Health Economics* (2001).</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Diehr P et al. Methods for analyzing health care utilization and costs. *Annual Review of Public Health* (1999).</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://www.kaggle.com/datasets/mirichoi0218/insurance</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: 1,338 rows.</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: <span class="in">`charges`</span>.</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: age, sex, BMI, children, smoker, region.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: strong smoker effect; right skew.</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>What drives individual medical charges, and which GLM family fits cost data best?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Medical Cost Personal dataset.**</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>GLM with Gamma family and log link (statsmodels), plus OLS and Tweedie for comparison.</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://www.kaggle.com/datasets/mirichoi0218/insurance</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: 1,338 rows.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: <span class="in">`charges`</span>.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predictors: age, sex, BMI, children, smoker, region.</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: strong smoker effect; right skew.</span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"insurance.csv"</span>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">"sex"</span>, <span class="st">"smoker"</span>, <span class="st">"region"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(df.drop(columns<span class="op">=</span>[<span class="st">"charges"</span>]))</span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"charges"</span>]</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>glm <span class="op">=</span> sm.GLM(y, X, family<span class="op">=</span>sm.families.Gamma(link<span class="op">=</span>sm.families.links.Log())).fit()</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glm.summary())</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AIC:"</span>, glm.aic)</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why is OLS inappropriate for cost data? Explain skewness and heteroscedasticity."</span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What does the Gamma family assume, and when is Tweedie better?"</span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I interpret coefficients with a log link (multiplicative effects)?"</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare AIC across families.</span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add an interaction (smoker x BMI).</span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predict and plot residuals vs. fitted.</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`pd.get_dummies(..., drop_first=True)`</span>?</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why Gamma family with a log link for charges?</span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why add a constant?</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do you interpret a coefficient under a log link?</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>GLM with Gamma family and log link (statsmodels), plus OLS and Tweedie for comparison.</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI prompts to learn this model</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain generalized linear models: families and link functions."</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why use Gamma with a log link for skewed cost data instead of OLS?"</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"insurance.csv"</span>)</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.get_dummies(df, columns<span class="op">=</span>[<span class="st">"sex"</span>, <span class="st">"smoker"</span>, <span class="st">"region"</span>], drop_first<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(df.drop(columns<span class="op">=</span>[<span class="st">"charges"</span>]))</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">"charges"</span>]</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>glm <span class="op">=</span> sm.GLM(y, X, family<span class="op">=</span>sm.families.Gamma(link<span class="op">=</span>sm.families.links.Log())).fit()</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(glm.summary())</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"AIC:"</span>, glm.aic)</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why is OLS inappropriate for cost data? Explain skewness and heteroscedasticity."</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What does the Gamma family assume, and when is Tweedie better?"</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I interpret coefficients with a log link (multiplicative effects)?"</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
 <span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>Produce and submit:</span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare AIC across families.</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add an interaction (smoker x BMI).</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Predict and plot residuals vs. fitted.</span>
 <span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**An AIC comparison table** across OLS, Gamma, and Tweedie.</span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A residuals-vs-fitted plot** for the chosen model.</span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why is OLS inappropriate for cost data?</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What does the Gamma family assume, and when is Tweedie better?</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you interpret coefficients with a log link?</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How would you handle the excess zeros often seen in cost data?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`pd.get_dummies(..., drop_first=True)`</span>?</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why Gamma family with a log link for charges?</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why add a constant?</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>How do you interpret a coefficient under a log link?</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**An AIC comparison table** across OLS, Gamma, and Tweedie.</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A residuals-vs-fitted plot** for the chosen model.</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why is OLS inappropriate for cost data?</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What does the Gamma family assume, and when is Tweedie better?</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How do you interpret coefficients with a log link?</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>How would you handle the excess zeros often seen in cost data?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

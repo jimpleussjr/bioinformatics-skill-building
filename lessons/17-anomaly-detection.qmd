@@ -6,6 +6,14 @@ title: "Lesson 17: Anomaly Detection - Isolation Forest"
 
 Anomalies in health data can indicate fraud, rare diseases, sensor errors, or outbreaks. Unsupervised anomaly detection flags unusual cases without labels, useful when labeled anomalies are scarce.
 
+### Research background
+
+Anomalies in health data can signal fraud, rare disease, or sensor error. Liu et al. (2008) introduced Isolation Forest, an efficient method for high-dimensional anomaly detection, and Chandola et al. (2009) provide a comprehensive survey. Both are readable introductions to unsupervised anomaly detection.
+
+**Citations:**
+- Liu FT, Ting KM, Zhou ZH. Isolation forest. *ICDM* (2008).
+- Chandola V, Banerjee A, Kumar V. Anomaly detection: a survey. *ACM Computing Surveys* (2009).
+
 ## Research Question
 
 Can we detect anomalous patients/records in a health dataset, and do flagged cases make clinical sense?
@@ -25,6 +33,11 @@ Can we detect anomalous patients/records in a health dataset, and do flagged cas
 ### Model to explore
 
 Isolation Forest (scikit-learn) plus Local Outlier Factor; compare flagged cases.
+
+### AI prompts to learn this model
+
+- "Explain Isolation Forest and how it isolates anomalies."
+- "How does unsupervised anomaly detection differ from supervised classification?"
 
 ### Starter code
 
@@ -63,8 +76,6 @@ Before running the starter code, write a one-sentence justification for each:
 - How do you interpret a -1 prediction?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A list of the top 10 flagged anomalies** with their feature values.
 2. **A comparison table** of Isolation Forest vs. LOF vs. One-Class SVM.

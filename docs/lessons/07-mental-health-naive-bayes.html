@@ -226,12 +226,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a></li>
+  <li><a href="#introduction-to-the-domain" id="toc-introduction-to-the-domain" class="nav-link active" data-scroll-target="#introduction-to-the-domain">Introduction to the Domain</a>
+  <ul class="collapse">
+  <li><a href="#research-background" id="toc-research-background" class="nav-link" data-scroll-target="#research-background">Research background</a></li>
+  </ul></li>
   <li><a href="#research-question" id="toc-research-question" class="nav-link" data-scroll-target="#research-question">Research Question</a></li>
   <li><a href="#open-source-dataset" id="toc-open-source-dataset" class="nav-link" data-scroll-target="#open-source-dataset">Open-Source Dataset</a></li>
   <li><a href="#practical-exercise" id="toc-practical-exercise" class="nav-link" data-scroll-target="#practical-exercise">Practical Exercise</a>
   <ul class="collapse">
   <li><a href="#model-to-explore" id="toc-model-to-explore" class="nav-link" data-scroll-target="#model-to-explore">Model to explore</a></li>
+  <li><a href="#ai-prompts-to-learn-this-model" id="toc-ai-prompts-to-learn-this-model" class="nav-link" data-scroll-target="#ai-prompts-to-learn-this-model">AI prompts to learn this model</a></li>
   <li><a href="#starter-code" id="toc-starter-code" class="nav-link" data-scroll-target="#starter-code">Starter code</a></li>
   <li><a href="#suggested-ai-prompts" id="toc-suggested-ai-prompts" class="nav-link" data-scroll-target="#suggested-ai-prompts">Suggested AI prompts</a></li>
   <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
@@ -266,6 +270,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="introduction-to-the-domain" class="level2">
 <h2 class="anchored" data-anchor-id="introduction-to-the-domain">Introduction to the Domain</h2>
 <p>Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification.</p>
+<section id="research-background" class="level3">
+<h3 class="anchored" data-anchor-id="research-background">Research background</h3>
+<p>Language is a window into mental health. De Choudhury et al.&nbsp;(2013) showed that social media language can predict depression, sparking a large literature on digital mental health. Naive Bayes, despite its strong independence assumptions, remains a fast and interpretable baseline for text classification (Pang &amp; Lee 2008). These works are accessible and highlight both promise and ethical pitfalls.</p>
+<p><strong>Citations:</strong> - De Choudhury M et al.&nbsp;Predicting depression via social media. <em>ICWSM</em> (2013). - Pang B, Lee L. Opinion mining and sentiment analysis. <em>Foundations and Trends in Information Retrieval</em> (2008).</p>
+</section>
 </section>
 <section id="research-question" class="level2">
 <h2 class="anchored" data-anchor-id="research-question">Research Question</h2>
@@ -286,6 +295,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="model-to-explore" class="level3">
 <h3 class="anchored" data-anchor-id="model-to-explore">Model to explore</h3>
 <p>Multinomial Naive Bayes with TF-IDF features (scikit-learn).</p>
+</section>
+<section id="ai-prompts-to-learn-this-model" class="level3">
+<h3 class="anchored" data-anchor-id="ai-prompts-to-learn-this-model">AI prompts to learn this model</h3>
+<ul>
+<li>“Explain Naive Bayes text classification and why the ‘naive’ independence assumption is violated but still works.”</li>
+<li>“How do TF-IDF features work, and why log probabilities?”</li>
+</ul>
 </section>
 <section id="starter-code" class="level3">
 <h3 class="anchored" data-anchor-id="starter-code">Starter code</h3>
@@ -333,7 +349,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="deliverables" class="level2">
 <h2 class="anchored" data-anchor-id="deliverables">Deliverables</h2>
-<p>Produce and submit:</p>
 <ol type="1">
 <li><strong>A table of the top 15 words</strong> per class by log-probability.</li>
 <li><strong>A confusion matrix</strong> and per-class F1 scores.</li>
@@ -811,76 +826,87 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification.</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">### Research background</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Can short text posts be classified into mental-health categories, and how far does a simple Naive Bayes model go?</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>Language is a window into mental health. De Choudhury et al. (2013) showed that social media language can predict depression, sparking a large literature on digital mental health. Naive Bayes, despite its strong independence assumptions, remains a fast and interpretable baseline for text classification (Pang &amp; Lee 2008). These works are accessible and highlight both promise and ethical pitfalls.</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>**Reddit Mental Health (or CLPsych shared tasks).**</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>**Citations:**</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>De Choudhury M et al. Predicting depression via social media. *ICWSM* (2013).</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Pang B, Lee L. Opinion mining and sentiment analysis. *Foundations and Trends in Information Retrieval* (2008).</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://zenodo.org/records/3941387 (Reddit mental health dataset) or CLPsych datasets.</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: varies; tens of thousands of posts.</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: condition label (e.g., depression, anxiety, none).</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: anonymized; handle with care; not for clinical use.</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>Multinomial Naive Bayes with TF-IDF features (scikit-learn).</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research Question</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>Can short text posts be classified into mental-health categories, and how far does a simple Naive Bayes model go?</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Open-Source Dataset</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>**Reddit Mental Health (or CLPsych shared tasks).**</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Link: https://zenodo.org/records/3941387 (Reddit mental health dataset) or CLPsych datasets.</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Size: varies; tens of thousands of posts.</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Outcome: condition label (e.g., depression, anxiety, none).</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Notes: anonymized; handle with care; not for clinical use.</span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Practical Exercise</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">### Model to explore</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>Multinomial Naive Bayes with TF-IDF features (scikit-learn).</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">### AI prompts to learn this model</span></span>
 <span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"mental_health_posts.csv"</span>)  <span class="co"># columns: text, label</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>Xtr, Xte, ytr, yte <span class="op">=</span> train_test_split(df[<span class="st">"text"</span>], df[<span class="st">"label"</span>],</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>                                       test_size<span class="op">=</span><span class="fl">0.2</span>, stratify<span class="op">=</span>df[<span class="st">"label"</span>], random_state<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([(<span class="st">"tfidf"</span>, TfidfVectorizer(stop_words<span class="op">=</span><span class="st">"english"</span>, max_features<span class="op">=</span><span class="dv">5000</span>)),</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"nb"</span>, MultinomialNB())])</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>pipe.fit(Xtr, ytr)</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(yte, pipe.predict(Xte)))</span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why is Naive Bayes 'naive', and why does it still work for text?"</span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I inspect which words drive each class prediction?"</span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What are the ethical risks of classifying mental health from social media?"</span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try logistic regression with TF-IDF and compare.</span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add bigrams and tune min_df.</span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examine errors: which posts are hardest?</span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`stop_words="english"`</span> and <span class="in">`max_features=5000`</span>?</span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why MultinomialNB over GaussianNB for text?</span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why stratify the split?</span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why a Pipeline rather than separate fit/transform?</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Explain Naive Bayes text classification and why the 'naive' independence assumption is violated but still works."</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do TF-IDF features work, and why log probabilities?"</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="fu">### Starter code</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">```python</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.feature_extraction.text <span class="im">import</span> TfidfVectorizer</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.naive_bayes <span class="im">import</span> MultinomialNB</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report</span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"mental_health_posts.csv"</span>)  <span class="co"># columns: text, label</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>Xtr, Xte, ytr, yte <span class="op">=</span> train_test_split(df[<span class="st">"text"</span>], df[<span class="st">"label"</span>],</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>                                       test_size<span class="op">=</span><span class="fl">0.2</span>, stratify<span class="op">=</span>df[<span class="st">"label"</span>], random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>pipe <span class="op">=</span> Pipeline([(<span class="st">"tfidf"</span>, TfidfVectorizer(stop_words<span class="op">=</span><span class="st">"english"</span>, max_features<span class="op">=</span><span class="dv">5000</span>)),</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>                 (<span class="st">"nb"</span>, MultinomialNB())])</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>pipe.fit(Xtr, ytr)</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(yte, pipe.predict(Xte)))</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">### Suggested AI prompts</span></span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"Why is Naive Bayes 'naive', and why does it still work for text?"</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"How do I inspect which words drive each class prediction?"</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>"What are the ethical risks of classifying mental health from social media?"</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">### Extensions</span></span>
 <span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>Produce and submit:</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Try logistic regression with TF-IDF and compare.</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Add bigrams and tune min_df.</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Examine errors: which posts are hardest?</span>
 <span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A table of the top 15 words** per class by log-probability.</span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A confusion matrix** and per-class F1 scores.</span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why is Naive Bayes "naive," and why does it still work for text?</span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What assumptions does it make about word independence?</span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the privacy/ethics risks of classifying mental health from social media?</span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>When would a transformer (Lesson 16) be worth the added complexity?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="fu">## Lines to wrestle with (THINK)</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>Before running the starter code, write a one-sentence justification for each:</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why <span class="in">`stop_words="english"`</span> and <span class="in">`max_features=5000`</span>?</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why MultinomialNB over GaussianNB for text?</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why stratify the split?</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Why a Pipeline rather than separate fit/transform?</span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## Deliverables</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**A table of the top 15 words** per class by log-probability.</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**A confusion matrix** and per-class F1 scores.</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Written answers** (3-5 sentences each):</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>Why is Naive Bayes "naive," and why does it still work for text?</span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What assumptions does it make about word independence?</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>What are the privacy/ethics risks of classifying mental health from social media?</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a><span class="ss">   - </span>When would a transformer (Lesson 16) be worth the added complexity?</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

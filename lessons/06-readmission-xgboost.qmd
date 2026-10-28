@@ -6,6 +6,14 @@ title: "Lesson 6: Hospital Readmission - Gradient Boosting (XGBoost)"
 
 Unplanned hospital readmissions are costly and often preventable. Predicting which patients will return within 30 days lets hospitals target discharge planning and follow-up. The data is messy: mixed types, missingness, and rare outcomes.
 
+### Research background
+
+Hospital readmissions are a major quality and cost issue. Kansagara et al. (2011) systematically reviewed readmission risk models and found most had modest discrimination, highlighting the difficulty of the problem. Gradient boosting (Friedman 2001) and its efficient implementation XGBoost (Chen & Guestrin 2016) became standard tools for tabular clinical data. Read these for a realistic sense of both the clinical challenge and the method.
+
+**Citations:**
+- Kansagara D et al. Risk prediction models for hospital readmission. *JAMA* (2011).
+- Chen T, Guestrin C. XGBoost: A Scalable Tree Boosting System. *KDD* (2016).
+
 ## Research Question
 
 Can we predict 30-day readmission from administrative and clinical data, and does gradient boosting beat logistic regression?
@@ -25,6 +33,11 @@ Can we predict 30-day readmission from administrative and clinical data, and doe
 ### Model to explore
 
 XGBoost (`xgboost.XGBClassifier`) with careful handling of categoricals and imbalance.
+
+### AI prompts to learn this model
+
+- "Explain gradient boosting: how does each new tree correct the previous ones?"
+- "What hyperparameters matter most in XGBoost, and what does each control?"
 
 ### Starter code
 
@@ -71,8 +84,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why group folds by patient to avoid leakage?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A SHAP summary plot** of top drivers of readmission.
 2. **A grouped (by patient) cross-validation** result vs. naive split.

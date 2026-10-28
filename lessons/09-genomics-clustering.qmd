@@ -6,6 +6,14 @@ title: "Lesson 9: Genomics - PCA and Clustering"
 
 Genomics produces thousands of features (genes) per sample. Unsupervised methods reduce dimensionality and reveal structure: cancer subtypes, cell types, population stratification. PCA and clustering are the workhorses.
 
+### Research background
+
+Gene-expression profiling can reveal cancer subtypes. Eisen et al. (1998) introduced clustering and visualization of genome-wide expression data, launching the field of cancer genomics. PCA (Jolliffe 2002) is the standard tool for reducing thousands of genes to a few interpretable dimensions. These are foundational and approachable papers.
+
+**Citations:**
+- Eisen MB et al. Cluster analysis and display of genome-wide expression patterns. *PNAS* (1998).
+- Jolliffe IT. *Principal Component Analysis* (2nd ed., Springer, 2002).
+
 ## Research Question
 
 Can gene-expression profiles separate cancer subtypes without labels, and do clusters align with known biology?
@@ -24,6 +32,11 @@ Can gene-expression profiles separate cancer subtypes without labels, and do clu
 ### Model to explore
 
 PCA for dimensionality reduction + KMeans / hierarchical clustering; evaluate with silhouette and adjusted Rand index.
+
+### AI prompts to learn this model
+
+- "Explain PCA to an undergraduate: what are principal components and how are they computed?"
+- "How does KMeans clustering work, and how do I choose k?"
 
 ### Starter code
 
@@ -65,8 +78,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why cluster on PCA scores rather than raw genes?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A PC1 vs PC2 scatter plot** colored by true cancer type.
 2. **A cluster evaluation table** (silhouette, ARI) for KMeans and hierarchical clustering.

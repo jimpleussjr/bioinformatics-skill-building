@@ -6,6 +6,14 @@ title: "Lesson 12: Drug Discovery - Random Forest on Molecules"
 
 Drug discovery screens thousands of compounds for activity. Molecular descriptors (physicochemical properties) can predict toxicity or activity, accelerating prioritization. Tree-based models handle mixed, high-dimensional descriptors well.
 
+### Research background
+
+Machine learning accelerates drug discovery by predicting compound activity or toxicity from molecular structure. Svetnik et al. (2003) showed random forests work well for compound classification, and Rogers & Hahn (2010) introduced extended-connectivity fingerprints (ECFP) now standard for representing molecules. Both are readable introductions to cheminformatics ML.
+
+**Citations:**
+- Svetnik V et al. Random forest: a classification and regression tool for compound classification and QSAR modeling. *Journal of Chemical Information and Computer Sciences* (2003).
+- Rogers D, Hahn M. Extended-connectivity fingerprints. *Journal of Chemical Information and Modeling* (2010).
+
 ## Research Question
 
 Can molecular descriptors predict compound toxicity (Tox21), and which properties matter most?
@@ -25,6 +33,11 @@ Can molecular descriptors predict compound toxicity (Tox21), and which propertie
 ### Model to explore
 
 Random Forest on RDKit descriptors (or Morgan fingerprints).
+
+### AI prompts to learn this model
+
+- "Explain how molecules are represented as fingerprints/descriptors for ML."
+- "Why do random forests work well on high-dimensional molecular data?"
 
 ### Starter code
 
@@ -67,8 +80,6 @@ Before running the starter code, write a one-sentence justification for each:
 - What is scaffold splitting and why does random splitting mislead?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A feature-importance plot** of top descriptors.
 2. **An evaluation table** using scaffold split (AUC-PR and AUC-ROC).

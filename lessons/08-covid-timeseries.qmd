@@ -6,6 +6,14 @@ title: "Lesson 8: COVID-19 - Time-Series Forecasting"
 
 Pandemics unfold over time, and forecasting cases, hospitalizations, and deaths informs policy. Time-series methods capture trend, seasonality, and shocks, but COVID-19 broke many assumptions (structural breaks, reporting delays).
 
+### Research background
+
+Forecasting during COVID-19 exposed the limits of standard time-series methods. Petropoulos and Makridakis (2020) evaluated forecasts made early in the pandemic and found simple models often competitive. Hyndman and Athanasopoulos's open textbook *Forecasting: Principles and Practice* is the standard accessible introduction to ARIMA and exponential smoothing. Both are readable for undergraduates.
+
+**Citations:**
+- Petropoulos F, Makridakis S. Forecasting the novel coronavirus COVID-19. *PLOS ONE* (2020).
+- Hyndman RJ, Athanasopoulos G. *Forecasting: Principles and Practice* (3rd ed., OTexts, 2021).
+
 ## Research Question
 
 Can we forecast COVID-19 cases for a region, and how do classical (ARIMA) and modern (Prophet) methods compare?
@@ -25,6 +33,11 @@ Can we forecast COVID-19 cases for a region, and how do classical (ARIMA) and mo
 ### Model to explore
 
 ARIMA (statsmodels) and Prophet; also try simple baselines.
+
+### AI prompts to learn this model
+
+- "Explain ARIMA to an undergraduate: what do p, d, q mean and how do I choose them?"
+- "What is stationarity, and why does ARIMA require it?"
 
 ### Starter code
 
@@ -65,8 +78,6 @@ Before running the starter code, write a one-sentence justification for each:
 - Why hold out the last 30 days?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A forecast plot** with prediction intervals vs. actuals for the last 30 days.
 2. **A table** of MAE/RMSE/MAPE for ARIMA, Prophet, and a naive baseline.

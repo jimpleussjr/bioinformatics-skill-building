@@ -6,6 +6,14 @@ title: "Lesson 15: Obesity - Ordinal and Multinomial Regression"
 
 Obesity is classified into ordered categories (normal, overweight, obese I/II/III). When the outcome is ordinal, ordinal regression respects the ordering and is more efficient than treating categories as nominal.
 
+### Research background
+
+Obesity is classified into ordered categories (overweight, obese I/II/III) by WHO criteria. Ordinal regression (McCullagh 1980) respects this ordering and is more efficient than treating categories as nominal. The dataset here combines real and synthetic data on eating habits and physical condition to estimate obesity levels.
+
+**Citations:**
+- McCullagh P. Regression models for ordinal data. *Journal of the Royal Statistical Society, Series B* (1980).
+- World Health Organization. Obesity: preventing and managing the global epidemic. *WHO Technical Report Series* (2000).
+
 ## Research Question
 
 What factors predict obesity level, and does ordinal regression outperform multinomial?
@@ -25,6 +33,11 @@ What factors predict obesity level, and does ordinal regression outperform multi
 ### Model to explore
 
 Ordinal logistic regression (mord / statsmodels) vs. multinomial logistic regression.
+
+### AI prompts to learn this model
+
+- "Explain ordinal logistic regression and the proportional odds assumption."
+- "When should I use multinomial vs. ordinal regression?"
 
 ### Starter code
 
@@ -64,8 +77,6 @@ Before running the starter code, write a one-sentence justification for each:
 - When is ordinal regression preferred over multinomial?
 
 ## Deliverables
-
-Produce and submit:
 
 1. **A confusion matrix** for the ordinal model.
 2. **A comparison table** of ordinal vs. multinomial (accuracy, log-loss).
