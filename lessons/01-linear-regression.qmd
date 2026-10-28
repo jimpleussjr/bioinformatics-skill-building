@@ -1,0 +1,74 @@
+---
+title: "Lesson 1: Predicting Birth Weight - Linear Regression"
+---
+
+## Introduction to the Domain
+
+Birth weight is a key indicator of newborn health; low birth weight is linked to infant mortality and developmental problems. Maternal factors (age, weight, smoking, hypertension, etc.) are associated with birth weight. Linear regression gives an interpretable baseline: each coefficient estimates the change in expected birth weight per unit change in a predictor.
+
+## Research Question
+
+Which maternal factors predict infant birth weight, and how do we interpret the coefficients and model fit?
+
+## Open-Source Dataset
+
+**Low Birth Weight (birthwt) dataset** (MASS / Kaggle).
+
+- Link: https://www.kaggle.com/datasets/abhishek14398/low-birth-weight (or `MASS::birthwt` in R)
+- Size: ~189 rows.
+- Outcome: `bwt` (birth weight in grams).
+- Predictors: mother's age, weight, race, smoking, hypertension, uterine irritability, physician visits, etc.
+- Notes: small sample; check for outliers and skew.
+
+## Practical Exercise
+
+### Model to explore
+
+Simple and multiple linear regression (statsmodels `OLS` / scikit-learn `LinearRegression`). Focus on interpretation, not just prediction.
+
+### Starter code
+
+```python
+import pandas as pd
+import statsmodels.api as sm
+
+df = pd.read_csv("birthwt.csv")
+# THINK: why drop only the outcome (and ID columns) and not other columns?
+X = df.drop(columns=["bwt", "id"])
+y = df["bwt"]
+# THINK: why add a constant? What happens if you forget it?
+X = sm.add_constant(X)
+# THINK: why use statsmodels OLS here instead of sklearn LinearRegression?
+model = sm.OLS(  # THINK: what assumptions does OLS require?y, X).fit()
+print(model.summary())
+```
+
+### Lines to wrestle with (THINK)
+
+- `X = df.drop(...)` — which columns are legitimate predictors vs. leakage/ID?
+- `sm.add_constant(X)` — what is the intercept doing, and how does its meaning change with standardization?
+- `sm.OLS(  # THINK: what assumptions does OLS require?y, X)` — OLS assumes linearity, independence, homoscedasticity, normality of residuals. Which of these can you check from `model.summary()`?
+
+### Suggested AI prompts
+
+- "Explain the coefficient for `smoke` in plain language, including units."
+- "What does R-squared vs. adjusted R-squared tell me here?"
+- "Which OLS assumptions are most likely violated in this data, and how would I check?"
+
+### Extensions
+
+- Standardize predictors and re-fit; how do coefficients change?
+- Add an interaction (age x smoking) and test significance.
+- Plot residuals vs. fitted to check homoscedasticity.
+
+## Deliverables
+
+Produce and submit:
+
+1. **A table of coefficients** with 95% confidence intervals and p-values (from `model.summary()` or `model.conf_int()`).
+2. **A residual plot** (residuals vs. fitted) and a Q-Q plot of residuals.
+3. **Written answers** (3-5 sentences each):
+   - What does the coefficient of the strongest predictor mean in clinical terms?
+   - State the four OLS assumptions and which is most concerning for this dataset.
+   - Why might a linear model be a poor choice for predicting birth weight, and what would you try next?
+   - How would you guard against overfitting with only ~189 rows?

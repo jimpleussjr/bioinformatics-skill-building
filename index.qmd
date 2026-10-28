@@ -4,7 +4,7 @@ title: "Health Domains & Machine Learning: A Skill-Building Course"
 
 ## Welcome
 
-This site hosts a self-paced series of **15 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise.
+This site hosts a self-paced series of **17 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise. Every lesson now includes **starter code with THINK markers** and a **Deliverables** section (a figure, a table, and written questions).
 
 Every lesson follows the same scaffold:
 
@@ -12,11 +12,13 @@ Every lesson follows the same scaffold:
 2. **Research Question** — a concrete, answerable question.
 3. **Open-Source Dataset** — a publicly available data source, with discussion and a link.
 4. **Practical Exercise** — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.
+5. **Deliverables** — a figure, a table, and questions to answer.
 
 ## How to use this course
 
 - Work the lessons **in order** the first time through; later you can jump to a domain or model of interest.
-- Each exercise is designed to be completed in a Jupyter notebook or RStudio session; starter code is provided.
+- **Do not just run the starter code.** Lines flagged `# THINK` require you to write a one-sentence justification before executing.
+- Each exercise is designed to be completed in a Jupyter notebook or RStudio session.
 - Use the suggested **AI prompts** to have a language model explain, debug, or extend your analysis — treat the AI as a tutor, not an oracle.
 - Datasets are linked, not vendored: download them yourself so you control versioning.
 
@@ -24,21 +26,23 @@ Every lesson follows the same scaffold:
 
 | # | Health Domain | Model / Framework |
 |---|---|---|
-| 1 | [Cardiovascular disease risk](lessons/01-cardiovascular-logistic.qmd) | Logistic Regression |
-| 2 | [Diabetes prediction](lessons/02-diabetes-random-forest.qmd) | Random Forest |
-| 3 | [Breast cancer classification](lessons/03-breast-cancer-svm.qmd) | Support Vector Machines |
-| 4 | [Hospital readmission](lessons/04-readmission-xgboost.qmd) | Gradient Boosting (XGBoost) |
-| 5 | [Mental health (text)](lessons/05-mental-health-naive-bayes.qmd) | Naive Bayes / NLP |
-| 6 | [COVID-19](lessons/06-covid-timeseries.qmd) | Time-Series Forecasting |
-| 7 | [Genomics](lessons/07-genomics-clustering.qmd) | PCA & Clustering |
-| 8 | [Medical imaging](lessons/08-medical-imaging-cnn.qmd) | Convolutional Neural Networks |
-| 9 | [Cancer survival](lessons/09-survival-cox.qmd) | Cox Proportional Hazards |
-| 10 | [Drug discovery](lessons/10-drug-discovery-rf.qmd) | Random Forest on Molecules |
-| 11 | [Causal inference (NHANES)](lessons/11-causal-inference-nhanes.qmd) | Propensity Scores |
-| 12 | [Healthcare costs](lessons/12-healthcare-costs-glm.qmd) | Generalized Linear Models |
-| 13 | [Obesity](lessons/13-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
-| 14 | [Clinical notes (EHR)](lessons/14-ehr-nlp-transformers.qmd) | Transformers / BERT |
-| 15 | [Anomaly detection](lessons/15-anomaly-detection.qmd) | Isolation Forest |
+| 1 | [Predicting birth weight](lessons/01-linear-regression.qmd) | Linear Regression |
+| 2 | [Train/test splitting](lessons/02-train-test-split.qmd) | Evaluation methodology |
+| 3 | [Cardiovascular disease risk](lessons/03-cardiovascular-logistic.qmd) | Logistic Regression |
+| 4 | [Diabetes prediction](lessons/04-diabetes-random-forest.qmd) | Random Forest |
+| 5 | [Breast cancer classification](lessons/05-breast-cancer-svm.qmd) | Support Vector Machines |
+| 6 | [Hospital readmission](lessons/06-readmission-xgboost.qmd) | Gradient Boosting (XGBoost) |
+| 7 | [Mental health (text)](lessons/07-mental-health-naive-bayes.qmd) | Naive Bayes / NLP |
+| 8 | [COVID-19](lessons/08-covid-timeseries.qmd) | Time-Series Forecasting |
+| 9 | [Genomics](lessons/09-genomics-clustering.qmd) | PCA & Clustering |
+| 10 | [Medical imaging](lessons/10-medical-imaging-cnn.qmd) | Convolutional Neural Networks |
+| 11 | [Cancer survival](lessons/11-survival-cox.qmd) | Cox Proportional Hazards |
+| 12 | [Drug discovery](lessons/12-drug-discovery-rf.qmd) | Random Forest on Molecules |
+| 13 | [Causal inference (NHANES)](lessons/13-causal-inference-nhanes.qmd) | Propensity Scores |
+| 14 | [Healthcare costs](lessons/14-healthcare-costs-glm.qmd) | Generalized Linear Models |
+| 15 | [Obesity](lessons/15-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
+| 16 | [Clinical notes (EHR)](lessons/16-ehr-nlp-transformers.qmd) | Transformers / BERT |
+| 17 | [Anomaly detection](lessons/17-anomaly-detection.qmd) | Isolation Forest |
 
 ## Prerequisites
 
