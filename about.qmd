@@ -1,0 +1,36 @@
+---
+title: "About this course"
+---
+
+## Who this is for
+
+Students and early-career researchers in health, biology, and data science who want hands-on practice connecting **clinical and public-health questions** to **statistical and machine-learning methods**.
+
+## What you will learn
+
+- How to frame a health research question in a way a model can answer.
+- How to find, inspect, and responsibly use open health datasets.
+- How to fit, evaluate, and interpret a range of models: regression, trees, boosting, SVMs, clustering, survival, time series, NLP, deep learning, and anomaly detection.
+- How to use AI assistants to explain code, suggest diagnostics, and explore alternatives — while keeping yourself in charge of the analysis.
+
+## How the lessons are structured
+
+Each lesson has four parts:
+
+1. **Introduction to the Domain** — background and why the problem matters.
+2. **Research Question** — a precise, testable question.
+3. **Open-Source Dataset** — a public data source with discussion and a link.
+4. **Practical Exercise** — the model/framework to explore, starter code, AI prompts, and extension ideas.
+
+## A note on responsible ML in health
+
+These exercises are **educational**. Health models can harm real people if misused. Always:
+
+- Validate on held-out and, ideally, external data.
+- Examine performance across subgroups (fairness).
+- Involve clinicians and domain experts.
+- Never deploy a model for patient care without proper regulatory and ethical review.
+
+## Author
+
+James Pleuss — West Point.

@@ -1,0 +1,51 @@
+---
+title: "Health Domains & Machine Learning: A Skill-Building Course"
+---
+
+## Welcome
+
+This site hosts a self-paced series of **15 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise.
+
+Every lesson follows the same scaffold:
+
+1. **Introduction to the Domain** — what the problem is and why it matters.
+2. **Research Question** — a concrete, answerable question.
+3. **Open-Source Dataset** — a publicly available data source, with discussion and a link.
+4. **Practical Exercise** — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.
+
+## How to use this course
+
+- Work the lessons **in order** the first time through; later you can jump to a domain or model of interest.
+- Each exercise is designed to be completed in a Jupyter notebook or RStudio session; starter code is provided.
+- Use the suggested **AI prompts** to have a language model explain, debug, or extend your analysis — treat the AI as a tutor, not an oracle.
+- Datasets are linked, not vendored: download them yourself so you control versioning.
+
+## Lessons
+
+| # | Health Domain | Model / Framework |
+|---|---|---|
+| 1 | [Cardiovascular disease risk](lessons/01-cardiovascular-logistic.qmd) | Logistic Regression |
+| 2 | [Diabetes prediction](lessons/02-diabetes-random-forest.qmd) | Random Forest |
+| 3 | [Breast cancer classification](lessons/03-breast-cancer-svm.qmd) | Support Vector Machines |
+| 4 | [Hospital readmission](lessons/04-readmission-xgboost.qmd) | Gradient Boosting (XGBoost) |
+| 5 | [Mental health (text)](lessons/05-mental-health-naive-bayes.qmd) | Naive Bayes / NLP |
+| 6 | [COVID-19](lessons/06-covid-timeseries.qmd) | Time-Series Forecasting |
+| 7 | [Genomics](lessons/07-genomics-clustering.qmd) | PCA & Clustering |
+| 8 | [Medical imaging](lessons/08-medical-imaging-cnn.qmd) | Convolutional Neural Networks |
+| 9 | [Cancer survival](lessons/09-survival-cox.qmd) | Cox Proportional Hazards |
+| 10 | [Drug discovery](lessons/10-drug-discovery-rf.qmd) | Random Forest on Molecules |
+| 11 | [Causal inference (NHANES)](lessons/11-causal-inference-nhanes.qmd) | Propensity Scores |
+| 12 | [Healthcare costs](lessons/12-healthcare-costs-glm.qmd) | Generalized Linear Models |
+| 13 | [Obesity](lessons/13-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
+| 14 | [Clinical notes (EHR)](lessons/14-ehr-nlp-transformers.qmd) | Transformers / BERT |
+| 15 | [Anomaly detection](lessons/15-anomaly-detection.qmd) | Isolation Forest |
+
+## Prerequisites
+
+- Basic Python (pandas, numpy, scikit-learn) or R.
+- A GitHub account if you want to fork and track your own progress.
+- Curiosity about health data and responsible ML.
+
+## Responsible use
+
+Health data carries real-world consequences. Models built in these exercises are **educational** and must not be used for clinical decision-making. Always validate on independent data, examine fairness across subgroups, and involve domain experts.

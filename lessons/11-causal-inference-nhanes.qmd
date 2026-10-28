@@ -1,0 +1,56 @@
+---
+title: "Lesson 11: Causal Inference - Propensity Scores (NHANES)"
+---
+
+## Introduction to the Domain
+
+Observational health studies are plagued by confounding. Causal inference methods (propensity scores, matching, weighting) aim to estimate treatment effects as if from a randomized trial. NHANES provides rich, nationally representative health data.
+
+## Research Question
+
+Does smoking causally affect a biomarker (e.g., CRP / blood pressure), after adjusting for confounders?
+
+## Open-Source Dataset
+
+**NHANES (National Health and Nutrition Examination Survey).**
+
+- Link: https://www.cdc.gov/nchs/nhanes/
+- Size: thousands per cycle; combine cycles.
+- Variables: smoking status, demographics, BMI, biomarkers.
+- Notes: survey weights; handle complex design for population inference.
+
+## Practical Exercise
+
+### Model to explore
+
+Propensity score matching / IPW using logistic regression for the propensity model.
+
+### Starter code
+
+```python
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import NearestNeighbors
+import numpy as np
+
+df = pd.read_csv("nhanes.csv")  # columns: smoke (0/1), age, sex, bmi, sbp, ...
+conf = ["age", "sex", "bmi"]
+ps_model = LogisticRegression().fit(df[conf], df["smoke"])
+df["ps"] = ps_model.predict_proba(df[conf])[:, 1]
+# Nearest-neighbor matching on logit(ps)
+logit = np.log(df["ps"]/(1-df["ps"]))
+# ... match treated to control
+print(df.groupby("smoke")["sbp"].mean())
+```
+
+### Suggested AI prompts
+
+- "What is a propensity score and what does it balance?"
+- "How do I check covariate balance after matching?"
+- "What assumptions (positivity, no unmeasured confounding) are required?"
+
+### Extensions
+
+- Use inverse probability weighting (IPW) and compare.
+- Estimate the average treatment effect on the treated (ATT).
+- Add survey weights for population representativeness.

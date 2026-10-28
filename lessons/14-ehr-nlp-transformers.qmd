@@ -1,0 +1,53 @@
+---
+title: "Lesson 14: Clinical Notes (EHR) - Transformers / BERT"
+---
+
+## Introduction to the Domain
+
+Clinical notes contain rich information not captured in structured fields. NLP can extract phenotypes, predict outcomes, and support coding. Transformers (BERT) dominate, but clinical variants (ClinicalBERT, BioBERT) and privacy constraints matter.
+
+## Research Question
+
+Can a transformer model classify or extract information from clinical notes, and what are the privacy implications?
+
+## Open-Source Dataset
+
+**MIMIC-III / MIMIC-IV (requires credentialed access) or i2b2 challenges.**
+
+- Link: https://physionet.org/content/mimiciii/1.4/ (credentialed)
+- Alternative (open): https://huggingface.co/datasets (search clinical notes)
+- Size: large.
+- Outcome: ICD codes, mortality, phenotypes.
+- Notes: de-identified but re-identification risk; data use agreements.
+
+## Practical Exercise
+
+### Model to explore
+
+Fine-tune a pretrained clinical BERT (e.g., `emilyalsentzer/Bio_ClinicalBERT`) with Hugging Face Transformers.
+
+### Starter code
+
+```python
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments
+from datasets import load_dataset
+
+model_name = "emilyalsentzer/Bio_ClinicalBERT"
+tok = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=2)
+print("loaded", model_name)
+# ds = load_dataset("your_clinical_dataset")
+# tokenize, train with Trainer(...)
+```
+
+### Suggested AI prompts
+
+- "Why use a clinical BERT instead of general BERT?"
+- "How do I handle long clinical notes (token limits)?"
+- "What are the privacy risks of fine-tuning on clinical text?"
+
+### Extensions
+
+- Try zero-shot classification with a general LLM.
+- Compare with TF-IDF + logistic regression baseline.
+- Evaluate calibration and subgroup fairness.

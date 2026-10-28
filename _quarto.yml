@@ -1,0 +1,58 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Health Domains & ML: A Skill-Building Course"
+  description: "Fifteen self-paced lessons pairing health domains with statistical and machine-learning models."
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - text: Lessons
+        menu:
+          - href: lessons/01-cardiovascular-logistic.qmd
+            text: "1. Cardiovascular Disease - Logistic Regression"
+          - href: lessons/02-diabetes-random-forest.qmd
+            text: "2. Diabetes - Random Forest"
+          - href: lessons/03-breast-cancer-svm.qmd
+            text: "3. Breast Cancer - Support Vector Machines"
+          - href: lessons/04-readmission-xgboost.qmd
+            text: "4. Hospital Readmission - Gradient Boosting (XGBoost)"
+          - href: lessons/05-mental-health-naive-bayes.qmd
+            text: "5. Mental Health Text - Naive Bayes / NLP"
+          - href: lessons/06-covid-timeseries.qmd
+            text: "6. COVID-19 - Time-Series Forecasting"
+          - href: lessons/07-genomics-clustering.qmd
+            text: "7. Genomics - PCA & Clustering"
+          - href: lessons/08-medical-imaging-cnn.qmd
+            text: "8. Medical Imaging - Convolutional Neural Networks"
+          - href: lessons/09-survival-cox.qmd
+            text: "9. Cancer Survival - Cox Proportional Hazards"
+          - href: lessons/10-drug-discovery-rf.qmd
+            text: "10. Drug Discovery - Random Forest on Molecules"
+          - href: lessons/11-causal-inference-nhanes.qmd
+            text: "11. Causal Inference - Propensity Scores (NHANES)"
+          - href: lessons/12-healthcare-costs-glm.qmd
+            text: "12. Healthcare Costs - Generalized Linear Models"
+          - href: lessons/13-obesity-ordinal.qmd
+            text: "13. Obesity - Ordinal / Multinomial Regression"
+          - href: lessons/14-ehr-nlp-transformers.qmd
+            text: "14. Clinical Notes - Transformers / BERT"
+          - href: lessons/15-anomaly-detection.qmd
+            text: "15. Anomaly Detection - Isolation Forest"
+  page-footer: "Built with Quarto. Content for educational use."
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    code-fold: show
+    code-tools: true
+    number-sections: false
+

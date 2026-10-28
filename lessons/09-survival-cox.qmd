@@ -1,0 +1,55 @@
+---
+title: "Lesson 9: Cancer Survival - Cox Proportional Hazards"
+---
+
+## Introduction to the Domain
+
+Survival analysis models time-to-event outcomes (death, relapse) while handling censoring (patients lost to follow-up). The Cox proportional hazards model is the standard, relating covariates to hazard without assuming a baseline distribution.
+
+## Research Question
+
+Which factors affect survival time in cancer patients, and how do we handle censored observations?
+
+## Open-Source Dataset
+
+**METABRIC (breast cancer) or SEER sample.**
+
+- Link: https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric
+- Size: ~2,000 patients.
+- Outcome: overall survival time + event indicator.
+- Predictors: age, tumor size, grade, ER/PR/HER2 status, treatment.
+- Notes: censoring ~40%; check proportional hazards assumption.
+
+## Practical Exercise
+
+### Model to explore
+
+Cox PH (lifelines `CoxPHFitter`); evaluate with concordance index.
+
+### Starter code
+
+```python
+import pandas as pd
+from lifelines import CoxPHFitter
+
+df = pd.read_csv("metabric.csv")
+cols = ["age_at_diagnosis", "tumor_size", "neoplasm_histologic_grade",
+        "overall_survival_months", "overall_survival"]
+df = df[cols].dropna()
+cph = CoxPHFitter()
+cph.fit(df, duration_col="overall_survival_months", event_col="overall_survival")
+print(cph.summary)
+print("C-index:", cph.concordance_index_)
+```
+
+### Suggested AI prompts
+
+- "What is censoring and why does standard regression fail?"
+- "Explain the proportional hazards assumption and how to test it."
+- "How do I interpret a hazard ratio clinically?"
+
+### Extensions
+
+- Plot Kaplan-Meier curves by risk group.
+- Try a random survival forest.
+- Check for time-varying effects.

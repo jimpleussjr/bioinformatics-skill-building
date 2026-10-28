@@ -1,0 +1,56 @@
+---
+title: "Lesson 6: COVID-19 - Time-Series Forecasting"
+---
+
+## Introduction to the Domain
+
+Pandemics unfold over time, and forecasting cases, hospitalizations, and deaths informs policy. Time-series methods capture trend, seasonality, and shocks, but COVID-19 broke many assumptions (structural breaks, reporting delays).
+
+## Research Question
+
+Can we forecast COVID-19 cases for a region, and how do classical (ARIMA) and modern (Prophet) methods compare?
+
+## Open-Source Dataset
+
+**Our World in Data COVID-19 dataset.**
+
+- Link: https://github.com/owid/covid-19-data
+- Daily CSV: https://covid.ourworldindata.org/data/owid-covid-data.csv
+- Size: country-day rows since 2020.
+- Variables: new cases, deaths, tests, vaccinations, hospitalizations.
+- Notes: reporting delays and definition changes; smooth/aggregate.
+
+## Practical Exercise
+
+### Model to explore
+
+ARIMA (statsmodels) and Prophet; also try simple baselines.
+
+### Starter code
+
+```python
+import pandas as pd
+from statsmodels.tsa.arima.model import ARIMA
+
+df = pd.read_csv("owid-covid-data.csv")
+sub = df[df["location"] == "United States"][["date", "new_cases_smoothed"]].dropna()
+sub["date"] = pd.to_datetime(sub["date"])
+sub = sub.set_index("date").asfreq("D")
+y = sub["new_cases_smoothed"]
+train, test = y.iloc[:-30], y.iloc[-30:]
+model = ARIMA(train, order=(2, 1, 2)).fit()
+fc = model.forecast(steps=30)
+print(fc.head())
+```
+
+### Suggested AI prompts
+
+- "How do I choose ARIMA (p,d,q) orders? Explain ACF/PACF."
+- "What is Prophet's changepoint prior scale and how does it affect forecasts?"
+- "Why might a naive baseline beat a complex model during a pandemic?"
+
+### Extensions
+
+- Add Prophet with holidays and compare MAPE.
+- Forecast hospitalizations instead of cases.
+- Compute prediction intervals and check coverage.
