@@ -6,7 +6,7 @@ project:
 
 website:
   title: "Health Domains & ML: A Skill-Building Course"
-  description: "Seventeen self-paced lessons pairing health domains with statistical and machine-learning models."
+  description: "Nineteen self-paced lessons pairing health domains with statistical and machine-learning models."
   navbar:
     background: primary
     left:
@@ -18,42 +18,42 @@ website:
         menu:
           - href: lessons/01-linear-regression.qmd
             text: "1. Birth Weight - Linear Regression"
-          - href: lessons/02-train-test-split.qmd
-            text: "2. Train/Test Splitting & Honest Evaluation"
-          - href: lessons/03-cardiovascular-logistic.qmd
-            text: "3. Cardiovascular Disease - Logistic Regression"
-          - href: lessons/04-diabetes-random-forest.qmd
-            text: "4. Diabetes - Random Forest"
-          - href: lessons/05-breast-cancer-svm.qmd
-            text: "5. Breast Cancer - Support Vector Machines"
-          - href: lessons/06-readmission-xgboost.qmd
-            text: "6. Hospital Readmission - Gradient Boosting (XGBoost)"
-          - href: lessons/07-mental-health-naive-bayes.qmd
-            text: "7. Mental Health Text - Naive Bayes / NLP"
-          - href: lessons/08-covid-timeseries.qmd
-            text: "8. COVID-19 - Time-Series Forecasting"
-          - href: lessons/09-genomics-clustering.qmd
-            text: "9. Genomics - PCA & Clustering"
-          - href: lessons/10-medical-imaging-cnn.qmd
-            text: "10. Medical Imaging - Convolutional Neural Networks"
-          - href: lessons/11-survival-cox.qmd
-            text: "11. Cancer Survival - Cox Proportional Hazards"
-          - href: lessons/12-drug-discovery-rf.qmd
-            text: "12. Drug Discovery - Random Forest on Molecules"
+          - href: lessons/02-cardiovascular-logistic.qmd
+            text: "2. Cardiovascular Disease - Logistic Regression"
+          - href: lessons/03-train-test-split.qmd
+            text: "3. Train/Test Splitting & Honest Evaluation"
+          - href: lessons/04-healthcare-costs-glm.qmd
+            text: "4. Healthcare Costs - Generalized Linear Models"
+          - href: lessons/05-obesity-ordinal.qmd
+            text: "5. Obesity - Ordinal / Multinomial Regression"
+          - href: lessons/06-diabetes-random-forest.qmd
+            text: "6. Diabetes - Random Forest"
+          - href: lessons/07-readmission-xgboost.qmd
+            text: "7. Hospital Readmission - Gradient Boosting (XGBoost)"
+          - href: lessons/08-breast-cancer-svm.qmd
+            text: "8. Breast Cancer - Support Vector Machines"
+          - href: lessons/09-mental-health-naive-bayes.qmd
+            text: "9. Mental Health Text - Naive Bayes / NLP"
+          - href: lessons/10-genomics-clustering.qmd
+            text: "10. Genomics - PCA & Clustering"
+          - href: lessons/11-anomaly-detection.qmd
+            text: "11. Anomaly Detection - Isolation Forest"
+          - href: lessons/12-survival-cox.qmd
+            text: "12. Cancer Survival - Cox Proportional Hazards"
           - href: lessons/13-causal-inference-nhanes.qmd
             text: "13. Causal Inference - Propensity Scores (NHANES)"
-          - href: lessons/14-healthcare-costs-glm.qmd
-            text: "14. Healthcare Costs - Generalized Linear Models"
-          - href: lessons/15-obesity-ordinal.qmd
-            text: "15. Obesity - Ordinal / Multinomial Regression"
-          - href: lessons/16-ehr-nlp-transformers.qmd
-            text: "16. Clinical Notes - Transformers / BERT"
-          - href: lessons/17-anomaly-detection.qmd
-            text: "17. Anomaly Detection - Isolation Forest"
-          - href: lessons/18-wearables-activity.qmd
-            text: "18. Wearables - Physical Activity Recognition"
-          - href: lessons/19-microbiome.qmd
-            text: "19. Gut Microbiome - Compositional Data & Classification"
+          - href: lessons/14-covid-timeseries.qmd
+            text: "14. COVID-19 - Time-Series Forecasting"
+          - href: lessons/15-wearables-activity.qmd
+            text: "15. Wearables - Physical Activity Recognition"
+          - href: lessons/16-microbiome.qmd
+            text: "16. Gut Microbiome - Compositional Data"
+          - href: lessons/17-drug-discovery-rf.qmd
+            text: "17. Drug Discovery - Random Forest on Molecules"
+          - href: lessons/18-ehr-nlp-transformers.qmd
+            text: "18. Clinical Notes - Transformers / BERT"
+          - href: lessons/19-medical-imaging-cnn.qmd
+            text: "19. Medical Imaging - Convolutional Neural Networks"
   page-footer: "Built with Quarto. Content for educational use."
 
 format:

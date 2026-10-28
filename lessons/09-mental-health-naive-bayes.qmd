@@ -1,0 +1,89 @@
+---
+title: "Lesson 9: Mental Health Text - Naive Bayes and NLP"
+---
+
+## Introduction to the Domain
+
+Mental health conditions are often first expressed in language. Analyzing text from forums, surveys, or clinical notes can support screening and triage, but raises serious privacy and ethics concerns. Naive Bayes remains a strong, interpretable baseline for text classification.
+
+### Research background
+
+Language is a window into mental health. De Choudhury et al. (2013) showed that social media language can predict depression, sparking a large literature on digital mental health. Naive Bayes, despite its strong independence assumptions, remains a fast and interpretable baseline for text classification (Pang & Lee 2008). These works are accessible and highlight both promise and ethical pitfalls.
+
+**Citations:**
+- De Choudhury M et al. Predicting depression via social media. *ICWSM* (2013).
+- Pang B, Lee L. Opinion mining and sentiment analysis. *Foundations and Trends in Information Retrieval* (2008).
+
+## Research Question
+
+Can short text posts be classified into mental-health categories, and how far does a simple Naive Bayes model go?
+
+## Open-Source Dataset
+
+**Reddit Mental Health (or CLPsych shared tasks).**
+
+- Link: https://zenodo.org/records/3941387 (Reddit mental health dataset) or CLPsych datasets.
+- Size: varies; tens of thousands of posts.
+- Outcome: condition label (e.g., depression, anxiety, none).
+- Notes: anonymized; handle with care; not for clinical use.
+
+## Practical Exercise
+
+### Model to explore
+
+Multinomial Naive Bayes with TF-IDF features (scikit-learn).
+
+### AI prompts to learn this model
+
+- "Explain Naive Bayes text classification and why the 'naive' independence assumption is violated but still works."
+- "How do TF-IDF features work, and why log probabilities?"
+
+### Starter code
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import classification_report
+
+df = pd.read_csv("mental_health_posts.csv")  # columns: text, label
+Xtr, Xte, ytr, yte = train_test_split(df["text"], df["label"],
+                                       test_size=0.2, stratify=df["label"], random_state=42)
+pipe = Pipeline([("tfidf", TfidfVectorizer(stop_words="english", max_features=5000)),
+                 ("nb", MultinomialNB())])
+pipe.fit(Xtr, ytr)
+print(classification_report(yte, pipe.predict(Xte)))
+```
+
+### Suggested AI prompts
+
+- "Why is Naive Bayes 'naive', and why does it still work for text?"
+- "How do I inspect which words drive each class prediction?"
+- "What are the ethical risks of classifying mental health from social media?"
+
+### Extensions
+
+- Try logistic regression with TF-IDF and compare.
+- Add bigrams and tune min_df.
+- Examine errors: which posts are hardest?
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why `stop_words="english"` and `max_features=5000`?
+- Why MultinomialNB over GaussianNB for text?
+- Why stratify the split?
+- Why a Pipeline rather than separate fit/transform?
+
+## Deliverables
+
+1. **A table of the top 15 words** per class by log-probability.
+2. **A confusion matrix** and per-class F1 scores.
+3. **Written answers** (3-5 sentences each):
+   - Why is Naive Bayes "naive," and why does it still work for text?
+   - What assumptions does it make about word independence?
+   - What are the privacy/ethics risks of classifying mental health from social media?
+   - When would a transformer (Lesson 16) be worth the added complexity?

@@ -26,25 +26,25 @@ Every lesson follows the same scaffold:
 
 | # | Health Domain | Model / Framework |
 |---|---|---|
-| 1 | [Predicting birth weight](lessons/01-linear-regression.qmd) | Linear Regression |
-| 2 | [Train/test splitting](lessons/02-train-test-split.qmd) | Evaluation methodology |
-| 3 | [Cardiovascular disease risk](lessons/03-cardiovascular-logistic.qmd) | Logistic Regression |
-| 4 | [Diabetes prediction](lessons/04-diabetes-random-forest.qmd) | Random Forest |
-| 5 | [Breast cancer classification](lessons/05-breast-cancer-svm.qmd) | Support Vector Machines |
-| 6 | [Hospital readmission](lessons/06-readmission-xgboost.qmd) | Gradient Boosting (XGBoost) |
-| 7 | [Mental health (text)](lessons/07-mental-health-naive-bayes.qmd) | Naive Bayes / NLP |
-| 8 | [COVID-19](lessons/08-covid-timeseries.qmd) | Time-Series Forecasting |
-| 9 | [Genomics](lessons/09-genomics-clustering.qmd) | PCA & Clustering |
-| 10 | [Medical imaging](lessons/10-medical-imaging-cnn.qmd) | Convolutional Neural Networks |
-| 11 | [Cancer survival](lessons/11-survival-cox.qmd) | Cox Proportional Hazards |
-| 12 | [Drug discovery](lessons/12-drug-discovery-rf.qmd) | Random Forest on Molecules |
+| 1 | [Birth weight prediction](lessons/01-linear-regression.qmd) | Linear Regression |
+| 2 | [Cardiovascular disease risk](lessons/02-cardiovascular-logistic.qmd) | Logistic Regression |
+| 3 | [Train/test splitting](lessons/03-train-test-split.qmd) | Evaluation methodology |
+| 4 | [Healthcare costs](lessons/04-healthcare-costs-glm.qmd) | Generalized Linear Models |
+| 5 | [Obesity](lessons/05-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
+| 6 | [Diabetes prediction](lessons/06-diabetes-random-forest.qmd) | Random Forest |
+| 7 | [Hospital readmission](lessons/07-readmission-xgboost.qmd) | Gradient Boosting (XGBoost) |
+| 8 | [Breast cancer classification](lessons/08-breast-cancer-svm.qmd) | Support Vector Machines |
+| 9 | [Mental health (text)](lessons/09-mental-health-naive-bayes.qmd) | Naive Bayes / NLP |
+| 10 | [Genomics](lessons/10-genomics-clustering.qmd) | PCA & Clustering |
+| 11 | [Anomaly detection](lessons/11-anomaly-detection.qmd) | Isolation Forest |
+| 12 | [Cancer survival](lessons/12-survival-cox.qmd) | Cox Proportional Hazards |
 | 13 | [Causal inference (NHANES)](lessons/13-causal-inference-nhanes.qmd) | Propensity Scores |
-| 14 | [Healthcare costs](lessons/14-healthcare-costs-glm.qmd) | Generalized Linear Models |
-| 15 | [Obesity](lessons/15-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
-| 16 | [Clinical notes (EHR)](lessons/16-ehr-nlp-transformers.qmd) | Transformers / BERT |
-| 17 | [Anomaly detection](lessons/17-anomaly-detection.qmd) | Isolation Forest |
-| 18 | [Wearables activity](lessons/18-wearables-activity.qmd) | Random Forest on time/frequency features |
-| 19 | [Gut microbiome](lessons/19-microbiome.qmd) | Random Forest on compositional data |
+| 14 | [COVID-19](lessons/14-covid-timeseries.qmd) | Time-Series Forecasting |
+| 15 | [Wearables activity](lessons/15-wearables-activity.qmd) | Random Forest on time/frequency features |
+| 16 | [Gut microbiome](lessons/16-microbiome.qmd) | Random Forest on compositional data |
+| 17 | [Drug discovery](lessons/17-drug-discovery-rf.qmd) | Random Forest on Molecules |
+| 18 | [Clinical notes (EHR)](lessons/18-ehr-nlp-transformers.qmd) | Transformers / BERT |
+| 19 | [Medical imaging](lessons/19-medical-imaging-cnn.qmd) | Convolutional Neural Networks |
 
 ## Prerequisites
 

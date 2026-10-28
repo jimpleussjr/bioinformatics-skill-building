@@ -1,0 +1,88 @@
+---
+title: "Lesson 10: Genomics - PCA and Clustering"
+---
+
+## Introduction to the Domain
+
+Genomics produces thousands of features (genes) per sample. Unsupervised methods reduce dimensionality and reveal structure: cancer subtypes, cell types, population stratification. PCA and clustering are the workhorses.
+
+### Research background
+
+Gene-expression profiling can reveal cancer subtypes. Eisen et al. (1998) introduced clustering and visualization of genome-wide expression data, launching the field of cancer genomics. PCA (Jolliffe 2002) is the standard tool for reducing thousands of genes to a few interpretable dimensions. These are foundational and approachable papers.
+
+**Citations:**
+- Eisen MB et al. Cluster analysis and display of genome-wide expression patterns. *PNAS* (1998).
+- Jolliffe IT. *Principal Component Analysis* (2nd ed., Springer, 2002).
+
+## Research Question
+
+Can gene-expression profiles separate cancer subtypes without labels, and do clusters align with known biology?
+
+## Open-Source Dataset
+
+**TCGA gene expression (via Kaggle or UCSC Xena).**
+
+- Link: https://www.kaggle.com/datasets/crawford/gene-expression (or https://xenabrowser.net/)
+- Size: hundreds of samples, thousands of genes.
+- Outcome: cancer type / subtype (for validation only).
+- Notes: high-dimensional; standardize; consider variance filtering.
+
+## Practical Exercise
+
+### Model to explore
+
+PCA for dimensionality reduction + KMeans / hierarchical clustering; evaluate with silhouette and adjusted Rand index.
+
+### AI prompts to learn this model
+
+- "Explain PCA to an undergraduate: what are principal components and how are they computed?"
+- "How does KMeans clustering work, and how do I choose k?"
+
+### Starter code
+
+```python
+import pandas as pd
+from sklearn.decomposition import PCA
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.metrics import adjusted_rand_score
+
+df = pd.read_csv("gene_expression.csv")
+X = df.drop(columns=["label"])
+y = df["label"]
+Xs = StandardScaler().fit_transform(X)
+Z = PCA(n_components=2).fit_transform(Xs)
+km = KMeans(n_clusters=4, random_state=42, n_init=10).fit(Z)
+print("ARI:", adjusted_rand_score(y, km.labels_))
+```
+
+### Suggested AI prompts
+
+- "Why standardize before PCA on gene expression?"
+- "How many principal components should I keep, and how do I decide?"
+- "When should I use hierarchical clustering instead of KMeans?"
+
+### Extensions
+
+- Plot PC1 vs PC2 colored by true label.
+- Try UMAP and compare with PCA.
+- Filter to top-variance genes and re-cluster.
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why standardize before PCA?
+- Why `n_components=2` for visualization?
+- Why `n_clusters=4` and `n_init=10`?
+- Why cluster on PCA scores rather than raw genes?
+
+## Deliverables
+
+1. **A PC1 vs PC2 scatter plot** colored by true cancer type.
+2. **A cluster evaluation table** (silhouette, ARI) for KMeans and hierarchical clustering.
+3. **Written answers** (3-5 sentences each):
+   - Why standardize before PCA on gene expression?
+   - What does each principal component represent?
+   - How do you choose the number of clusters, and what are the risks?
+   - KMeans vs. hierarchical clustering: when is each appropriate?

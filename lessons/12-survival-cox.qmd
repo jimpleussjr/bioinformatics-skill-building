@@ -1,0 +1,87 @@
+---
+title: "Lesson 12: Cancer Survival - Cox Proportional Hazards"
+---
+
+## Introduction to the Domain
+
+Survival analysis models time-to-event outcomes (death, relapse) while handling censoring (patients lost to follow-up). The Cox proportional hazards model is the standard, relating covariates to hazard without assuming a baseline distribution.
+
+### Research background
+
+Survival analysis is essential in cancer research. Cox (1972) introduced the proportional hazards model, which relates covariates to the hazard without assuming a baseline distribution. Bradburn et al. (2003) provide an accessible tutorial on survival analysis for clinical researchers. These are standard, readable references.
+
+**Citations:**
+- Cox DR. Regression models and life-tables. *Journal of the Royal Statistical Society, Series B* (1972).
+- Bradburn MJ et al. Survival analysis part II: multivariate data analysis. *British Journal of Cancer* (2003).
+
+## Research Question
+
+Which factors affect survival time in cancer patients, and how do we handle censored observations?
+
+## Open-Source Dataset
+
+**METABRIC (breast cancer) or SEER sample.**
+
+- Link: https://www.kaggle.com/datasets/raghadalharbi/breast-cancer-gene-expression-profiles-metabric
+- Size: ~2,000 patients.
+- Outcome: overall survival time + event indicator.
+- Predictors: age, tumor size, grade, ER/PR/HER2 status, treatment.
+- Notes: censoring ~40%; check proportional hazards assumption.
+
+## Practical Exercise
+
+### Model to explore
+
+Cox PH (lifelines `CoxPHFitter`); evaluate with concordance index.
+
+### AI prompts to learn this model
+
+- "Explain survival analysis and censoring to an undergraduate."
+- "What is the Cox proportional hazards model, and what is a hazard ratio?"
+
+### Starter code
+
+```python
+import pandas as pd
+from lifelines import CoxPHFitter
+
+df = pd.read_csv("metabric.csv")
+cols = ["age_at_diagnosis", "tumor_size", "neoplasm_histologic_grade",
+        "overall_survival_months", "overall_survival"]
+df = df[cols].dropna()
+cph = CoxPHFitter()
+cph.fit(df, duration_col="overall_survival_months", event_col="overall_survival")
+print(cph.summary)
+print("C-index:", cph.concordance_index_)
+```
+
+### Suggested AI prompts
+
+- "What is censoring and why does standard regression fail?"
+- "Explain the proportional hazards assumption and how to test it."
+- "How do I interpret a hazard ratio clinically?"
+
+### Extensions
+
+- Plot Kaplan-Meier curves by risk group.
+- Try a random survival forest.
+- Check for time-varying effects.
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why drop rows with NA in the selected columns?
+- Why `duration_col` and `event_col` separately?
+- What does the concordance index measure?
+- What is the proportional hazards assumption?
+
+## Deliverables
+
+1. **A table of hazard ratios** with 95% CIs.
+2. **Kaplan-Meier curves** by a key risk group.
+3. **Written answers** (3-5 sentences each):
+   - What is censoring, and why does standard regression fail?
+   - State the proportional hazards assumption and how you tested it.
+   - How do you interpret a hazard ratio clinically?
+   - When would a random survival forest be preferred?

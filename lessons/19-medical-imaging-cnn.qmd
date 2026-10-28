@@ -1,0 +1,88 @@
+---
+title: "Lesson 19: Medical Imaging - Convolutional Neural Networks"
+---
+
+## Introduction to the Domain
+
+Medical imaging (X-rays, CT, MRI) is a leading application of deep learning. CNNs can detect pneumonia, fractures, and tumors, but require large datasets, careful validation, and attention to bias and shortcut learning.
+
+### Research background
+
+Deep learning transformed medical imaging. Esteva et al. (2017) showed CNNs can match dermatologists in skin-cancer classification, and Rajpurkar et al. (2017) demonstrated radiologist-level pneumonia detection on chest X-rays (CheXNet). Both papers are widely read and include accessible discussions of data, bias, and clinical integration.
+
+**Citations:**
+- Esteva A et al. Dermatologist-level classification of skin cancer with deep neural networks. *Nature* (2017).
+- Rajpurkar P et al. CheXNet: Radiologist-level pneumonia detection on chest X-rays with deep learning. *arXiv* (2017).
+
+## Research Question
+
+Can a CNN classify chest X-rays as normal vs. pneumonia, and what are the pitfalls?
+
+## Open-Source Dataset
+
+**NIH ChestX-ray14 / Kaggle Chest X-Ray Images (Pneumonia).**
+
+- Link: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+- Size: ~5,800 images.
+- Outcome: NORMAL / PNEUMONIA.
+- Notes: class imbalance; potential site/label bias; use patient-level splits.
+
+## Practical Exercise
+
+### Model to explore
+
+Transfer learning with a pretrained ResNet (torchvision), fine-tuned on chest X-rays.
+
+### AI prompts to learn this model
+
+- "Explain convolutional neural networks and what convolution filters learn."
+- "What is transfer learning, and why start from ImageNet for medical images?"
+
+### Starter code
+
+```python
+import torch
+from torchvision import models, transforms
+from torchvision.datasets import ImageFolder
+from torch.utils.data import DataLoader
+
+tfm = transforms.Compose([transforms.Resize((224, 224)),
+                          transforms.ToTensor(),
+                          transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])])
+train = ImageFolder("chest_xray/train", transform=tfm)
+loader = DataLoader(train, batch_size=32, shuffle=True)
+model = models.resnet18(weights="IMAGENET1K_V1")
+model.fc = torch.nn.Linear(model.fc.in_features, 2)
+print("ready")
+```
+
+### Suggested AI prompts
+
+- "Explain transfer learning: why start from ImageNet for medical images?"
+- "How do I avoid data leakage from patient-level duplicates?"
+- "What is 'shortcut learning' in medical imaging and how do I detect it?"
+
+### Extensions
+
+- Add Grad-CAM to visualize attention.
+- Evaluate by subgroup (age, sex) if available.
+- Compare with a simple baseline (image mean intensity).
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why resize to 224x224 and use ImageNet normalization?
+- Why `weights="IMAGENET1K_V1"`?
+- Why replace only the final `fc` layer?
+- Are train/val/test splits at the patient level?
+
+## Deliverables
+
+1. **A Grad-CAM visualization** for at least 3 test images.
+2. **A test-set confusion matrix** and AUC.
+3. **Written answers** (3-5 sentences each):
+   - Why start from ImageNet weights for medical images?
+   - What is "shortcut learning," and how did you check for it?
+   - Why must splits be at the patient level?
+   - What fairness concerns arise, and how would you audit them?

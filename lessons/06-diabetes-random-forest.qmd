@@ -1,0 +1,92 @@
+---
+title: "Lesson 6: Diabetes Prediction - Random Forest"
+---
+
+## Introduction to the Domain
+
+Type 2 diabetes is a chronic metabolic disease whose incidence is rising globally. Early identification of at-risk individuals enables lifestyle intervention. The classic Pima Indians Diabetes dataset is small but ideal for learning tree-based methods and feature importance.
+
+### Research background
+
+The Pima Indians Diabetes dataset comes from a study by Smith et al. (1988), who used an early learning algorithm to forecast diabetes onset. Random forests were introduced by Breiman (2001) as an ensemble of decision trees that reduces variance while keeping interpretability via feature importance. These two papers—one clinical, one methodological—are both readable introductions.
+
+**Citations:**
+- Smith JW et al. Using the ADAP learning algorithm to forecast the onset of diabetes mellitus. *Proceedings of the Symposium on Computer Applications and Medical Care* (1988).
+- Breiman L. Random Forests. *Machine Learning* (2001).
+
+## Research Question
+
+Which clinical measurements best predict diabetes onset, and can a random forest outperform a single decision tree while remaining interpretable?
+
+## Open-Source Dataset
+
+**Pima Indians Diabetes Database** (UCI / Kaggle).
+
+- Link: https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database
+- Size: 768 rows, 8 features + outcome.
+- Features: pregnancies, glucose, blood pressure, skin thickness, insulin, BMI, diabetes pedigree function, age.
+- Outcome: `Outcome` (0/1).
+- Notes: zeros encode missing values in several columns; handle before modeling.
+
+## Practical Exercise
+
+### Model to explore
+
+Random Forest classifier (scikit-learn `RandomForestClassifier`), plus a single decision tree for comparison and SHAP for interpretation.
+
+### AI prompts to learn this model
+
+- "Explain how a random forest builds trees and aggregates predictions."
+- "What is feature importance, and why might Gini importance be misleading?"
+
+### Starter code
+
+```python
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import cross_val_score
+from sklearn.impute import SimpleImputer
+
+df = pd.read_csv("diabetes.csv")
+cols = ["Glucose", "BloodPressure", "SkinThickness", "Insulin", "BMI"]
+df[cols] = df[cols].replace(0, pd.NA)
+X = df.drop(columns=["Outcome"]); y = df["Outcome"]
+X = SimpleImputer(strategy="median").fit_transform(X)
+
+rf = RandomForestClassifier(n_estimators=300, random_state=42)
+dt = DecisionTreeClassifier(max_depth=4, random_state=42)
+print("RF CV AUC:", cross_val_score(rf, X, y, cv=5, scoring="roc_auc").mean())
+print("DT CV AUC:", cross_val_score(dt, X, y, cv=5, scoring="roc_auc").mean())
+```
+
+### Suggested AI prompts
+
+- "Explain the difference between Gini importance and permutation importance; which should I trust here?"
+- "How do I read a SHAP summary plot for this random forest?"
+- "Why might glucose dominate, and what does that imply for screening?"
+
+### Extensions
+
+- Tune `max_depth` and `min_samples_leaf` with a grid search.
+- Add SHAP values and check for interactions (glucose x BMI).
+- Try class balancing and report sensitivity at 90% specificity.
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why replace 0 with NA in Glucose/BloodPressure/etc.?
+- Why impute with the median rather than the mean?
+- Why `n_estimators=300` and not 10 or 10000?
+- Why compare RF to a single shallow tree?
+
+## Deliverables
+
+1. **A feature-importance plot** (permutation importance, not just Gini).
+2. **A SHAP summary plot** for the top 5 features.
+3. **Written answers** (3-5 sentences each):
+   - What are the key assumptions (or lack thereof) of random forests vs. logistic regression?
+   - Why might a random forest outperform a single decision tree, and what does it sacrifice?
+   - How do you interpret a single prediction (local explanation) for a patient?
+   - What risk does class imbalance pose, and how did you address it?

@@ -1,0 +1,87 @@
+---
+title: "Lesson 5: Obesity - Ordinal and Multinomial Regression"
+---
+
+## Introduction to the Domain
+
+Obesity is classified into ordered categories (normal, overweight, obese I/II/III). When the outcome is ordinal, ordinal regression respects the ordering and is more efficient than treating categories as nominal.
+
+### Research background
+
+Obesity is classified into ordered categories (overweight, obese I/II/III) by WHO criteria. Ordinal regression (McCullagh 1980) respects this ordering and is more efficient than treating categories as nominal. The dataset here combines real and synthetic data on eating habits and physical condition to estimate obesity levels.
+
+**Citations:**
+- McCullagh P. Regression models for ordinal data. *Journal of the Royal Statistical Society, Series B* (1980).
+- World Health Organization. Obesity: preventing and managing the global epidemic. *WHO Technical Report Series* (2000).
+
+## Research Question
+
+What factors predict obesity level, and does ordinal regression outperform multinomial?
+
+## Open-Source Dataset
+
+**Obesity (or Estimation of Obesity Levels) dataset (UCI).**
+
+- Link: https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition
+- Size: ~2,100 rows.
+- Outcome: obesity level (ordered).
+- Predictors: age, gender, height, weight, eating habits, activity.
+- Notes: derived from synthetic + real data.
+
+## Practical Exercise
+
+### Model to explore
+
+Ordinal logistic regression (mord / statsmodels) vs. multinomial logistic regression.
+
+### AI prompts to learn this model
+
+- "Explain ordinal logistic regression and the proportional odds assumption."
+- "When should I use multinomial vs. ordinal regression?"
+
+### Starter code
+
+```python
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import cross_val_score
+from sklearn.preprocessing import StandardScaler
+
+df = pd.read_csv("obesity.csv")
+X = pd.get_dummies(df.drop(columns=["NObeyesdad"]), drop_first=True)
+y = df["NObeyesdad"]
+Xs = StandardScaler().fit_transform(X)
+multi = LogisticRegression(multi_class="multinomial", max_iter=1000)
+print("Multinomial CV acc:", cross_val_score(multi, Xs, y, cv=5).mean())
+```
+
+### Suggested AI prompts
+
+- "What is the proportional odds assumption in ordinal regression?"
+- "When should I use multinomial instead of ordinal?"
+- "How do I evaluate an ordinal classifier beyond accuracy?"
+
+### Extensions
+
+- Fit an ordinal model (mord.LogisticIT) and compare.
+- Collapse rare top categories and re-evaluate.
+- Examine coefficient stability across thresholds.
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why one-hot encode with `drop_first=True`?
+- Why standardize features?
+- Why `multi_class="multinomial"`?
+- When is ordinal regression preferred over multinomial?
+
+## Deliverables
+
+1. **A confusion matrix** for the ordinal model.
+2. **A comparison table** of ordinal vs. multinomial (accuracy, log-loss).
+3. **Written answers** (3-5 sentences each):
+   - What is the proportional odds assumption?
+   - When should you use multinomial instead of ordinal?
+   - How do you evaluate an ordinal classifier beyond accuracy?
+   - How would you handle class imbalance across ordered categories?

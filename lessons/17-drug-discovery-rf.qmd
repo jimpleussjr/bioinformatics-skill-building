@@ -1,0 +1,90 @@
+---
+title: "Lesson 17: Drug Discovery - Random Forest on Molecules"
+---
+
+## Introduction to the Domain
+
+Drug discovery screens thousands of compounds for activity. Molecular descriptors (physicochemical properties) can predict toxicity or activity, accelerating prioritization. Tree-based models handle mixed, high-dimensional descriptors well.
+
+### Research background
+
+Machine learning accelerates drug discovery by predicting compound activity or toxicity from molecular structure. Svetnik et al. (2003) showed random forests work well for compound classification, and Rogers & Hahn (2010) introduced extended-connectivity fingerprints (ECFP) now standard for representing molecules. Both are readable introductions to cheminformatics ML.
+
+**Citations:**
+- Svetnik V et al. Random forest: a classification and regression tool for compound classification and QSAR modeling. *Journal of Chemical Information and Computer Sciences* (2003).
+- Rogers D, Hahn M. Extended-connectivity fingerprints. *Journal of Chemical Information and Modeling* (2010).
+
+## Research Question
+
+Can molecular descriptors predict compound toxicity (Tox21), and which properties matter most?
+
+## Open-Source Dataset
+
+**Tox21 / MoleculeNet.**
+
+- Link: https://moleculenet.org/datasets-1 (Tox21)
+- Also: https://github.com/deepchem/deepchem
+- Size: ~8k compounds, 12 toxicity endpoints.
+- Outcome: binary toxicity per endpoint.
+- Notes: SMILES strings; need featurization (RDKit).
+
+## Practical Exercise
+
+### Model to explore
+
+Random Forest on RDKit descriptors (or Morgan fingerprints).
+
+### AI prompts to learn this model
+
+- "Explain how molecules are represented as fingerprints/descriptors for ML."
+- "Why do random forests work well on high-dimensional molecular data?"
+
+### Starter code
+
+```python
+import pandas as pd
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score
+
+df = pd.read_csv("tox21.csv")
+def feats(smi):
+    m = Chem.MolFromSmiles(smi)
+    return [Descriptors.MolWt(m), Descriptors.MolLogP(m), Descriptors.TPSA(m)]
+X = df["smiles"].apply(feats).tolist()
+y = df["NR-AR"]
+rf = RandomForestClassifier(n_estimators=300, random_state=42)
+print("CV AUC:", cross_val_score(rf, X, y, cv=5, scoring="roc_auc").mean())
+```
+
+### Suggested AI prompts
+
+- "What are Morgan fingerprints vs. physicochemical descriptors?"
+- "How do I avoid data leakage across similar molecules (scaffold split)?"
+- "Why is AUC-PR more informative than AUC-ROC for rare toxicity?"
+
+### Extensions
+
+- Use scaffold splitting for honest evaluation.
+- Try gradient boosting and compare.
+- Visualize important descriptors.
+
+## Lines to wrestle with (THINK)
+
+Before running the starter code, write a one-sentence justification for each:
+
+- Why `Chem.MolFromSmiles` and what if it returns None?
+- Why only 3 descriptors, and which others matter?
+- Why cross-validate rather than a single split?
+- What is scaffold splitting and why does random splitting mislead?
+
+## Deliverables
+
+1. **A feature-importance plot** of top descriptors.
+2. **An evaluation table** using scaffold split (AUC-PR and AUC-ROC).
+3. **Written answers** (3-5 sentences each):
+   - Morgan fingerprints vs. physicochemical descriptors: pros/cons?
+   - What is scaffold splitting, and why is random splitting misleading here?
+   - Why is AUC-PR more informative than AUC-ROC for rare toxicity?
+   - What are the assumptions of a random forest on molecular data?
