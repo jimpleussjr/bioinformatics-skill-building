@@ -208,6 +208,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="./lessons/17-anomaly-detection.html">
  <span class="dropdown-text">17. Anomaly Detection - Isolation Forest</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="./lessons/18-wearables-activity.html">
+ <span class="dropdown-text">18. Wearables - Physical Activity Recognition</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./lessons/19-microbiome.html">
+ <span class="dropdown-text">19. Gut Microbiome - Compositional Data &amp; Classification</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -258,7 +266,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="welcome" class="level2">
 <h2 class="anchored" data-anchor-id="welcome">Welcome</h2>
-<p>This site hosts a self-paced series of <strong>17 lessons</strong>. Each lesson pairs a distinct <strong>health domain</strong> with a distinct <strong>statistical or machine-learning model</strong>, walking you from domain context to a runnable practical exercise. Every lesson now includes <strong>starter code with THINK markers</strong> and a <strong>Deliverables</strong> section (a figure, a table, and written questions).</p>
+<p>This site hosts a self-paced series of <strong>19 lessons</strong>. Each lesson pairs a distinct <strong>health domain</strong> with a distinct <strong>statistical or machine-learning model</strong>, walking you from domain context to a runnable practical exercise. Every lesson now includes <strong>starter code with THINK markers</strong> and a <strong>Deliverables</strong> section (a figure, a table, and written questions).</p>
 <p>Every lesson follows the same scaffold:</p>
 <ol type="1">
 <li><strong>Introduction to the Domain</strong> — what the problem is and why it matters.</li>
@@ -373,6 +381,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>17</td>
 <td><a href="./lessons/17-anomaly-detection.html">Anomaly detection</a></td>
 <td>Isolation Forest</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td><a href="./lessons/18-wearables-activity.html">Wearables activity</a></td>
+<td>Random Forest on time/frequency features</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td><a href="./lessons/19-microbiome.html">Gut microbiome</a></td>
+<td>Random Forest on compositional data</td>
 </tr>
 </tbody>
 </table>
@@ -852,7 +870,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Welcome</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>This site hosts a self-paced series of **17 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise. Every lesson now includes **starter code with THINK markers** and a **Deliverables** section (a figure, a table, and written questions).</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>This site hosts a self-paced series of **19 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise. Every lesson now includes **starter code with THINK markers** and a **Deliverables** section (a figure, a table, and written questions).</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>Every lesson follows the same scaffold:</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
@@ -891,16 +909,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 15 <span class="pp">|</span> <span class="co">[</span><span class="ot">Obesity</span><span class="co">](lessons/15-obesity-ordinal.qmd)</span> <span class="pp">|</span> Ordinal / Multinomial Regression <span class="pp">|</span></span>
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 16 <span class="pp">|</span> <span class="co">[</span><span class="ot">Clinical notes (EHR)</span><span class="co">](lessons/16-ehr-nlp-transformers.qmd)</span> <span class="pp">|</span> Transformers / BERT <span class="pp">|</span></span>
 <span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 17 <span class="pp">|</span> <span class="co">[</span><span class="ot">Anomaly detection</span><span class="co">](lessons/17-anomaly-detection.qmd)</span> <span class="pp">|</span> Isolation Forest <span class="pp">|</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prerequisites</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 18 <span class="pp">|</span> <span class="co">[</span><span class="ot">Wearables activity</span><span class="co">](lessons/18-wearables-activity.qmd)</span> <span class="pp">|</span> Random Forest on time/frequency features <span class="pp">|</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="pp">|</span> 19 <span class="pp">|</span> <span class="co">[</span><span class="ot">Gut microbiome</span><span class="co">](lessons/19-microbiome.qmd)</span> <span class="pp">|</span> Random Forest on compositional data <span class="pp">|</span></span>
 <span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic Python (pandas, numpy, scikit-learn) or R.</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A GitHub account if you want to fork and track your own progress.</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Curiosity about health data and responsible ML.</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">## Responsible use</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Prerequisites</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Basic Python (pandas, numpy, scikit-learn) or R.</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>A GitHub account if you want to fork and track your own progress.</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Curiosity about health data and responsible ML.</span>
 <span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>Health data carries real-world consequences. Models built in these exercises are **educational** and must not be used for clinical decision-making. Always validate on independent data, examine fairness across subgroups, and involve domain experts.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="fu">## Responsible use</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>Health data carries real-world consequences. Models built in these exercises are **educational** and must not be used for clinical decision-making. Always validate on independent data, examine fairness across subgroups, and involve domain experts.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

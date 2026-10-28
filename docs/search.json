@@ -1,5 +1,47 @@
 [
   {
+    "objectID": "lessons/19-microbiome.html",
+    "href": "lessons/19-microbiome.html",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "",
+    "text": "The human gut microbiome comprises trillions of microbes that influence digestion, immunity, and disease. Researchers profile microbiomes by sequencing (16S rRNA or metagenomics), producing tables of taxa abundances. These data are compositional (relative abundances summing to 1), sparse, and high-dimensional. ML can classify disease states from microbiome profiles, but requires care with compositionality and batch effects.\n\n\nMicrobiome research expanded rapidly with sequencing. Turnbaugh et al. (2009) linked gut microbiome composition to obesity, and the Human Microbiome Project (2012) characterized healthy microbiomes. Compositional data analysis (Gloor et al. 2017) warns that standard methods can mislead on relative-abundance data. These are accessible entry points.\nCitations: - Turnbaugh PJ et al. A core gut microbiome in obese and lean twins. Nature (2009). - Human Microbiome Project Consortium. Structure, function and diversity of the healthy human microbiome. Nature (2012). - Gloor GB et al. Microbiome datasets are compositional: and this is not optional. Frontiers in Microbiology (2017)."
+  },
+  {
+    "objectID": "lessons/19-microbiome.html#introduction-to-the-domain",
+    "href": "lessons/19-microbiome.html#introduction-to-the-domain",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "",
+    "text": "The human gut microbiome comprises trillions of microbes that influence digestion, immunity, and disease. Researchers profile microbiomes by sequencing (16S rRNA or metagenomics), producing tables of taxa abundances. These data are compositional (relative abundances summing to 1), sparse, and high-dimensional. ML can classify disease states from microbiome profiles, but requires care with compositionality and batch effects.\n\n\nMicrobiome research expanded rapidly with sequencing. Turnbaugh et al. (2009) linked gut microbiome composition to obesity, and the Human Microbiome Project (2012) characterized healthy microbiomes. Compositional data analysis (Gloor et al. 2017) warns that standard methods can mislead on relative-abundance data. These are accessible entry points.\nCitations: - Turnbaugh PJ et al. A core gut microbiome in obese and lean twins. Nature (2009). - Human Microbiome Project Consortium. Structure, function and diversity of the healthy human microbiome. Nature (2012). - Gloor GB et al. Microbiome datasets are compositional: and this is not optional. Frontiers in Microbiology (2017)."
+  },
+  {
+    "objectID": "lessons/19-microbiome.html#research-question",
+    "href": "lessons/19-microbiome.html#research-question",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "Research Question",
+    "text": "Research Question\nCan gut microbiome composition classify disease status (e.g., IBD or obesity), and which taxa drive the prediction?"
+  },
+  {
+    "objectID": "lessons/19-microbiome.html#open-source-dataset",
+    "href": "lessons/19-microbiome.html#open-source-dataset",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nAmerican Gut Project / QIITA (16S data) or a Kaggle microbiome dataset.\n\nLink: https://qiita.ucsd.edu/ (American Gut) or https://www.kaggle.com/datasets/antaresnyc/human-microbiome\nSize: hundreds to thousands of samples, thousands of taxa.\nOutcome: disease status (e.g., IBD vs. healthy).\nPredictors: OTU/ASV abundance table (relative abundances).\nNotes: compositional; many zeros; batch effects."
+  },
+  {
+    "objectID": "lessons/19-microbiome.html#practical-exercise",
+    "href": "lessons/19-microbiome.html#practical-exercise",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nRandom Forest on centered log-ratio (CLR) transformed abundances; compare with a baseline on raw relative abundances.\n\n\nAI prompts to learn this model\n\n“Explain compositional data and why relative abundances are tricky for standard ML.”\n“What is the centered log-ratio (CLR) transform, and why use it for microbiome data?”\n\n\n\nStarter code\nimport pandas as pd, numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import cross_val_score, StratifiedKFold\n\ndf = pd.read_csv(\"microbiome.csv\")  # rows samples, cols taxa + label\nX = df.drop(columns=[\"label\"])\ny = df[\"label\"]\n# THINK: why add a pseudocount before CLR?\n# THINK: why StratifiedKFold for imbalanced disease labels?\nX_clr = pd.DataFrame(np.log(X + 1e-6) - np.log(X + 1e-6).mean(axis=1, keepdims=True),\n                     columns=X.columns, index=X.index)\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\nrf = RandomForestClassifier(n_estimators=300, random_state=42)\nprint(\"CLR CV acc:\", cross_val_score(rf, X_clr, y, cv=cv).mean())\nprint(\"Raw CV acc:\", cross_val_score(rf, X, y, cv=cv).mean())\n\n\nLines to wrestle with (THINK)\nBefore running, write a one-sentence justification for each:\n\nWhy add a pseudocount before the log transform?\nWhy CLR rather than raw relative abundances?\nWhy compare CLR vs. raw as a baseline?\nHow do batch effects threaten generalization?\n\n\n\nSuggested AI prompts\n\n“How do I handle the many zeros in microbiome count data?”\n“What is alpha vs. beta diversity, and how do they relate to ML?”\n“How would you check for batch effects across sequencing runs?”\n\n\n\nExtensions\n\nCompute alpha diversity (Shannon) and add as a feature.\nIdentify differentially abundant taxa (e.g., Mann-Whitney).\nCompare with logistic regression on CLR features."
+  },
+  {
+    "objectID": "lessons/19-microbiome.html#deliverables",
+    "href": "lessons/19-microbiome.html#deliverables",
+    "title": "Lesson 19: Gut Microbiome - Compositional Data and Classification",
+    "section": "Deliverables",
+    "text": "Deliverables\nComplete the following:\n\nA feature-importance plot of top taxa (on CLR features).\nA comparison table of CV accuracy: raw vs. CLR-transformed.\nWritten answers (3-5 sentences each):\n\nWhat is compositional data, and why do standard methods mislead?\nHow does the CLR transform address this?\nWhy might a taxon be important in the model but not a true biomarker?\nWhat are the privacy and consent considerations for microbiome data?"
+  },
+  {
     "objectID": "lessons/17-anomaly-detection.html",
     "href": "lessons/17-anomaly-detection.html",
     "title": "Lesson 17: Anomaly Detection - Isolation Forest",
@@ -480,14 +522,14 @@
     "href": "index.html",
     "title": "Health Domains & Machine Learning: A Skill-Building Course",
     "section": "",
-    "text": "This site hosts a self-paced series of 17 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise. Every lesson now includes starter code with THINK markers and a Deliverables section (a figure, a table, and written questions).\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.\nDeliverables — a figure, a table, and questions to answer."
+    "text": "This site hosts a self-paced series of 19 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise. Every lesson now includes starter code with THINK markers and a Deliverables section (a figure, a table, and written questions).\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.\nDeliverables — a figure, a table, and questions to answer."
   },
   {
     "objectID": "index.html#welcome",
     "href": "index.html#welcome",
     "title": "Health Domains & Machine Learning: A Skill-Building Course",
     "section": "",
-    "text": "This site hosts a self-paced series of 17 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise. Every lesson now includes starter code with THINK markers and a Deliverables section (a figure, a table, and written questions).\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.\nDeliverables — a figure, a table, and questions to answer."
+    "text": "This site hosts a self-paced series of 19 lessons. Each lesson pairs a distinct health domain with a distinct statistical or machine-learning model, walking you from domain context to a runnable practical exercise. Every lesson now includes starter code with THINK markers and a Deliverables section (a figure, a table, and written questions).\nEvery lesson follows the same scaffold:\n\nIntroduction to the Domain — what the problem is and why it matters.\nResearch Question — a concrete, answerable question.\nOpen-Source Dataset — a publicly available data source, with discussion and a link.\nPractical Exercise — which model/framework to explore, starter code, suggested AI prompts, and extension ideas.\nDeliverables — a figure, a table, and questions to answer."
   },
   {
     "objectID": "index.html#how-to-use-this-course",
@@ -501,7 +543,7 @@
     "href": "index.html#lessons",
     "title": "Health Domains & Machine Learning: A Skill-Building Course",
     "section": "Lessons",
-    "text": "Lessons\n\n\n\n#\nHealth Domain\nModel / Framework\n\n\n\n\n1\nPredicting birth weight\nLinear Regression\n\n\n2\nTrain/test splitting\nEvaluation methodology\n\n\n3\nCardiovascular disease risk\nLogistic Regression\n\n\n4\nDiabetes prediction\nRandom Forest\n\n\n5\nBreast cancer classification\nSupport Vector Machines\n\n\n6\nHospital readmission\nGradient Boosting (XGBoost)\n\n\n7\nMental health (text)\nNaive Bayes / NLP\n\n\n8\nCOVID-19\nTime-Series Forecasting\n\n\n9\nGenomics\nPCA & Clustering\n\n\n10\nMedical imaging\nConvolutional Neural Networks\n\n\n11\nCancer survival\nCox Proportional Hazards\n\n\n12\nDrug discovery\nRandom Forest on Molecules\n\n\n13\nCausal inference (NHANES)\nPropensity Scores\n\n\n14\nHealthcare costs\nGeneralized Linear Models\n\n\n15\nObesity\nOrdinal / Multinomial Regression\n\n\n16\nClinical notes (EHR)\nTransformers / BERT\n\n\n17\nAnomaly detection\nIsolation Forest"
+    "text": "Lessons\n\n\n\n#\nHealth Domain\nModel / Framework\n\n\n\n\n1\nPredicting birth weight\nLinear Regression\n\n\n2\nTrain/test splitting\nEvaluation methodology\n\n\n3\nCardiovascular disease risk\nLogistic Regression\n\n\n4\nDiabetes prediction\nRandom Forest\n\n\n5\nBreast cancer classification\nSupport Vector Machines\n\n\n6\nHospital readmission\nGradient Boosting (XGBoost)\n\n\n7\nMental health (text)\nNaive Bayes / NLP\n\n\n8\nCOVID-19\nTime-Series Forecasting\n\n\n9\nGenomics\nPCA & Clustering\n\n\n10\nMedical imaging\nConvolutional Neural Networks\n\n\n11\nCancer survival\nCox Proportional Hazards\n\n\n12\nDrug discovery\nRandom Forest on Molecules\n\n\n13\nCausal inference (NHANES)\nPropensity Scores\n\n\n14\nHealthcare costs\nGeneralized Linear Models\n\n\n15\nObesity\nOrdinal / Multinomial Regression\n\n\n16\nClinical notes (EHR)\nTransformers / BERT\n\n\n17\nAnomaly detection\nIsolation Forest\n\n\n18\nWearables activity\nRandom Forest on time/frequency features\n\n\n19\nGut microbiome\nRandom Forest on compositional data"
   },
   {
     "objectID": "index.html#prerequisites",
@@ -901,5 +943,47 @@
     "title": "Lesson 16: Clinical Notes (EHR) - Transformers / BERT",
     "section": "Deliverables",
     "text": "Deliverables\n\nA performance table (F1/AUC) for BERT vs. TF-IDF + logistic regression baseline.\nAn attention/SHAP visualization for 2-3 example notes.\nWritten answers (3-5 sentences each):\n\nWhy use a clinical BERT instead of general BERT?\nHow do you handle long notes exceeding token limits?\nWhat are the privacy risks of fine-tuning on clinical text?\nHow would you audit fairness across patient subgroups?"
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html",
+    "href": "lessons/18-wearables-activity.html",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "",
+    "text": "Wearable devices (smartwatches, fitness trackers, smartphones) continuously record movement, heart rate, and sleep. These data enable large-scale studies of physical activity, sedentary behavior, and sleep patterns. A common task is activity recognition: classifying what a person is doing (walking, sitting, climbing stairs) from raw accelerometer signals. This requires turning time-series into features and handling person-to-person variability.\n\n\nWearable-based activity recognition has matured from lab studies to free-living populations. Bao and Intille (2004) showed that simple accelerometers with machine learning can recognize daily activities. Troiano et al. (2008) used accelerometer data in NHANES to characterize US physical activity levels, a landmark population study. These papers are approachable and show both method and public-health impact.\nCitations: - Bao L, Intille SS. Activity recognition from user-annotated acceleration data. Pervasive Computing (2004). - Troiano RP et al. Physical activity in the United States measured by accelerometer. Medicine & Science in Sports & Exercise (2008). - Kwapisz JR, Weiss GM, Moore SA. Activity recognition using cell phone accelerometers. SIGKDD Explorations (2011) (WISDM dataset)."
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html#introduction-to-the-domain",
+    "href": "lessons/18-wearables-activity.html#introduction-to-the-domain",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "",
+    "text": "Wearable devices (smartwatches, fitness trackers, smartphones) continuously record movement, heart rate, and sleep. These data enable large-scale studies of physical activity, sedentary behavior, and sleep patterns. A common task is activity recognition: classifying what a person is doing (walking, sitting, climbing stairs) from raw accelerometer signals. This requires turning time-series into features and handling person-to-person variability.\n\n\nWearable-based activity recognition has matured from lab studies to free-living populations. Bao and Intille (2004) showed that simple accelerometers with machine learning can recognize daily activities. Troiano et al. (2008) used accelerometer data in NHANES to characterize US physical activity levels, a landmark population study. These papers are approachable and show both method and public-health impact.\nCitations: - Bao L, Intille SS. Activity recognition from user-annotated acceleration data. Pervasive Computing (2004). - Troiano RP et al. Physical activity in the United States measured by accelerometer. Medicine & Science in Sports & Exercise (2008). - Kwapisz JR, Weiss GM, Moore SA. Activity recognition using cell phone accelerometers. SIGKDD Explorations (2011) (WISDM dataset)."
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html#research-question",
+    "href": "lessons/18-wearables-activity.html#research-question",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "Research Question",
+    "text": "Research Question\nCan accelerometer signals from a wearable device classify the wearer’s activity, and which signal features are most informative?"
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html#open-source-dataset",
+    "href": "lessons/18-wearables-activity.html#open-source-dataset",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "Open-Source Dataset",
+    "text": "Open-Source Dataset\nWISDM (Wireless Sensor Data Mining) Activity Recognition dataset.\n\nLink: https://www.cis.fordham.edu/wisdm/dataset.php\nAlso: https://www.kaggle.com/datasets/uciml/human-activity-recognition-with-smartphones (UCI HAR)\nSize: ~1,098,207 samples across 36 subjects.\nOutcome: activity label (Walking, Jogging, Sitting, Standing, Upstairs, Downstairs).\nPredictors: tri-axial accelerometer (x, y, z) time series.\nNotes: subject-level splits are essential; windowing (e.g., 10s) creates samples."
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html#practical-exercise",
+    "href": "lessons/18-wearables-activity.html#practical-exercise",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "Practical Exercise",
+    "text": "Practical Exercise\n\nModel to explore\nRandom Forest on time/frequency features extracted from sliding windows; compare with a simple 1D CNN.\n\n\nAI prompts to learn this model\n\n“Explain how raw accelerometer time series are turned into features for activity recognition.”\n“What is windowing, and how does window size affect accuracy and latency?”\n\n\n\nStarter code\nimport pandas as pd, numpy as np\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.model_selection import GroupKFold, cross_val_score\n\ndf = pd.read_csv(\"WISDM_ar_v1.1_raw.txt\", header=None,\n                 names=[\"user\", \"activity\", \"timestamp\", \"x\", \"y\", \"z\"])\n# THINK: how do you window the time series into fixed-length segments?\n# THINK: which time/frequency features capture activity differences?\ndef features(window):\n    w = window[[\"x\", \"y\", \"z\"]].values\n    return [w.mean(0).tolist(), w.std(0).tolist()]\n# Build X (windows), y (activity), groups (user)\n# rf = RandomForestClassifier(n_estimators=300, random_state=42)\n# gkf = GroupKFold(n_splits=5)\n# print(\"CV acc:\", cross_val_score(rf, X, y, groups=groups, cv=gkf).mean())\n\n\nLines to wrestle with (THINK)\nBefore running, write a one-sentence justification for each:\n\nHow do you segment continuous accelerometer streams into windows?\nWhich features (mean, std, FFT) best separate activities?\nWhy group cross-validation by subject rather than by window?\nHow does class imbalance across activities affect evaluation?\n\n\n\nSuggested AI prompts\n\n“What features distinguish walking from running in accelerometer data?”\n“How do I prevent leakage between train and test subjects?”\n“When would a 1D CNN or LSTM beat hand-crafted features?”\n\n\n\nExtensions\n\nExtract FFT features and compare accuracy.\nTrain a 1D CNN on raw windows.\nEvaluate per-subject accuracy to find hard users."
+  },
+  {
+    "objectID": "lessons/18-wearables-activity.html#deliverables",
+    "href": "lessons/18-wearables-activity.html#deliverables",
+    "title": "Lesson 18: Wearables - Physical Activity Recognition from Accelerometers",
+    "section": "Deliverables",
+    "text": "Deliverables\nComplete the following:\n\nA confusion matrix of activity classification by subject-held-out CV.\nA feature-importance plot of the top time/frequency features.\nWritten answers (3-5 sentences each):\n\nHow does window size trade off accuracy and real-time responsiveness?\nWhy is subject-level splitting essential, and what happens if you split by window?\nWhat are the privacy implications of continuous wearable monitoring?\nHow might activity recognition fail for older adults or people with disabilities?"
   }
 ]

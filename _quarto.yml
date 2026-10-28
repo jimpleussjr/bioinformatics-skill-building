@@ -50,6 +50,10 @@ website:
             text: "16. Clinical Notes - Transformers / BERT"
           - href: lessons/17-anomaly-detection.qmd
             text: "17. Anomaly Detection - Isolation Forest"
+          - href: lessons/18-wearables-activity.qmd
+            text: "18. Wearables - Physical Activity Recognition"
+          - href: lessons/19-microbiome.qmd
+            text: "19. Gut Microbiome - Compositional Data & Classification"
   page-footer: "Built with Quarto. Content for educational use."
 
 format:

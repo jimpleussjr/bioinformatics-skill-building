@@ -1,0 +1,94 @@
+---
+title: "Lesson 19: Gut Microbiome - Compositional Data and Classification"
+---
+
+## Introduction to the Domain
+
+The human gut microbiome comprises trillions of microbes that influence digestion, immunity, and disease. Researchers profile microbiomes by sequencing (16S rRNA or metagenomics), producing tables of taxa abundances. These data are compositional (relative abundances summing to 1), sparse, and high-dimensional. ML can classify disease states from microbiome profiles, but requires care with compositionality and batch effects.
+
+### Research background
+
+Microbiome research expanded rapidly with sequencing. Turnbaugh et al. (2009) linked gut microbiome composition to obesity, and the Human Microbiome Project (2012) characterized healthy microbiomes. Compositional data analysis (Gloor et al. 2017) warns that standard methods can mislead on relative-abundance data. These are accessible entry points.
+
+**Citations:**
+- Turnbaugh PJ et al. A core gut microbiome in obese and lean twins. *Nature* (2009).
+- Human Microbiome Project Consortium. Structure, function and diversity of the healthy human microbiome. *Nature* (2012).
+- Gloor GB et al. Microbiome datasets are compositional: and this is not optional. *Frontiers in Microbiology* (2017).
+
+## Research Question
+
+Can gut microbiome composition classify disease status (e.g., IBD or obesity), and which taxa drive the prediction?
+
+## Open-Source Dataset
+
+**American Gut Project / QIITA (16S data) or a Kaggle microbiome dataset.**
+
+- Link: https://qiita.ucsd.edu/ (American Gut) or https://www.kaggle.com/datasets/antaresnyc/human-microbiome
+- Size: hundreds to thousands of samples, thousands of taxa.
+- Outcome: disease status (e.g., IBD vs. healthy).
+- Predictors: OTU/ASV abundance table (relative abundances).
+- Notes: compositional; many zeros; batch effects.
+
+## Practical Exercise
+
+### Model to explore
+
+Random Forest on centered log-ratio (CLR) transformed abundances; compare with a baseline on raw relative abundances.
+
+### AI prompts to learn this model
+
+- "Explain compositional data and why relative abundances are tricky for standard ML."
+- "What is the centered log-ratio (CLR) transform, and why use it for microbiome data?"
+
+### Starter code
+
+```python
+import pandas as pd, numpy as np
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import cross_val_score, StratifiedKFold
+
+df = pd.read_csv("microbiome.csv")  # rows samples, cols taxa + label
+X = df.drop(columns=["label"])
+y = df["label"]
+# THINK: why add a pseudocount before CLR?
+# THINK: why StratifiedKFold for imbalanced disease labels?
+X_clr = pd.DataFrame(np.log(X + 1e-6) - np.log(X + 1e-6).mean(axis=1, keepdims=True),
+                     columns=X.columns, index=X.index)
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+rf = RandomForestClassifier(n_estimators=300, random_state=42)
+print("CLR CV acc:", cross_val_score(rf, X_clr, y, cv=cv).mean())
+print("Raw CV acc:", cross_val_score(rf, X, y, cv=cv).mean())
+```
+
+### Lines to wrestle with (THINK)
+
+Before running, write a one-sentence justification for each:
+
+- Why add a pseudocount before the log transform?
+- Why CLR rather than raw relative abundances?
+- Why compare CLR vs. raw as a baseline?
+- How do batch effects threaten generalization?
+
+### Suggested AI prompts
+
+- "How do I handle the many zeros in microbiome count data?"
+- "What is alpha vs. beta diversity, and how do they relate to ML?"
+- "How would you check for batch effects across sequencing runs?"
+
+### Extensions
+
+- Compute alpha diversity (Shannon) and add as a feature.
+- Identify differentially abundant taxa (e.g., Mann-Whitney).
+- Compare with logistic regression on CLR features.
+
+## Deliverables
+
+Complete the following:
+
+1. **A feature-importance plot** of top taxa (on CLR features).
+2. **A comparison table** of CV accuracy: raw vs. CLR-transformed.
+3. **Written answers** (3-5 sentences each):
+   - What is compositional data, and why do standard methods mislead?
+   - How does the CLR transform address this?
+   - Why might a taxon be important in the model but not a true biomarker?
+   - What are the privacy and consent considerations for microbiome data?

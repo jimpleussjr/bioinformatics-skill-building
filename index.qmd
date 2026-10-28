@@ -4,7 +4,7 @@ title: "Health Domains & Machine Learning: A Skill-Building Course"
 
 ## Welcome
 
-This site hosts a self-paced series of **17 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise. Every lesson now includes **starter code with THINK markers** and a **Deliverables** section (a figure, a table, and written questions).
+This site hosts a self-paced series of **19 lessons**. Each lesson pairs a distinct **health domain** with a distinct **statistical or machine-learning model**, walking you from domain context to a runnable practical exercise. Every lesson now includes **starter code with THINK markers** and a **Deliverables** section (a figure, a table, and written questions).
 
 Every lesson follows the same scaffold:
 
@@ -43,6 +43,8 @@ Every lesson follows the same scaffold:
 | 15 | [Obesity](lessons/15-obesity-ordinal.qmd) | Ordinal / Multinomial Regression |
 | 16 | [Clinical notes (EHR)](lessons/16-ehr-nlp-transformers.qmd) | Transformers / BERT |
 | 17 | [Anomaly detection](lessons/17-anomaly-detection.qmd) | Isolation Forest |
+| 18 | [Wearables activity](lessons/18-wearables-activity.qmd) | Random Forest on time/frequency features |
+| 19 | [Gut microbiome](lessons/19-microbiome.qmd) | Random Forest on compositional data |
 
 ## Prerequisites
 
